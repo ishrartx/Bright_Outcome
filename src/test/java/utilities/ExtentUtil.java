@@ -67,6 +67,48 @@ public class ExtentUtil {
 	/**
 	 * Attach screenshot to report on failure.
 	 */
+	public static void takeScreenshotAndAttachInReport() {
+		try {
+			if (System.getProperty("screen_shot") != null && System.getProperty("screen_shot").equalsIgnoreCase("true")) {
+
+				String imagePath, pathForLogger;
+				String scFileName = "ScreenShot_" + System.currentTimeMillis();
+				String screenshotFilePath = ConfigReader.getValue("screenshotsPath") + "\\" + scFileName + ".png";
+
+				imagePath = HTMLReportUtil.testFailTakeScreenshot(screenshotFilePath);
+
+				InputStream is = new FileInputStream(imagePath);
+				byte[] imageBytes = org.apache.commons.compress.utils.IOUtils.toByteArray(is);
+				Thread.sleep(2000);
+				String base64 = Base64.getEncoder().encodeToString(imageBytes);
+
+
+			} else {
+				if (ConfigReader.getValue("screenshotFlag").equalsIgnoreCase("true")) {
+					String imagePath, pathForLogger;
+					String scFileName = "ScreenShot_" + System.currentTimeMillis();
+					String screenshotFilePath = ConfigReader.getValue("screenshotsPath") + "\\" + scFileName + ".png";
+
+					imagePath = HTMLReportUtil.testFailTakeScreenshot(screenshotFilePath);
+
+					InputStream is = new FileInputStream(imagePath);
+					byte[] imageBytes = org.apache.commons.compress.utils.IOUtils.toByteArray(is);
+					Thread.sleep(2000);
+					String base64 = Base64.getEncoder().encodeToString(imageBytes);
+					pathForLogger = loggerTest.addScreenCaptureFromPath("data:image/png;base64," + base64).toString();
+					loggerTest.log(Status.PASS,
+							HTMLReportUtil.passStringGreenColor(pathForLogger));
+
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+	}
+
+
 	public static void attachScreenshotToReportOnFailure(Scenario scenario) {
 		try {
 			String scFileName = "ScreenShot_" + Hooks.executingTagName.replace("@", "") + "_" + KeywordUtil.currentDateTime() + ".png";
