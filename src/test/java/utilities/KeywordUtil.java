@@ -9,7 +9,6 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
 import com.Buffer.BufferUtilSuiteLevel;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -53,8 +52,6 @@ public class KeywordUtil extends GlobalUtil {
 	public static ExtentTest loggerTest;
 	public static ExtentTest loggerTestStep;
 	public static ThreadLocal<ExtentTest> logger = new ThreadLocal<>();
-
-
 	public static String cucumberTagName;
 	private static final int DEFAULT_WAIT_SECONDS = 30;
 	protected static final int FAIL = 0;
@@ -73,14 +70,11 @@ public class KeywordUtil extends GlobalUtil {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		String dt = dtf.format(now).replace("/", "-").replace(":", "-").replace(" ", "_");
-
 		return dt;
 	}
 
 	public static void onExecutionFinish() {
-
 		LogUtil.infoLog(KeywordUtil.class, "Test process has ended");
-
 		if (GlobalUtil.getCommonSettings().getEmailOutput().equalsIgnoreCase("Y")) {
 			LogUtil.infoLog(KeywordUtil.class, "Email Flag Set To: " + GlobalUtil.getCommonSettings().getEmailOutput());
 			try {
@@ -140,10 +134,7 @@ public class KeywordUtil extends GlobalUtil {
 		return true;
 	}
 
-	
-
 	public static String getCurrentDateTime() {
-
 		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
 		Date now = new Date();
 		String strDate = sdfDate.format(now);
@@ -204,7 +195,6 @@ public class KeywordUtil extends GlobalUtil {
 
 		return elm;
 	}
-
 	
 	/**
 	 * @param locator
@@ -237,7 +227,6 @@ public class KeywordUtil extends GlobalUtil {
 			return null;
 		}
 	}
-
 	
 	public static boolean waitForInVisibile(By locator) {
 		WebDriverWait wait = new WebDriverWait(getDriver(), 30);
@@ -250,7 +239,6 @@ public class KeywordUtil extends GlobalUtil {
 		wait.ignoring(ElementNotVisibleException.class);
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
-
 	
 	@SuppressWarnings("deprecation")
 	public static WebElement findWithFluintWait(final By locator, int seconds, int poolingMil) throws Exception {
@@ -269,12 +257,10 @@ public class KeywordUtil extends GlobalUtil {
 					return driver.findElement(locator);
 				}
 			});
-
 		} catch (Exception t) {
 			throw new Exception("Timeout reached when searching for element! Time: " + seconds + " seconds " + "\n" + t.getMessage());
 		} finally {
 		}
-
 		return element;
 	}// End FindWithWait()
 
@@ -303,12 +289,10 @@ public class KeywordUtil extends GlobalUtil {
 					return driver.findElement(locator);
 				}
 			});
-
 		} catch (Exception t) {
 			throw new Exception("Timeout reached when searching for element! Time: " + DEFAULT_WAIT_SECONDS + " seconds " + "\n" + t.getMessage());
 		} finally {
 		}
-
 		return element;
 	}// End FindWithWait()
 
@@ -320,8 +304,7 @@ public class KeywordUtil extends GlobalUtil {
 		return findWithFluintWait(locator);
 	}
 	
-		public static boolean click(By locator, String logStep) {
-
+	public static boolean click(By locator, String logStep) {
 		WebElement elm = waitForClickable(locator);
 		if (elm == null) {
 			return false;
@@ -330,7 +313,6 @@ public class KeywordUtil extends GlobalUtil {
 			LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 			elm.click();
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			return true;
 		}
 	}
@@ -338,18 +320,15 @@ public class KeywordUtil extends GlobalUtil {
 	
 	// ............
 	public static boolean clickCart(By locator, String logStep) {
-
 		KeywordUtil.lastAction = "Click: " + locator.toString();
 		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 		WebElement elm = waitForClickable(locator);
 		if (elm == null) {
 			return false;
 		} else {
-
 			((JavascriptExecutor) GlobalUtil.getDriver()).executeScript("arguments[0].scrollIntoView();", elm);
 			elm.click();
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			return true;
 		}
 	}
@@ -357,20 +336,16 @@ public class KeywordUtil extends GlobalUtil {
 	// ....
 
 	public static boolean acceptAlert() {
-
 		Alert alert = GlobalUtil.getDriver().switchTo().alert();
 		alert.accept();
 		return true;
-
 	}
 
 	// ......
 	public static boolean switchToWindow() {
-
 		ArrayList<String> tabs2 = new ArrayList<String>(GlobalUtil.getDriver().getWindowHandles());
 		GlobalUtil.getDriver().switchTo().window(tabs2.get(1));
 		return true;
-
 	}
 	// ....
 
@@ -388,7 +363,6 @@ public class KeywordUtil extends GlobalUtil {
 		} else {
 			elm.click();
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			return true;
 		}
 	}
@@ -422,7 +396,6 @@ public class KeywordUtil extends GlobalUtil {
 			LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 			WebElement elm = waitForVisible(locator);
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			return elm.isDisplayed();
 		} catch (Exception e) {
 			return false;
@@ -435,7 +408,6 @@ public class KeywordUtil extends GlobalUtil {
 			KeywordUtil.lastAction = "Check Element visible: " + locator.toString();
 			LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 			WebElement elm = waitForVisible(locator);
-
 			return elm.isDisplayed();
 		} catch (Exception e) {
 			return false;
@@ -449,7 +421,6 @@ public class KeywordUtil extends GlobalUtil {
 		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 		WebElement elm = waitForVisible(locator);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return elm.isEnabled();
 	}
 
@@ -461,16 +432,13 @@ public class KeywordUtil extends GlobalUtil {
 	public static List<WebElement> getListElements(By locator, String logStep) {
 		KeywordUtil.lastAction = "Get List of Elements: " + locator.toString();
 		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
-
 		try {
 			findWithFluintWait(locator, 60, 300);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return getDriver().findElements(locator);
-
 	}
 
 	public static boolean isWebElementPresent(By locator, String logStep) {
@@ -481,20 +449,15 @@ public class KeywordUtil extends GlobalUtil {
 			return false;
 		}
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return true;
 	}
 
 	public static boolean hoverOnElement(By by) throws InterruptedException {
-
 		WebElement element = getDriver().findElement(by);
 		Actions act = new Actions(getDriver());
 		act.moveToElement(element).build().perform();
-
 		Thread.sleep(3000);
-
 		return true;
-
 	}
 
 	/**
@@ -506,7 +469,6 @@ public class KeywordUtil extends GlobalUtil {
 		KeywordUtil.lastAction = "Check Element not present: " + locator.toString();
 		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 		List<WebElement> elements = (new WebDriverWait(getDriver(), DEFAULT_WAIT_SECONDS)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
-
 		if (elements.isEmpty()) {
 			return true;
 		}
@@ -532,8 +494,6 @@ public class KeywordUtil extends GlobalUtil {
 			return true;
 		}
 	}
-
-	
 
 	public static void pressTabKey(By locator) {
 		WebElement elm = waitForVisible(locator);
@@ -574,7 +534,6 @@ public class KeywordUtil extends GlobalUtil {
 		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 		WebElement element = waitForVisible(locator);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return element.isSelected();
 	}
 
@@ -583,15 +542,11 @@ public class KeywordUtil extends GlobalUtil {
 	 * 
 	 * @return
 	 */
-	
-
-	
 	public static boolean isRadioNotSelected(By locator, String logStep) {
 		KeywordUtil.lastAction = "Is Radio Not Selected: " + locator.toString();
 		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 		boolean check = isRadioSelected(locator, logStep);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return (!check);
 	}
 
@@ -616,7 +571,6 @@ public class KeywordUtil extends GlobalUtil {
 	public static boolean verifyCssProperty(By locator, String data, String logStep) {
 		KeywordUtil.lastAction = "Verify CSS : " + data + " - " + locator.toString();
 		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
-
 		String[] property = data.split(":", 2);
 		String expProp = property[0];
 		String expValue = property[1];
@@ -625,7 +579,6 @@ public class KeywordUtil extends GlobalUtil {
 		if (prop.trim().equals(expValue.trim())) {
 			flag = true;
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			return flag;
 		} else {
 			return flag;
@@ -645,7 +598,6 @@ public class KeywordUtil extends GlobalUtil {
 		String actual = element.getAttribute(VALUE);
 		LogUtil.infoLog(KeywordUtil.class, "Actual:" + actual);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return actual.equalsIgnoreCase(data);
 
 	}
@@ -660,11 +612,9 @@ public class KeywordUtil extends GlobalUtil {
 		KeywordUtil.lastAction = "Verify Input Expected Text: " + data + " - " + locator.toString();
 		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 		WebElement element = waitForVisible(locator);
-
 		String message = String.format("Verified text expected \"%s\" actual \"%s\" ", data, element.getText());
 		LogUtil.infoLog(KeywordUtil.class, message);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return data.equalsIgnoreCase(element.getText());
 	}
 
@@ -692,10 +642,8 @@ public class KeywordUtil extends GlobalUtil {
 		String message = String.format("Verified text expected \"%s\" actual \"%s\" ", data, element.getText());
 		LogUtil.infoLog(KeywordUtil.class, message);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return element.getText().equalsIgnoreCase(data);
 	}
-
 	
 	public static boolean verifyTextContains(By locator, String data, String logStep) {
 		KeywordUtil.lastAction = "Verify Text Contains: " + data + " - " + locator.toString();
@@ -704,9 +652,7 @@ public class KeywordUtil extends GlobalUtil {
 		String message = new String(String.format("Verified text expected \"%s\" actual \"%s\" ", data, element.getText()));
 		LogUtil.infoLog(KeywordUtil.class, message);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return element.getText().toUpperCase().contains(data.toUpperCase());
-
 	}
 
 	/**
@@ -733,7 +679,6 @@ public class KeywordUtil extends GlobalUtil {
 		WebElement element = waitForVisible(locator);
 		Object obj = ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", element);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return obj == null;
 	}
 
@@ -777,14 +722,12 @@ public class KeywordUtil extends GlobalUtil {
 		Select sel = new Select(getDriver().findElement(locator));
 		System.out.println("SDCFGHJK"+sel.getFirstSelectedOption());
 		System.out.println("SDCgggFGHJK"+sel.getOptions());
-
 		sel.selectByValue(value);
 
 		// Check whether element is selected or not
 		sel = new Select(getDriver().findElement(locator));
 		if (sel.getFirstSelectedOption().isDisplayed()) {
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			return true;
 		} else {
 			return false;
@@ -806,7 +749,6 @@ public class KeywordUtil extends GlobalUtil {
 			LogUtil.infoLog(KeywordUtil.class, sel.getOptions().toString());
 			sel.selectByVisibleText(value);
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -833,11 +775,9 @@ public class KeywordUtil extends GlobalUtil {
 		for (int i = 0; i < allElements.length; i++) {
 			LogUtil.infoLog(KeywordUtil.class, options.get(i).getText());
 			LogUtil.infoLog(KeywordUtil.class, allElements[i].trim());
-
 			actual = options.get(i).getText().trim();
 			if (actual.equalsIgnoreCase(allElements[i].trim())) {
 				ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 				flag = true;
 			} else {
 				flag = false;
@@ -862,8 +802,6 @@ public class KeywordUtil extends GlobalUtil {
 		return defSelectedVal.trim().equals(data.trim());
 	}
 
-
-
 	/**
 	 * @param locator
 	 * @param size
@@ -877,7 +815,6 @@ public class KeywordUtil extends GlobalUtil {
 		if (elements.size() == size) {
 			LogUtil.infoLog(KeywordUtil.class, "Element is Present " + size + "times");
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			return true;
 		} else {
 			LogUtil.infoLog(KeywordUtil.class, "Element is not Present with required size");
@@ -885,7 +822,6 @@ public class KeywordUtil extends GlobalUtil {
 			return false;
 		}
 	}
-
 
 	/**
 	 * @param locator
@@ -904,7 +840,6 @@ public class KeywordUtil extends GlobalUtil {
 			Thread.sleep(250);
 		}
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return true;
 	}
 
@@ -917,7 +852,6 @@ public class KeywordUtil extends GlobalUtil {
 		String webElementInfo = "";
 		webElementInfo = webElementInfo + "Tag Name: " + element.getTagName() + ", Locator: [" + element.toString().substring(element.toString().indexOf("->") + 2);
 		return webElementInfo;
-
 	}
 
 	/**
@@ -944,9 +878,7 @@ public class KeywordUtil extends GlobalUtil {
 		String expected = dtFormat.format(date).trim();
 		if (actual.trim().contains(expected)) {
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			flag = true;
-
 		}
 		return flag;
 	}
@@ -964,7 +896,6 @@ public class KeywordUtil extends GlobalUtil {
 		element.clear();
 		element.sendKeys(System.getProperty(userDir) + "\\src\\test\\resources\\uploadFiles\\" + data);
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return true;
 	}
 
@@ -993,9 +924,7 @@ public class KeywordUtil extends GlobalUtil {
 			Actions action = new Actions(getDriver()).doubleClick(element);
 			action.build().perform();
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 			result = true;
-
 		} catch (StaleElementReferenceException e) {
 			LogUtil.infoLog(KeywordUtil.class, locator.toString() + " - Element is not attached to the page document " + e.getStackTrace());
 			result = false;
@@ -1010,7 +939,6 @@ public class KeywordUtil extends GlobalUtil {
 	}
 
 	public static boolean switchToFrame(String frameName) {
-
 		try {
 			getDriver().switchTo().frame(frameName);
 			return true;
@@ -1047,7 +975,6 @@ public class KeywordUtil extends GlobalUtil {
 				while ((bytesNum = fis.read(bytesRead)) > 0) {
 					zos.write(bytesRead, 0, bytesNum);
 				}
-
 				fis.close();
 			}
 		}
@@ -1058,7 +985,6 @@ public class KeywordUtil extends GlobalUtil {
 	
 	public static void waitForDOMLoadToComplete() {
 		new WebDriverWait(GlobalUtil.getDriver(), DEFAULT_WAIT_SECONDS).until(new ExpectedCondition<Boolean>() {
-
 			public Boolean apply(WebDriver driver) {
 				driver = GlobalUtil.getDriver();
 				JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1082,10 +1008,8 @@ public class KeywordUtil extends GlobalUtil {
 
 }// End class
 
-
 @SuppressWarnings("serial")
 class TestStepFailedException extends Exception {
-
 	TestStepFailedException(String s) {
 		super(s);
 	}
@@ -1094,5 +1018,4 @@ class TestStepFailedException extends Exception {
 		JavascriptExecutor js = (JavascriptExecutor) GlobalUtil.getDriver();
 		js.executeScript("window.scrollBy(0,600);", Element);
 	}
-
 }

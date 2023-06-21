@@ -1,7 +1,5 @@
 package step_definitions;
 
-
-
 import com.Buffer.BufferUtilSuiteLevel;
 import com.aventstack.extentreports.ExtentTest;
 import io.cucumber.java.Scenario;
@@ -16,20 +14,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.ACS_locators;
 import utilities.*;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import com.Buffer.BufferUtilSuiteLevel;
-
 import org.testng.Assert;
-
 
 public class ACS_steps extends KeywordUtil {
 
-
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
-
 
     @Given("Read the testdata {string} from excel file")
     public void readTheTestdataFromExcelFile(String arg1) {
@@ -61,7 +54,6 @@ public class ACS_steps extends KeywordUtil {
         click(ACS_locators.sign_up, "click on the sign in button");
         ExtentUtil.takeScreenshotAndAttachInReport();
     }
-
 
     @And("hover on the admin name")
     public void hover_admin() throws InterruptedException {
@@ -131,7 +123,6 @@ public class ACS_steps extends KeywordUtil {
         Thread.sleep(5000);
 //        ExtentUtil.attachScreenshotToReportOnpass();
         ExtentUtil.takeScreenshotAndAttachInReport();
-
     }
 
     @And("enter the projects name")
@@ -175,9 +166,14 @@ public class ACS_steps extends KeywordUtil {
    	public void selectCheckboxesInProjectSettings() throws InterruptedException {
     	hoverOnElement(ACS_locators.checkbox_project_doing_with_others);
 		Thread.sleep(2000);
-		if(!isWebElementVisibleWithoutLog(ACS_locators.selectCheckboxchecked(dataMap.get("CheckboxText"))))
-		click(ACS_locators.selectCheckbox(dataMap.get("CheckboxText")), "select "+dataMap.get("CheckboxText") +"checkbox");
-		Thread.sleep(2000);
+		String[] chkOptions = dataMap.get("CheckboxText").split(",");
+		System.out.println(chkOptions.length);
+		for(int i=0; i < chkOptions.length; i++) {
+			if(!isWebElementVisibleWithoutLog(ACS_locators.selectCheckboxchecked(chkOptions[i]))) {
+				click(ACS_locators.selectCheckbox(chkOptions[i]), "select "+ chkOptions[i] +"checkbox");
+				Thread.sleep(2000);
+			}
+		}
 
     }
     
@@ -259,7 +255,7 @@ public class ACS_steps extends KeywordUtil {
 	@And("select project template setting")
 	public void select_projecttemplate_setting() throws InterruptedException {
 		hoverOnElement(ACS_locators.select_project_template_setting);
-        if(isWebElementPresent(ACS_locators.select_template_name(dataMap.get("Template_Name")),dataMap.get("")+ " tempalte is present")){
+        if(isWebElementPresent(ACS_locators.select_template_name(dataMap.get("Template_Name")),dataMap.get("Template_Name")+ " tempalte is present")){
             System.out.println("tempalte is present");
         }
         else {
@@ -270,12 +266,3 @@ public class ACS_steps extends KeywordUtil {
 
 	}
 }
-
-
-
-
-
-
-
-
-
