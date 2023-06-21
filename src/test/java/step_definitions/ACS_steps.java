@@ -2,29 +2,31 @@ package step_definitions;
 
 
 
+import com.Buffer.BufferUtilSuiteLevel;
+import com.aventstack.extentreports.ExtentTest;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.zh_cn.假如;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.ACS_locators;
 import utilities.*;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import com.Buffer.BufferUtilSuiteLevel;
 
 import org.testng.Assert;
 
-import static org.codehaus.groovy.runtime.InvokerHelper.getAttribute;
-
 
 public class ACS_steps extends KeywordUtil {
+
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
 
@@ -32,32 +34,32 @@ public class ACS_steps extends KeywordUtil {
     @Given("Read the testdata {string} from excel file")
     public void readTheTestdataFromExcelFile(String arg1) {
         dataMap = ExcelDataUtil.getTestDataWithTestCaseID("ACS", arg1);
-
     }
 
     @Given("user navigates to the application")
     public void navigates_to_the_application() {
         navigateToUrl(dataMap.get("URL"));
+        ExtentUtil.takeScreenshotAndAttachInReport();
     }
 
     @When("user clicks on the sign up")
     public void click_Signup() throws InterruptedException {
         scrollingToElementofAPage(ACS_locators.sign_in, "move to signin");
         click(ACS_locators.sign_in, "click on the sign in button");
+        ExtentUtil.takeScreenshotAndAttachInReport();
     }
 
     @When("user enters the username and password")
     public void entercredentials() {
         inputText(ACS_locators.enter_username, dataMap.get("Username"), "enter the username");
         inputText(ACS_locators.enter_password, dataMap.get("Password"), "enter the password");
-
-
     }
 
     @When("user clicks on the signin button for login")
     public void clickssignin() throws InterruptedException {
         Thread.sleep(6000);
         click(ACS_locators.sign_up, "click on the sign in button");
+        ExtentUtil.takeScreenshotAndAttachInReport();
     }
 
 
@@ -66,14 +68,11 @@ public class ACS_steps extends KeywordUtil {
         Thread.sleep(7000);
         scrollingToElementofAPage(ACS_locators.admin_name, "move to admin name");
         click(ACS_locators.admin_name, "click on the admin name");
-
-
     }
 
     @And("click on the {string} option")
     public void clicktemplates(String dropdownname) throws InterruptedException {
         Thread.sleep(7000);
-
         click(ACS_locators.dropdown_buttons(dropdownname), "click on the " + dropdownname + " option");
     }
 
@@ -98,13 +97,11 @@ public class ACS_steps extends KeywordUtil {
 
     @Then("user is able to see the error message")
     public void verify_error_message() {
-
         Assert.assertTrue(isWebElementVisible(ACS_locators.error_message, getElementText(ACS_locators.error_message) + " error message  is present"));
     }
 
     @And("Search the template name")
     public void search_template() {
-
         inputText(ACS_locators.search_template, dataMap.get("Template_Name"), "search the " + dataMap.get("Template_Name"));
     }
 
@@ -114,21 +111,27 @@ public class ACS_steps extends KeywordUtil {
         Thread.sleep(5000);
     }
 
-    @And("hover on the manage button")
-    public void hover_on_manage_button() throws InterruptedException {
-        hoverOnElement(ACS_locators.Manage_button);
-    }
 
+   @And("Select the {string} in the templates option")
+   public void select_manage_Dropdown(String dropdown) throws InterruptedException {
+       hoverOnElement(ACS_locators.template_manage_button(dataMap.get("Template_Name")));
+       Thread.sleep(6000);
+       click(ACS_locators.template_Manage_dropdowns(dataMap.get("Template_Name"),dropdown), "Select the " + dropdown + " option");
+   }
     @And("Select the {string} option")
     public void select_manage_dropdown(String dropdown) throws InterruptedException {
-    	 hoverOnElement(ACS_locators.Manage_button);
-        click(ACS_locators.Manage_dropdowns(dropdown), "Select the " + dropdown);
+    	hoverOnElement(ACS_locators.manage_button(dataMap.get("Project_Name")));
+        Thread.sleep(6000);
+        click(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name"),dropdown), "Select the " + dropdown + " option");
     }
 
     @Then("user should be navigate to Edit template screen")
     public void verify_edit_template_screen() throws InterruptedException {
         Assert.assertTrue(isWebElementPresent(ACS_locators.Edit_Template_heading, "user is navigated to the edit template screen and able to see the heading " + getElementText(ACS_locators.Edit_Template_heading)));
         Thread.sleep(5000);
+//        ExtentUtil.attachScreenshotToReportOnpass();
+        ExtentUtil.takeScreenshotAndAttachInReport();
+
     }
 
     @And("enter the projects name")
@@ -173,44 +176,77 @@ public class ACS_steps extends KeywordUtil {
     	hoverOnElement(ACS_locators.checkbox_project_doing_with_others);
 		Thread.sleep(2000);
 		if(!isWebElementVisibleWithoutLog(ACS_locators.selectCheckboxchecked(dataMap.get("CheckboxText"))))
-		click(ACS_locators.selectCheckbox(dataMap.get("CheckboxText")), "select the project doing with others checkbox");
+		click(ACS_locators.selectCheckbox(dataMap.get("CheckboxText")), "select "+dataMap.get("CheckboxText") +"checkbox");
 		Thread.sleep(2000);
+
     }
     
-    @And("click on {string} button")
-	public void updateBtn_template(String buttonname) {
+    @Then("click on {string} button")
+	public void updateBtn_template(String buttonname) throws InterruptedException {
+		scrollingToElementofAPage(ACS_locators.button_by_text(buttonname), "clicking on update button");
+		Thread.sleep(2000);
 		click(ACS_locators.button_by_text(buttonname), "clicking on update button");
+
 	}
     
     @And("Search the Project name")
 	public void search_project() throws InterruptedException {
-    	 inputText(ACS_locators.search_project, dataMap.get("Project_Name"), "enter the project name");
-        click(ACS_locators.search_button, "click on the search button");
-        Thread.sleep(5000);
-
-		try {
-			if(!isWebElementVisibleWithoutLog(ACS_locators.projectList(dataMap.get("Project_Name")))){
-				click(ACS_locators.nextBtn,"clicking on next button");
-				
-			}
-		}
-		catch(Exception e) {
-			
-		}
-
+    	inputText(ACS_locators.search_project, dataMap.get("Project_Name"), "search the " +dataMap.get("Project_Name"));
+        click(ACS_locators.search_button,"click on the search button");
+        if(isWebElementPresent(ACS_locators.no_record_found,"no record found is present")){
+           hoverOnElement(ACS_locators.enter_project_Name);
+           inputText(ACS_locators.enter_project_Name,dataMap.get("Project_Name"),"enter the "+dataMap.get("Project_Name"+"in the search box"));
+           click(ACS_locators.Add_project,"click on the add project");
+            inputText(ACS_locators.search_project, dataMap.get("Project_Name"), "search the " +dataMap.get("Project_Name"));
+            click(ACS_locators.search_button,"click on the search button");
+        }
+        else{
+            System.out.println("text is present");
+        }
+        Thread.sleep(7000);
     }
 	
 	@And("click on next button")
 	public void click_next_button() throws InterruptedException {
-		scrollingToElementofAPage(ACS_locators.nextBtn, "click on next button");
-		Thread.sleep(2000);
-		click(ACS_locators.nextBtn, "click on next button");
-		Thread.sleep(2000);
-	}
-	
-	@And("click on view details")
-	public void click_view_details() throws InterruptedException {
-		click(ACS_locators.view_details, "click on view details");
+		Boolean validationPassed=true;
+	    int pageNumber=1;
+
+	      while (true) {
+	          // Wait for the results to load
+	          WebDriverWait wait = new WebDriverWait(getDriver(), 7);
+
+	          // Extract search results
+	          List<WebElement> searchResults = getListElements(ACS_locators.search_results, "getting the searchresult");
+	          for (int i = 0; i < searchResults.size(); i++) {
+	        	  wait.until(ExpectedConditions.visibilityOfElementLocated(ACS_locators.search_results));
+	              String title = searchResults.get(i).getText().trim();
+	              System.out.println(title);
+	              String Actual_results = dataMap.get("Project_Name");
+	              System.out.println(Actual_results);
+	              if (!title.equalsIgnoreCase(Actual_results)) {
+	                  validationPassed = false;
+	              }else {
+	            	  validationPassed = true;
+	            	  break;
+	              }
+	          }
+	          
+	          System.out.println(validationPassed);
+	          // Report the validation status for the current page
+	          if (validationPassed) {
+	              System.out.println("Validation passed on page " + pageNumber + "!");
+	              break;
+	          } else {
+	              System.out.println("Validation failed on page " + pageNumber + "!");
+	              WebElement nextPageButton = getDriver().findElement(By.xpath("//a[text()=' Next ']"));
+	              if (!nextPageButton.isEnabled()) {
+	                  break;  // Exit the loop if there are no more pages
+	              }
+	              nextPageButton.click();
+	              pageNumber++;
+	              Thread.sleep(5000);
+	          }
+	      }
 	}
 	
 	@Then("user should be navigate to Edit project page")
@@ -223,19 +259,16 @@ public class ACS_steps extends KeywordUtil {
 	@And("select project template setting")
 	public void select_projecttemplate_setting() throws InterruptedException {
 		hoverOnElement(ACS_locators.select_project_template_setting);
-       // selectByVisibleText(ACS_locators.select_project_template_setting,dataMap.get("Template_Name"),"selecting project setting template value");
-	selectByValue(ACS_locators.select_project_template_setting, "91", "YGVYB");
-	}
-	
-	
-	@Then("click on update project button")
-	public void click_update_project_button() throws InterruptedException{
-		hoverOnElement(ACS_locators.update_projectBtn);
-		Thread.sleep(2000);
-		click(ACS_locators.update_projectBtn, "click on update project button");
-	}
+        if(isWebElementPresent(ACS_locators.select_template_name(dataMap.get("Template_Name")),dataMap.get("")+ " tempalte is present")){
+            System.out.println("tempalte is present");
+        }
+        else {
+            click(ACS_locators.select_project_template_setting, "select project template setting dropdown");
+            Thread.sleep(3000);
+                    selectByVisibleText(ACS_locators.select_project_template_setting, dataMap.get("Template_Name"), "selecting project setting template value");
+        }
 
-
+	}
 }
 
 

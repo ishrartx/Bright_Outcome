@@ -1,22 +1,24 @@
 package utilities;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.TimeZone;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import com.Buffer.BufferUtilSuiteLevel;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import io.cucumber.java.Scenario;
+import org.apache.commons.compress.utils.IOUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
@@ -46,6 +48,12 @@ import step_definitions.Hooks;
  * @author TX
  */
 public class KeywordUtil extends GlobalUtil {
+	public static ExtentReports extent;
+	public static ExtentSparkReporter spark;
+	public static ExtentTest loggerTest;
+	public static ExtentTest loggerTestStep;
+	public static ThreadLocal<ExtentTest> logger = new ThreadLocal<>();
+
 
 	public static String cucumberTagName;
 	private static final int DEFAULT_WAIT_SECONDS = 30;
@@ -794,7 +802,8 @@ public class KeywordUtil extends GlobalUtil {
 			KeywordUtil.lastAction = "Select dropdown by text : " + value + " - " + locator.toString();
 			LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 			Select sel = new Select(getDriver().findElement(locator));
-			System.out.println(sel.getOptions().toString());
+//			System.out.println(sel.getOptions().toString());
+			LogUtil.infoLog(KeywordUtil.class, sel.getOptions().toString());
 			sel.selectByVisibleText(value);
 			ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
 
@@ -853,6 +862,8 @@ public class KeywordUtil extends GlobalUtil {
 		return defSelectedVal.trim().equals(data.trim());
 	}
 
+
+
 	/**
 	 * @param locator
 	 * @param size
@@ -874,6 +885,7 @@ public class KeywordUtil extends GlobalUtil {
 			return false;
 		}
 	}
+
 
 	/**
 	 * @param locator
