@@ -18,6 +18,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.cucumber.java.Scenario;
 import org.apache.commons.compress.utils.IOUtils;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
@@ -842,6 +843,30 @@ public class KeywordUtil extends GlobalUtil {
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
 		return true;
 	}
+	
+	public static String takeScreenShot() {
+		String base64 = null;
+		File source = ((TakesScreenshot) GlobalUtil.getDriver()).getScreenshotAs(OutputType.FILE);
+		String scFileName = "ScreenShot_" + System.currentTimeMillis();
+		String screenshotFilePath = System.getProperty("user.dir") + ConfigReader.getValue("screenshotPath") + "/"
+				+ scFileName + ".jpg";
+		try {
+			FileUtils.copyFile(source, new File(screenshotFilePath));
+			byte[] imageBytes = null;
+			try {
+				InputStream is = new FileInputStream(screenshotFilePath);
+				imageBytes = IOUtils.toByteArray(is);
+				Thread.sleep(2000);
+			} catch (IOException | InterruptedException e) {
+				e.printStackTrace();
+			}
+			base64 = Base64.getEncoder().encodeToString(imageBytes);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return base64;
+	}
 
 	// Get Tag name and locator value of Element
 	public static String getElementInfo(By locator) throws Exception {
@@ -1018,4 +1043,6 @@ class TestStepFailedException extends Exception {
 		JavascriptExecutor js = (JavascriptExecutor) GlobalUtil.getDriver();
 		js.executeScript("window.scrollBy(0,600);", Element);
 	}
+	
+	
 }
