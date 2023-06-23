@@ -154,4 +154,21 @@ public class ExtentUtil {
 			}
 		}
 	}
+	
+	public static void attachScreenshotOfPassedTestsInReport() {
+		String screenshot = KeywordUtil.takeScreenShot();
+
+		// ExtentReports log and screenshot operations for passed step.
+		try {
+			loggerTest.log(Status.PASS,
+					HTMLReportUtil.passStringGreenColor(""),
+					MediaEntityBuilder.createScreenCaptureFromPath("data:image/jpg;base64," + screenshot).build());
+		} finally {
+
+		}
+//		catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		}
 }

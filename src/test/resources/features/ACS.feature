@@ -1,7 +1,7 @@
 @Web
 Feature: login into the application
 
-  @ACS_01
+  @ACS_01 @ACS
   Scenario Outline:: Test to check if user is able to add template.
     Given Read the testdata "<TestData>" from excel file
     Given user navigates to the application
@@ -12,13 +12,12 @@ Feature: login into the application
     And click on the "Templates" option
     And enter the template name
     When click on the " Add template " button
-    Then user is able to see the error message
+    Then user is able to see the alert message
     Examples:
       | TestData  |
       | Testdata1 |
 
-
-  @ACS_02
+  @ACS_02 @ACS
   Scenario Outline:: Test to check if user is able to view the edit template screen for existing template.
     Given Read the testdata "<TestData>" from excel file
     Given user navigates to the application
@@ -34,7 +33,6 @@ Feature: login into the application
     Examples:
       | TestData  |
       | Testdata1 |
-
 
   @ACS_03
   Scenario Outline:: Test to check if user is able to make the changes in edit template screen.
@@ -84,7 +82,7 @@ Feature: login into the application
     When user clicks on the signin button for login
     And hover on the admin name
     And click on the "Projects" option
-	  And Search the Project name
+    And Search the Project name
     And click on next button
     And Select the "View details" option
     And select project template setting
@@ -143,32 +141,33 @@ Feature: login into the application
     And Search the Project name
     And Select the "View details" option
     And select project template setting
-    And unselect checkboxes if checked in Activity card options
     And select checkboxes in Activity card options
     Then click on "Update Project" button
     Examples:
       | TestData  |
       | Testdata5 |
-					
 
-		
+  @ACS_10
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting all check boxes and no change in radio button.
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Projects" option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
 
 
-    
-    
-    
-    
-    
-    
-   
-   
-      
+    Examples:
+      | TestData  |
+      | Testdata6 |
 
 
 
-      
-      
-      
-      
-    
 
