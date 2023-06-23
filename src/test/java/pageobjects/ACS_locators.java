@@ -1,6 +1,8 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class ACS_locators {
 
@@ -24,6 +26,8 @@ public class ACS_locators {
 
 	public static By search_template = By.xpath("//input[@placeholder='Search template']");
 
+	public static By alert_message1=By.xpath("//div[@aria-label='Project is added successfully.']");
+
 	public static By search_project = By.xpath("//input[@placeholder='Enter a project name']");
 
 	public static By third_radio_button = By.xpath("(//input[@type='radio'])[3]");
@@ -42,7 +46,7 @@ public class ACS_locators {
 		return By.xpath("//a[text()=' " + buttonname + " ']");
 	}
 
-	public static By error_message = By.xpath("//div[@role='alertdialog']");
+	public static By alert_message = By.xpath("//div[@role='alertdialog']");
 
 	public static By search_button = By.xpath("//button[@title='search_btn_status']");
 
@@ -110,12 +114,15 @@ public class ACS_locators {
 	public static By selectCheckbox(String checkboxTxt) {
 		return By.xpath("//label[text()='" +checkboxTxt+"']//ancestor::label//div[@class='check-bottom']");
 	}
-	public static By selectCheckboxchecked(String checkboxTxt) {
-		return By.xpath("//label[text()='" +checkboxTxt+"']//parent::label//input[contains(@class,'dirty')]//parent::div//span");
-	}
+	
 	
 	public static By search_results = By.xpath("//table[@class='table table-striped']//tr//td[@class='semi-bold']");
 	
 	public static By update_projectBtn = By.xpath("//button[text()='Update Project']");
+	
+	public static By selected_checkboxes=By.cssSelector("input:checked[type='checkbox']");
+
+	@FindBy(css = "input:checked[type='checkbox']")
+	public static WebElement checkbox;
 
 }
