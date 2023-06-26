@@ -13,6 +13,9 @@ Feature: login into the application
     And enter the template name
     When click on the " Add template " button
     Then user is able to see the alert message
+    And hover on the admin name
+    And click on the "Sign Out" option
+    
     Examples:
       | TestData  |
       | Testdata1 |
@@ -30,6 +33,8 @@ Feature: login into the application
     When click on the search button
     And Select the "Edit template" in the templates option
     Then user should be navigate to Edit template screen
+     And hover on the admin name
+    And click on the "Sign Out" option
     Examples:
       | TestData  |
       | Testdata1 |
@@ -51,6 +56,8 @@ Feature: login into the application
     And Select activity card options radio button
     And unselect checkboxes if checked in Activity card options
     Then click on " Update Details " button
+     And hover on the admin name
+    And click on the "Sign Out" option
     Examples:
       | TestData  |
       | Testdata1 |
@@ -69,6 +76,8 @@ Feature: login into the application
     And Select the "View details" option
     And select project template setting
     Then click on "Update Project" button
+     And hover on the admin name
+    And click on the "Sign Out" option
     Examples:
       | TestData  |
       | Testdata1 |
@@ -88,6 +97,8 @@ Feature: login into the application
     And select project template setting
     And select checkboxes in Activity card options
     Then click on "Update Project" button
+     And hover on the admin name
+    And click on the "Sign Out" option
     Examples:
       | TestData  |
       | Testdata2 |
@@ -107,6 +118,8 @@ Feature: login into the application
     And select project template setting
     And select checkboxes in Activity card options
     Then click on "Update Project" button
+     And hover on the admin name
+    And click on the "Sign Out" option
     Examples:
       | TestData  |
       | Testdata3 |
@@ -125,6 +138,8 @@ Feature: login into the application
     And select project template setting
     And select checkboxes in Activity card options
     Then click on "Update Project" button
+     And hover on the admin name
+    And click on the "Sign Out" option
     Examples:
       | TestData  |
       | Testdata4 |
@@ -143,6 +158,8 @@ Feature: login into the application
     And select project template setting
     And select checkboxes in Activity card options
     Then click on "Update Project" button
+     And hover on the admin name
+    And click on the "Sign Out" option
     Examples:
       | TestData  |
       | Testdata5 |
@@ -162,12 +179,16 @@ Feature: login into the application
     And select project template setting
     And select checkboxes in Activity card options
     Then click on "Update Project" button
+     And hover on the admin name
+    And click on the "Sign Out" option
 
 
     Examples:
       | TestData  |
       | Testdata6 |
 
+
+  
 
   @teardown
   Scenario Outline: templateteardown
