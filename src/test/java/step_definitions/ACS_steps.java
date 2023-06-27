@@ -2,6 +2,7 @@ package step_definitions;
 
 import com.Buffer.BufferUtilSuiteLevel;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
@@ -59,16 +60,16 @@ public class ACS_steps extends KeywordUtil {
 
     @And("hover on the admin name")
     public void hover_admin() throws InterruptedException {
-        Thread.sleep(7000);
+       waitForVisible(ACS_locators.admin_name);
         scrollingToElementofAPage(ACS_locators.admin_name, "move to admin name");
         click(ACS_locators.admin_name, "click on the admin name");
     }
 
     @And("click on the {string} option")
     public void clicktemplates(String dropdownname) throws InterruptedException {
-        Thread.sleep(7000);
-        click(ACS_locators.dropdown_buttons(dropdownname), "click on the " + dropdownname + " option");
-        
+    	waitForVisible(ACS_locators.dropdown_buttons(dropdownname));
+       click(ACS_locators.dropdown_buttons(dropdownname), "click on the " + dropdownname + " option");
+        waitForClickable(ACS_locators.dropdown_buttons(dropdownname));
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
         
         
@@ -100,40 +101,49 @@ public class ACS_steps extends KeywordUtil {
 
     @Then("user is able to see the alert message")
     public void verify_alert_message() throws InterruptedException {
-    	Thread.sleep(4000);
-    	hoverOnElement(ACS_locators.alert_message);
+
+    	
+    	waitForVisible(ACS_locators.alert_message);
+    	scrollingToElementofAPage(ACS_locators.alert_message,"move to alert messsage");
     	ExtentUtil.attachScreenshotOfPassedTestsInReport();
-    	String expected_message=getElementText(ACS_locators.alert_message);
-        ExtentUtil.takeScreenshotAndAttachInReport();
-    Assert.assertTrue(isWebElementVisible(ACS_locators.alert_message, getElementText(ACS_locators.alert_message) + "  message  is present"));
-    Assert.assertEquals("Template is added successfully.", expected_message);
+
+	String expected_message=getElementText(ACS_locators.alert_message);
+    ExtentUtil.takeScreenshotAndAttachInReport();
+    ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor("Template is added successfully message is not present"));
+    Assert.assertEquals("Tempalte is added successfully", getElementText(ACS_locators.alert_message));
+
+    
     }
 
     @And("Search the template name")
     public void search_template() {
         inputText(ACS_locators.search_template, dataMap.get("Template_Name"), "search the " + dataMap.get("Template_Name"));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
 
     @When("click on the search button")
     public void click_search_button() throws InterruptedException {
         click(ACS_locators.search_button, "click on the search button");
-        Thread.sleep(5000);
+        
 
     }
 
 
    @And("Select the {string} in the templates option")
    public void select_manage_Dropdown(String dropdown) throws InterruptedException {
-       hoverOnElement(ACS_locators.template_manage_button(dataMap.get("Template_Name")));
-       Thread.sleep(6000);
-       ExtentUtil.attachScreenshotOfPassedTestsInReport();
 
+        scrollingToElementofAPage(ACS_locators.template_manage_button(dataMap.get("Template_Name")), "move to dropdown");
+        hoverOnElement(ACS_locators.template_manage_button(dataMap.get("Template_Name")));
+        waitForVisible(ACS_locators.template_manage_button(dataMap.get("Template_Name")));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
        click(ACS_locators.template_Manage_dropdowns(dataMap.get("Template_Name"),dropdown), "Select the " + dropdown + " option");
    }
     @And("Select the {string} option")
     public void select_manage_dropdown(String dropdown) throws InterruptedException {
+    	
+    	scrollingToElementofAPage(ACS_locators.manage_button(dataMap.get("Project_Name")),"move to the dropdown");
     	hoverOnElement(ACS_locators.manage_button(dataMap.get("Project_Name")));
-        Thread.sleep(6000);
+        waitForClickable(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name"), dropdown));
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
         click(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name"),dropdown), "Select the " + dropdown + " option");
     }
@@ -141,7 +151,7 @@ public class ACS_steps extends KeywordUtil {
     @Then("user should be navigate to Edit template screen")
     public void verify_edit_template_screen() throws InterruptedException {
         Assert.assertTrue(isWebElementPresent(ACS_locators.Edit_Template_heading, "user is navigated to the edit template screen and able to see the heading " + getElementText(ACS_locators.Edit_Template_heading)));
-        Thread.sleep(5000);
+        waitForVisible(ACS_locators.Edit_Template_heading);
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
 
@@ -220,11 +230,15 @@ public class ACS_steps extends KeywordUtil {
 
 		click(ACS_locators.button_by_text(buttonname), "clicking on update button");
 		waitForVisible(ACS_locators.alert_message);
-		
+	
+		scrollingToElementofAPage(ACS_locators.alert_message, "move to alert message");
+		ExtentUtil.attachScreenshotOfPassedTestsInReport();
         Assert.assertTrue(isWebElementVisible(ACS_locators.alert_message, getElementText(ACS_locators.alert_message) + " message  is present"));
 
-         
-
+        waitForClickable(ACS_locators.Back_button);
+        click(ACS_locators.Back_button,"click on the back butotn");
+       
+        
 
 		
 
@@ -304,9 +318,11 @@ public class ACS_steps extends KeywordUtil {
 		hoverOnElement(ACS_locators.select_project_template_setting);
       
             click(ACS_locators.select_project_template_setting, "");
+            
             selectByVisibleText(ACS_locators.select_project_template_setting, dataMap.get("Template_Name"), "selecting project setting template value");
-            Thread.sleep(10000);
+            waitForClickable(ACS_locators.select_project_template_setting);
             ExtentUtil.attachScreenshotOfPassedTestsInReport();
+           
 
 	}
 
@@ -329,5 +345,12 @@ public class ACS_steps extends KeywordUtil {
         Assert.assertTrue(isWebElementVisible(ACS_locators.alert_message, getElementText(ACS_locators.alert_message) + " message  is present"));
 
     	
+    }
+    
+    @Then("click on the sign out button")
+    public void sign_out() throws InterruptedException {
+    	click(ACS_locators.sign_out,"click on the signout button");
+    	Thread.sleep(4000);
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
 }
