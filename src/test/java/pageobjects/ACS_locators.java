@@ -43,12 +43,16 @@ public class ACS_locators {
 	}
 
 	public static By dropdown_buttons(String buttonname) {
-		return By.xpath("//a[text()=' " + buttonname + " ']");
+		return By.xpath("//a[text()='"+ buttonname +"']");
 	}
 
 	public static By alert_message = By.xpath("//div[@role='alertdialog']");
 
 	public static By search_button = By.xpath("//button[@title='search_btn_status']");
+	
+	public static By sign_out=By.xpath("//a[text()='Sign Out']");
+	
+	public static By Back_button=By.xpath("//a[@class='back-btn']");
 
 	//public static By Manage_button = By.xpath("//button[@class='btn btn btn-view']");
 

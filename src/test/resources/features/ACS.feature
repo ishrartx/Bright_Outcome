@@ -9,12 +9,12 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Templates" option
+    And click on the " Templates " option
     And enter the template name
     When click on the " Add template " button
     Then user is able to see the alert message
     And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     
     Examples:
       | TestData  |
@@ -28,13 +28,13 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Templates" option
+    And click on the " Templates " option
     And Search the template name
     When click on the search button
     And Select the "Edit template" in the templates option
     Then user should be navigate to Edit template screen
      And hover on the admin name
-    And click on the "Sign Out" option
+   Then click on the sign out button
     Examples:
       | TestData  |
       | Testdata1 |
@@ -47,7 +47,7 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Templates" option
+     And click on the " Templates " option
     And Search the template name
     When click on the search button
     And Select the "Edit template" in the templates option
@@ -57,7 +57,7 @@ Feature: login into the application
     And unselect checkboxes if checked in Activity card options
     Then click on " Update Details " button
      And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     Examples:
       | TestData  |
       | Testdata1 |
@@ -70,14 +70,14 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Projects" option
+    And click on the " Projects " option
     And Search the Project name
     And click on next button
     And Select the "View details" option
     And select project template setting
     Then click on "Update Project" button
      And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     Examples:
       | TestData  |
       | Testdata1 |
@@ -90,7 +90,7 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Projects" option
+    And click on the " Projects " option
     And Search the Project name
     And click on next button
     And Select the "View details" option
@@ -98,7 +98,7 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
      And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     Examples:
       | TestData  |
       | Testdata2 |
@@ -112,7 +112,7 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Projects" option
+   And click on the " Projects " option
     And Search the Project name
     And Select the "View details" option
     And select project template setting
@@ -132,7 +132,7 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Projects" option
+  And click on the " Projects " option
     And Search the Project name
     And Select the "View details" option
     And select project template setting
@@ -152,7 +152,7 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Projects" option
+   And click on the " Projects " option
     And Search the Project name
     And Select the "View details" option
     And select project template setting
@@ -172,7 +172,7 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the "Projects" option
+    And click on the " Projects " option
     And Search the Project name
     And click on next button
     And Select the "View details" option

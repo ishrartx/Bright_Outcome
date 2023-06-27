@@ -424,6 +424,16 @@ public class KeywordUtil extends GlobalUtil {
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
 		return elm.isEnabled();
 	}
+	
+	public static void catchAssertError(Throwable e) {
+        GlobalUtil.e = e;
+        GlobalUtil.errorMsg = e.getMessage();
+        String[] msg = e.getMessage().split("expected");
+       
+		ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor(msg[0]));
+
+        Assert.fail(e.getMessage());
+    }
 
 	/**
 	 * @param locator
