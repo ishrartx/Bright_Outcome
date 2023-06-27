@@ -273,6 +273,7 @@ public class ACS_steps extends KeywordUtil {
 
 	          // Extract search results
 	          List<WebElement> searchResults = getListElements(ACS_locators.search_results, "getting the searchresult");
+	          scrollingToElementofAPage(ACS_locators.search_results, "Move to the Search Results");
 	          for (int i = 0; i < searchResults.size(); i++) {
 	        	  wait.until(ExpectedConditions.visibilityOfElementLocated(ACS_locators.search_results));
 	              String title = searchResults.get(i).getText().trim();
@@ -300,8 +301,9 @@ public class ACS_steps extends KeywordUtil {
 	              }
 	              nextPageButton.click();
 	              pageNumber++;
-	              Thread.sleep(5000);
+	              
 	          }
+	          ExtentUtil.attachScreenshotOfPassedTestsInReport();
 	      }
 	}
 	
@@ -320,7 +322,7 @@ public class ACS_steps extends KeywordUtil {
             click(ACS_locators.select_project_template_setting, "");
             
             selectByVisibleText(ACS_locators.select_project_template_setting, dataMap.get("Template_Name"), "selecting project setting template value");
-            waitForClickable(ACS_locators.select_project_template_setting);
+            waitForVisible(ACS_locators.select_project_template_setting);
             ExtentUtil.attachScreenshotOfPassedTestsInReport();
            
 
