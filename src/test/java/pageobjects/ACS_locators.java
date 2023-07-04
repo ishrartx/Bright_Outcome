@@ -14,7 +14,15 @@ public class ACS_locators {
 
 	public static By sign_up = By.xpath("//strong[text()='Sign in']");
 
+
+	
+
+
+	
 	public static By admin_name = By.xpath("//span[@class='u-name-full']");
+	
+	public static By right_header = By.xpath("//ul[@class='nav navbar-nav navbar-right header']");
+	
 
 	public static By templates = By.xpath("//a[text()=' Templates ']");
 
@@ -66,7 +74,7 @@ public class ACS_locators {
 	public static  By manage_button(String project_name){
 		return By.xpath("//td[text()=' "+project_name+" ']//following-sibling::td[3]//button[@class='btn btn btn-view']");
 	}
-
+    
 	public static By Edit_Template_heading = By.xpath("//h1[text()='Edit Template']");
 
 	public static By Manage_dropdowns(String projectname,String dropdownname) {
@@ -128,12 +136,18 @@ public class ACS_locators {
 
 	@FindBy(css = "input:checked[type='checkbox']")
 	public static WebElement checkbox;
+
 	
-	public static By Manage_Professional=By.xpath("//button[text()=' Manage Professional ']");
+	
+
+
+	public static  By Manage_Professional=By.xpath("//button[text()=' Manage Professional ']");
+
 	
 	public static By ManageProfessional_dropdown(String Professional) {
 		return By.xpath("//div[@class='btn-group dropdown-user']//a[text()='"+ Professional +"']");
 	}
+
 	
 	public static By existing_professional(String pname) { 
 		return By.xpath("//div[@title='list professional']//ul/li/a[text()='"+pname+"']");
@@ -156,4 +170,23 @@ public class ACS_locators {
 	public static By manage_dropdown(String text){
 		return By.xpath("//td[text()=' "+text+" ']//following-sibling::td[3]");
 	}
+
+		
+	public static By First_name=By.xpath("//input[@placeholder='Enter first name']");
+	
+	public static By Last_name=By.xpath("//input[@placeholder='Enter last name']");
+	
+	public static By Email_address=By.xpath("//input[@placeholder='Enter email address']");
+	
+	public static By Submit_button=By.xpath("//button[text()=' Submit ']"); 
+	
+	public static By admin_box=By.xpath("//div[@class='checkbox']");
+	
+	public static By Edit_Project=By.xpath("//h1[text()='Edit Project']");
+	
+	
+	
+		
+	
+
 }
