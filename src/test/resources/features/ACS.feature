@@ -95,6 +95,7 @@ Feature: login into the application
     And click on next button
     And Select the "View details" option
     And select project template setting
+     And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
      And hover on the admin name
@@ -116,6 +117,7 @@ Feature: login into the application
     And Search the Project name
     And Select the "View details" option
     And select project template setting
+     And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
      And hover on the admin name
@@ -136,6 +138,7 @@ Feature: login into the application
     And Search the Project name
     And Select the "View details" option
     And select project template setting
+     And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
      And hover on the admin name
@@ -156,6 +159,7 @@ Feature: login into the application
     And Search the Project name
     And Select the "View details" option
     And select project template setting
+     And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
      And hover on the admin name
@@ -177,6 +181,7 @@ Feature: login into the application
     And click on next button
     And Select the "View details" option
     And select project template setting
+     And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
      And hover on the admin name
@@ -186,6 +191,147 @@ Feature: login into the application
     Examples:
       | TestData  |
       | Testdata6 |
+      
+      
+      @ACS_11
+      Scenario Outline: Test to check if user is able to add a template in a project , by selecting and second radio button and no check box. (5 buttons +no check box selected)
+       Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+     And click on the " Templates " option
+    And Search the template name
+    When click on the search button
+    And Select the "Edit template" in the templates option
+    Then user should be navigate to Edit template screen
+    Then fill details in edit template form
+    And Select activity card options radio button
+    And unselect checkboxes if checked in Activity card options
+    Then click on " Update Details " button
+     And hover on the admin name
+    Then click on the sign out button
+      
+      Examples:
+      | TestData  |
+      | Testdata7 |
+      
+      
+      @ACS_12
+      Scenario Outline:Test to check if user is able to add a template in a project , by selecting first check box and no change in radio button.  (5 buttons + 1st check box selected)
+      Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+      And Select activity card options radio button
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+     And hover on the admin name
+    Then click on the sign out button
+
+
+ Examples:
+      | TestData  |
+      | Testdata8 |
+      
+      @ACS_13
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting first check box and no change in radio button.
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+       And Select activity card options radio button
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+      And hover on the admin name
+    Then click on the sign out button
+
+
+    Examples:
+      | TestData  |
+      | Testdata10 |
+      
+       @ACS_14
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting first check box and no change in radio button.
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+     And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+       And Select activity card options radio button
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+      And hover on the admin name
+    Then click on the sign out button
+
+
+    Examples:
+      | TestData  |
+      | Testdata11 |
+
+      
+      
+      
+      @ACS_23
+      Scenario Outline:Test to check if user is able to add project.
+      Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And Enter the project Name
+      When click on the " Add project " button
+      Then user is able to see the comfirmation alert message
+         And hover on the admin name
+    Then click on the sign out button
+      
+      Examples:
+      | TestData  |
+      | Testdata9 |
+      
+      
+       @ACS_24
+      Scenario Outline:Test to check if new project is added and visible in Project list.
+      Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    Then user is able to see the created project
+       And hover on the admin name
+    Then click on the sign out button
+      
+      Examples:
+      | TestData  |
+      | Testdata9 |
+      
+      
+      
+
+      
+      
+
 
 
   

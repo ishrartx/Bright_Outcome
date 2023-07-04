@@ -812,6 +812,21 @@ public class KeywordUtil extends GlobalUtil {
 		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(logStep));
 		return defSelectedVal.trim().equals(data.trim());
 	}
+	
+	public static String  getdropdowntext(By locator) {
+		KeywordUtil.lastAction="Get dropdown text: " +locator.toString();
+		LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
+		Select sel = new Select(waitForVisible(locator));
+		String defSelectedVal = sel.getFirstSelectedOption().getText();
+		return defSelectedVal.trim();
+	
+	} 
+
+	
+	public static void click_on_empty_space() {
+		Actions action = new Actions(GlobalUtil.getDriver());
+	    action.moveByOffset(0, 0).click().build().perform();
+	}
 
 	/**
 	 * @param locator

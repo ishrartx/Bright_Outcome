@@ -14,7 +14,7 @@ public class ACS_locators {
 
 	public static By sign_up = By.xpath("//strong[text()='Sign in']");
 
-	public static By admin_name = By.xpath("//span[text()=' Hi sahil kapoor ']");
+	public static By admin_name = By.xpath("//span[@class='u-name-full']");
 
 	public static By templates = By.xpath("//a[text()=' Templates ']");
 
@@ -22,11 +22,11 @@ public class ACS_locators {
 
 	public static By enter_project_Name = By.xpath("//input[@placeholder='Enter project name']");
 
-	public static By add_tempalte_button = By.xpath("//button[text()=' Add template ']");
+	
 
 	public static By search_template = By.xpath("//input[@placeholder='Search template']");
 
-	public static By alert_message1=By.xpath("//div[@aria-label='Project is added successfully.']");
+	
 
 	public static By search_project = By.xpath("//input[@placeholder='Enter a project name']");
 
@@ -54,7 +54,7 @@ public class ACS_locators {
 	
 	public static By Back_button=By.xpath("//a[@class='back-btn']");
 
-	//public static By Manage_button = By.xpath("//button[@class='btn btn btn-view']");
+	
 
 	public static By template_manage_button(String template_name){
 		return By.xpath("//td[text()=' "+template_name+" ']//following-sibling::td[1]//button[@class='btn btn btn-view']");
@@ -128,5 +128,18 @@ public class ACS_locators {
 
 	@FindBy(css = "input:checked[type='checkbox']")
 	public static WebElement checkbox;
+	
+
+	public static By status_text(String text) {
+		return By.xpath("//td[text()=' "+text+" ']//following-sibling::td[1]");
+	}
+	
+	public static By Research_text(String text) {
+		return By.xpath("//td[text()=' "+text+" ']//following-sibling::td[2]");
+	}
+	
+	public static By manage_dropdown(String text){
+		return By.xpath("//td[text()=' "+text+" ']//following-sibling::td[3]");
+	}
 
 }
