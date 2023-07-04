@@ -1,6 +1,7 @@
 @Web
 Feature: login into the application
 
+
   @ACS_01 @ACS
   Scenario Outline:: Test to check if user is able to add template.
     Given Read the testdata "<TestData>" from excel file
@@ -33,7 +34,7 @@ Feature: login into the application
     When click on the search button
     And Select the "Edit template" in the templates option
     Then user should be navigate to Edit template screen
-     And hover on the admin name
+    And hover on the admin name
    Then click on the sign out button
     Examples:
       | TestData  |
@@ -56,7 +57,7 @@ Feature: login into the application
     And Select activity card options radio button
     And unselect checkboxes if checked in Activity card options
     Then click on " Update Details " button
-     And hover on the admin name
+    And hover on the admin name
     Then click on the sign out button
     Examples:
       | TestData  |
@@ -76,7 +77,7 @@ Feature: login into the application
     And Select the "View details" option
     And select project template setting
     Then click on "Update Project" button
-     And hover on the admin name
+    And hover on the admin name
     Then click on the sign out button
     Examples:
       | TestData  |
@@ -98,7 +99,7 @@ Feature: login into the application
      And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
-     And hover on the admin name
+    And hover on the admin name
     Then click on the sign out button
     Examples:
       | TestData  |
@@ -120,7 +121,7 @@ Feature: login into the application
      And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
-     And hover on the admin name
+    And hover on the admin name
     And click on the "Sign Out" option
     Examples:
       | TestData  |
@@ -141,7 +142,7 @@ Feature: login into the application
      And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
-     And hover on the admin name
+    And hover on the admin name
     And click on the "Sign Out" option
     Examples:
       | TestData  |
@@ -162,7 +163,7 @@ Feature: login into the application
      And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
-     And hover on the admin name
+    And hover on the admin name
     And click on the "Sign Out" option
     Examples:
       | TestData  |
@@ -333,8 +334,136 @@ Feature: login into the application
       
 
 
+  @ACS_15
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only fourth check box and no change in radio button. (5 buttons + 4th check box selected)
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+   And click on the " Projects " option
+    And Search the Project name
+    And Select the "View details" option
+    And select project template setting
+    And Select activity card options radio button
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+   And hover on the admin name
+    And click on the "Sign Out" option
+    
+    Examples:
+      | TestData  |
+      | Testdata15 |
+    
+  @ACS_16
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting all check boxes and no change in radio button. (5 buttons + allcheck boxes selected)
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+    And Select activity card options radio button
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+     And hover on the admin name
+    And click on the "Sign Out" option
 
+    Examples:
+      | TestData  |
+      | Testdata16 |
+      
+  @ACS_21
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only fourth check box and no change in radio button. (5 buttons + 4th check box selected)
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+    And Select activity card options radio button
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+    And hover on the admin name
+    And click on the "Sign Out" option
+    Examples:
+      | TestData  |
+      | Testdata21 |
+    
+  @ACS_22
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting all check boxes and no change in radio button. (5 buttons + allcheck boxes selected)
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+    And hover on the admin name
+    And click on the "Sign Out" option
+    Examples:
+      | TestData  |
+      | Testdata22 |
+      
+  @ACS_27
+  Scenario Outline:: Test to check if user is able to add existing professional in the project.
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View professionals" option
+		And click the Manage Professional option
+		And Select the "Add existing professional" option from the dropdown
+		And select an existing professional
+		And select existing professional as admin
+		And hover on the admin name
+    And click on the "Sign Out" option
+    Examples:
+      | TestData  |
+      | Testdata27 |
   
+  
+  @ACS_28
+  Scenario Outline:: Test to check if user is able to add existing professional in the project.
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View professionals" option
+		And select existing professional as admin
+    And hover on the admin name
+    And click on the "Sign Out" option
+    Examples:
+      | TestData  |
+      | Testdata28 |
+
 
   @teardown
   Scenario Outline: templateteardown
