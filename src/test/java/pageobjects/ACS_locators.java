@@ -129,7 +129,22 @@ public class ACS_locators {
 	@FindBy(css = "input:checked[type='checkbox']")
 	public static WebElement checkbox;
 	
-
+	public static By Manage_Professional=By.xpath("//button[text()=' Manage Professional ']");
+	
+	public static By ManageProfessional_dropdown(String Professional) {
+		return By.xpath("//div[@class='btn-group dropdown-user']//a[text()='"+ Professional +"']");
+	}
+	
+	public static By existing_professional(String pname) { 
+		return By.xpath("//div[@title='list professional']//ul/li/a[text()='"+pname+"']");
+	}
+	
+	public static By selectProfessionalUserAdminCheckbox(String pname) {
+		return By.xpath("//td[text()='"+pname+"']//following-sibling::td[3]");
+	}
+	
+	public static By existing_professionals = By.xpath("//div[@class='table-responsive']//td[1]");
+	
 	public static By status_text(String text) {
 		return By.xpath("//td[text()=' "+text+" ']//following-sibling::td[1]");
 	}
@@ -141,5 +156,4 @@ public class ACS_locators {
 	public static By manage_dropdown(String text){
 		return By.xpath("//td[text()=' "+text+" ']//following-sibling::td[3]");
 	}
-
 }

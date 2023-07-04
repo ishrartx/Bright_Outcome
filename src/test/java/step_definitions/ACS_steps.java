@@ -74,14 +74,12 @@ public class ACS_steps extends KeywordUtil {
     	waitForVisible(ACS_locators.dropdown_buttons(dropdownname));
        click(ACS_locators.dropdown_buttons(dropdownname), "click on the " + dropdownname + " option");
         waitForClickable(ACS_locators.dropdown_buttons(dropdownname));
+        Thread.sleep(4000);
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
-        
-        
     }
 
     @And("enter the template name")
     public void enter_template_name() throws InterruptedException {
-    	
         inputText(ACS_locators.enter_tempalte_name, dataMap.get("Template_Name"), "enter the " + dataMap.get("Template_Name") + " in the text box");
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
@@ -187,9 +185,13 @@ public class ACS_steps extends KeywordUtil {
 		if (!dataMap.get("activityradioBtnText").isEmpty())
 			waitForVisible(ACS_locators.activityCardOptions(dataMap.get("activityradioBtnText")));
 			click(ACS_locators.activityCardOptions(dataMap.get("activityradioBtnText")), "select" + dataMap.get("activityradioBtnText") + " radio button");
+
 		     waitForClickable(ACS_locators.activityCardOptions(dataMap.get("activityradioBtnText")));
 		     waitForVisible(ACS_locators.activityCardOptions(dataMap.get("activityradioBtnText")));
 		     Thread.sleep(4000);
+
+		Thread.sleep(2000);
+
 		ExtentUtil.attachScreenshotOfPassedTestsInReport();
 
 	}
@@ -326,6 +328,7 @@ public class ACS_steps extends KeywordUtil {
 	}
 	
 	@And("select project template setting")
+
 	public void select_projecttemplate_setting() throws InterruptedException {
 		hoverOnElement(ACS_locators.select_project_template_setting);
              String dropdowntext=getdropdowntext(ACS_locators.select_project_template_setting);
@@ -382,8 +385,6 @@ public class ACS_steps extends KeywordUtil {
     	scrollingToElementofAPage(ACS_locators.alert_message,"move to alert messsage");
     	ExtentUtil.attachScreenshotOfPassedTestsInReport();
         Assert.assertTrue(isWebElementVisible(ACS_locators.alert_message, getElementText(ACS_locators.alert_message) + " message  is present"));
-        
-       
        click_on_empty_space();
     }
     
@@ -402,15 +403,67 @@ public class ACS_steps extends KeywordUtil {
     			hoverOnElement(ACS_locators.manage_dropdown(dataMap.get("Project_Name")));
     			waitForClickable(ACS_locators.manage_dropdown(dataMap.get("Project_Name")));
     			ExtentUtil.attachScreenshotOfPassedTestsInReport();
-
-    		
-
-    			
-    			
     		}
     		else {
     			System.out.println("project is not created");
     		}
     	}
+    }
+
+    @And("click the Manage Professional option")
+    public void Click_Manage_Professional() throws InterruptedException {
+	    	waitForVisible(ACS_locators.Manage_Professional);
+	        click(ACS_locators.Manage_Professional, "click on the Manage Professional option");
+	        Thread.sleep(5000);
+	}
+    @And("Select the {string} option from the dropdown")
+    public void select_Professional_dropdown(String Professional) throws InterruptedException {
+    	waitForClickable(ACS_locators.ManageProfessional_dropdown(Professional));
+    	click(ACS_locators.ManageProfessional_dropdown(Professional),"click on the "+Professional+" option");
+    	Thread.sleep(12000);
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @And("select an existing professional")
+    public void select_existing_professional() throws InterruptedException {
+    	scrollingToElementofAPage(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")), "Move to the existing professional");
+    	click(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")), "Click on the existing professional: "+dataMap.get("Existing_Professional_Name"));
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    	waitForClickable(ACS_locators.button_by_text("Submit"));
+    	scrollingToElementofAPage(ACS_locators.button_by_text("Submit"), "Move to Submit button");
+    	click(ACS_locators.button_by_text("Submit"), "Click on Submit button");
+    	scrollingToElementofAPage(ACS_locators.alert_message, "move to alert messsage");
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    	String expected_message=getElementText(ACS_locators.alert_message);
+    	Assert.assertEquals("Professional is added successfully.", expected_message);
+    }
+    
+    @And("select existing professional as admin")
+    public void select_existing_professional_as_admin() throws InterruptedException {
+    	JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        List<WebElement> seleced_checkboxes=getListElements(ACS_locators.selected_checkboxes,"getting the number of checked checkboxes");
+
+        for(WebElement checkbox:seleced_checkboxes) {
+	         if (checkbox.isSelected()) {
+	         	scrollingToElementofAPage(ACS_locators.selected_checkboxes, "Move to selected user to unselect");
+	             js.executeScript("arguments[0].click();", checkbox);
+	         }
+        }
+        List<WebElement> existing_professionals_list=getListElements(ACS_locators.existing_professionals,"getting the list of existing professionals");
+        for(WebElement user_professionals:existing_professionals_list) {
+        	if(user_professionals.getText().equalsIgnoreCase(dataMap.get("Existing_Professional_Name"))) {
+                scrollingToElementofAPage(ACS_locators.selectProfessionalUserAdminCheckbox(user_professionals.getText()), "Move to unselected user to select");
+            	click(ACS_locators.selectProfessionalUserAdminCheckbox(user_professionals.getText()), "select "+ user_professionals.getText() +" as project admin");
+        	}
+        }
+        Thread.sleep(500);
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+        Thread.sleep(7000);
+    	scrollingToElementofAPage(ACS_locators.alert_message, "move to alert messsage");
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    	String expected_message=getElementText(ACS_locators.alert_message);
+    	Assert.assertEquals("Professional Admin status is updated successfully.", expected_message);
+    	click(ACS_locators.alert_message, "click on alert message");
+
     }
 }
