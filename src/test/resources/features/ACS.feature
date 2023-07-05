@@ -392,7 +392,7 @@ Feature: login into the application
     Then click on the sign out button
     Examples:
       | TestData  |
-      | Testdata2 |   
+      | Testdata18 |   
 
 @ACS_19
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only second check box and no change in radio button.  (5 buttons + 2nd check box selected).
@@ -414,7 +414,7 @@ Feature: login into the application
     
     Examples:
       | TestData  |
-      | Testdata5 |
+      | Testdata19 |
       
    @ACS_20
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only third check box and no change in radio button.  (5 buttons +3rd check box selected)
@@ -436,7 +436,7 @@ Feature: login into the application
     
     Examples:
       | TestData  |
-      | Testdata4 |    
+      | Testdata20 |    
       
       
 
@@ -525,8 +525,8 @@ Feature: login into the application
     When user clicks on the signin button for login
     And hover on the admin name       
     And click on the " Projects " option
-    And Enter the project Name
-    When click on the " Add project " button
+      And Search the Project name
+    And click on next button
     And Select the "View details" option
     Then user should be navigate to edit project screen
     And hover on the admin name
@@ -610,16 +610,6 @@ Feature: login into the application
       | Testdata28 |
 
 
-  @teardown
-  Scenario Outline: templateteardown
-    Given Read the testdata "<TestData>" from excel file
-    Then delete the template
-      And hover on the admin name
-    And click on the "Sign Out" option
-
-    Examples:
-      | TestData  |
-      | Testdata1 |
-
+  
 
   
