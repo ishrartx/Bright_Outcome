@@ -1,6 +1,18 @@
 @Web
 Feature: login into the application
 
+@teardown
+  Scenario Outline: templateteardown
+    Given Read the testdata "<TestData>" from excel file
+    Then delete the template
+      And hover on the admin name
+    And click on the "Sign Out" option
+
+    Examples:
+      | TestData  |
+      | Testdata1 |
+
+
 
   @ACS_01 @ACS
   Scenario Outline:: Test to check if user is able to add template.
@@ -135,7 +147,7 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-  And click on the " Projects " option
+     And click on the " Projects " option
     And Search the Project name
     And Select the "View details" option
     And select project template setting
@@ -244,7 +256,7 @@ Feature: login into the application
       | Testdata8 |
       
       @ACS_13
-  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting first check box and no change in radio button.
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting second check box and no change in radio button.
     Given Read the testdata "<TestData>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
@@ -268,7 +280,7 @@ Feature: login into the application
       | Testdata10 |
       
        @ACS_14
-  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting first check box and no change in radio button.
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting third check box and no change in radio button.
     Given Read the testdata "<TestData>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
@@ -290,51 +302,8 @@ Feature: login into the application
     Examples:
       | TestData  |
       | Testdata11 |
-
       
-      
-      
-      @ACS_23
-      Scenario Outline:Test to check if user is able to add project.
-      Given Read the testdata "<TestData>" from excel file
-    Given user navigates to the application
-    When user clicks on the sign up
-    When user enters the username and password
-    When user clicks on the signin button for login
-    And Enter the project Name
-      When click on the " Add project " button
-      Then user is able to see the comfirmation alert message
-         And hover on the admin name
-    Then click on the sign out button
-      
-      Examples:
-      | TestData  |
-      | Testdata9 |
-      
-      
-       @ACS_24
-      Scenario Outline:Test to check if new project is added and visible in Project list.
-      Given Read the testdata "<TestData>" from excel file
-    Given user navigates to the application
-    When user clicks on the sign up
-    When user enters the username and password
-    When user clicks on the signin button for login
-    Then user is able to see the created project
-       And hover on the admin name
-    Then click on the sign out button
-      
-      Examples:
-      | TestData  |
-      | Testdata9 |
-      
-      
-      
-
-      
-      
-
-
-  @ACS_15
+      @ACS_15
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only fourth check box and no change in radio button. (5 buttons + 4th check box selected)
     Given Read the testdata "<TestData>" from excel file
     Given user navigates to the application
@@ -379,102 +348,7 @@ Feature: login into the application
       | TestData  |
       | Testdata16 |
       
-  @ACS_21
-  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only fourth check box and no change in radio button. (5 buttons + 4th check box selected)
-    Given Read the testdata "<TestData>" from excel file
-    Given user navigates to the application
-    When user clicks on the sign up
-    When user enters the username and password
-    When user clicks on the signin button for login
-    And hover on the admin name
-    And click on the " Projects " option
-    And Search the Project name
-    And click on next button
-    And Select the "View details" option
-    And select project template setting
-    And Select activity card options radio button
-    And select checkboxes in Activity card options
-    Then click on "Update Project" button
-    And hover on the admin name
-    And click on the "Sign Out" option
-    Examples:
-      | TestData  |
-      | Testdata21 |
-    
-  @ACS_22
-  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting all check boxes and no change in radio button. (5 buttons + allcheck boxes selected)
-    Given Read the testdata "<TestData>" from excel file
-    Given user navigates to the application
-    When user clicks on the sign up
-    When user enters the username and password
-    When user clicks on the signin button for login
-    And hover on the admin name
-    And click on the " Projects " option
-    And Search the Project name
-    And click on next button
-    And Select the "View details" option
-    And select project template setting
-    And select checkboxes in Activity card options
-    Then click on "Update Project" button
-    And hover on the admin name
-    And click on the "Sign Out" option
-    Examples:
-      | TestData  |
-      | Testdata22 |
-      
-  @ACS_27
-  Scenario Outline:: Test to check if user is able to add existing professional in the project.
-    Given Read the testdata "<TestData>" from excel file
-    Given user navigates to the application
-    When user clicks on the sign up
-    When user enters the username and password
-    When user clicks on the signin button for login
-    And hover on the admin name
-    And click on the " Projects " option
-    And Search the Project name
-    And click on next button
-    And Select the "View professionals" option
-		And click the Manage Professional option
-		And Select the "Add existing professional" option from the dropdown
-		And select an existing professional
-		And select existing professional as admin
-		And hover on the admin name
-    And click on the "Sign Out" option
-    Examples:
-      | TestData  |
-      | Testdata27 |
-  
-  
-  @ACS_28
-  Scenario Outline:: Test to check if user is able to add existing professional in the project.
-    Given Read the testdata "<TestData>" from excel file
-    Given user navigates to the application
-    When user clicks on the sign up
-    When user enters the username and password
-    When user clicks on the signin button for login
-    And hover on the admin name
-    And click on the " Projects " option
-    And Search the Project name
-    And click on next button
-    And Select the "View professionals" option
-		And select existing professional as admin
-    And hover on the admin name
-    And click on the "Sign Out" option
-    Examples:
-      | TestData  |
-      | Testdata28 |
-
-
-  @teardown
-  Scenario Outline: templateteardown
-    Given Read the testdata "<TestData>" from excel file
-    Then delete the template
-
-    Examples:
-      | TestData  |
-      | Testdata6 |
-
-@ACS_17
+      @ACS_17
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting and first radio button and no check box.
   Given Read the testdata "<TestData>" from excel file
     Given user navigates to the application
@@ -495,7 +369,7 @@ Feature: login into the application
     
       Examples:
       | TestData  |
-      | Testdata6 |
+      | Testdata17 |
       
       
    @ACS_18
@@ -554,6 +428,7 @@ Feature: login into the application
     And Search the Project name
     And Select the "View details" option
     And select project template setting
+       And Select activity card options radio button
     And select checkboxes in Activity card options
     Then click on "Update Project" button
     And hover on the admin name
@@ -562,8 +437,86 @@ Feature: login into the application
     Examples:
       | TestData  |
       | Testdata4 |    
+      
+      
 
-  @ACS_25
+      @ACS_21
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only fourth check box and no change in radio button. (5 buttons + 4th check box selected)
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+    And Select activity card options radio button
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+    And hover on the admin name
+    And click on the "Sign Out" option
+    Examples:
+      | TestData  |
+      | Testdata21 |
+    
+  @ACS_22
+  Scenario Outline:: Test to check if user is able to add a template in a project , by selecting all check boxes and no change in radio button. (5 buttons + allcheck boxes selected)
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View details" option
+    And select project template setting
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button
+    And hover on the admin name
+    And click on the "Sign Out" option
+    Examples:
+      | TestData  |
+      | Testdata22 |
+      
+         @ACS_23
+      Scenario Outline:Test to check if user is able to add project.
+      Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And Enter the project Name
+      When click on the " Add project " button
+      Then user is able to see the comfirmation alert message
+         And hover on the admin name
+    Then click on the sign out button
+      
+      Examples:
+      | TestData  |
+      | Testdata9 |
+      
+      
+       @ACS_24
+      Scenario Outline:Test to check if new project is added and visible in Project list.
+      Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    Then user is able to see the created project
+       And hover on the admin name
+    Then click on the sign out button
+      
+      Examples:
+      | TestData  |
+      | Testdata9 |
+      
+      @ACS_25
   Scenario Outline:: Test to check if user is able to view the Project Details .
     Given Read the testdata "<TestData>" from excel file
     Given user navigates to the application
@@ -582,7 +535,7 @@ Feature: login into the application
         
      Examples:
       | TestData  |
-      | Testdata3 |
+      | Testdata26 |
       
   @ACS_26
   Scenario Outline:: Test to check if user is able to add any new professional in the project.
@@ -608,7 +561,65 @@ Feature: login into the application
      Examples:
      
       | TestData  |
-      | Testdata3 |
+      | Testdata26 |
       
       
     
+      
+      
+  @ACS_27
+  Scenario Outline:: Test to check if user is able to add existing professional in the project.
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View professionals" option
+		And click the Manage Professional option
+		And Select A "Add existing professional" option
+		And select an existing professional
+		And select existing professional as admin
+		And hover on the admin name
+    And click on the "Sign Out" option
+    
+    Examples:
+      | TestData  |
+      | Testdata27 |
+  
+  @ACS_28
+  Scenario Outline:: Test to check if user is able to add existing professional in the project.
+    Given Read the testdata "<TestData>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Projects " option
+    And Search the Project name
+    And click on next button
+    And Select the "View professionals" option
+		And select existing professional as admin
+    And hover on the admin name
+    And click on the "Sign Out" option
+    Examples:
+      | TestData  |
+      | Testdata28 |
+
+
+  @teardown
+  Scenario Outline: templateteardown
+    Given Read the testdata "<TestData>" from excel file
+    Then delete the template
+      And hover on the admin name
+    And click on the "Sign Out" option
+
+    Examples:
+      | TestData  |
+      | Testdata1 |
+
+
+  
