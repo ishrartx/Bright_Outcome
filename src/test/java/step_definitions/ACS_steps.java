@@ -153,7 +153,7 @@ public class ACS_steps extends KeywordUtil {
     	 
     	scrollingToElementofAPage(ACS_locators.manage_button(dataMap.get("Project_Name")),"move to " +dropdown+ " option ");
     	hoverOnElement(ACS_locators.manage_button(dataMap.get("Project_Name")));
-        waitForClickable(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name"), dropdown));
+        waitForVisible(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name"), dropdown));
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
         click(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name"),dropdown), "Select the " + dropdown + " option");
         
@@ -349,7 +349,7 @@ public class ACS_steps extends KeywordUtil {
         entercredentials();
         clickssignin();
         hover_admin();
-        clicktemplates("Templates");
+        clicktemplates(" Templates ");
         search_template();
         click_search_button();
         ExtentUtil.takeScreenshotAndAttachInReport();
@@ -358,10 +358,10 @@ public class ACS_steps extends KeywordUtil {
     	click(ACS_locators.button_by_text(" Yes "),"click on the yes button");
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
     	Thread.sleep(3000);
-        Assert.assertTrue(isWebElementVisible(ACS_locators.alert_message, getElementText(ACS_locators.alert_message) + " message  is present"));
-
-    	
-    }
+    	Assert.assertTrue(isWebElementVisible(ACS_locators.alert_message, getElementText(ACS_locators.alert_message) + " message  is present"));
+        scrollingToElementofAPage(ACS_locators.alert_message, "move to alert message");
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+ }
     
     @Then("click on the sign out button")
     public void sign_out() throws InterruptedException {
@@ -437,7 +437,7 @@ public class ACS_steps extends KeywordUtil {
         }
         Thread.sleep(500);
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
-        Thread.sleep(7000);
+        waitForVisible(ACS_locators.alert_message);
     	scrollingToElementofAPage(ACS_locators.alert_message, "move to alert messsage");
     	ExtentUtil.attachScreenshotOfPassedTestsInReport();
     	String expected_message=getElementText(ACS_locators.alert_message);
@@ -504,48 +504,16 @@ public class ACS_steps extends KeywordUtil {
     }
     
     @And("select project template setting")
-
     public void select_projecttemplate_setting() throws InterruptedException {
-
-        hoverOnElement(ACS_locators.select_project_template_setting);
-
-             String dropdowntext=getdropdowntext(ACS_locators.select_project_template_setting);
-
-             System.out.println("the dropdown text is :" +dropdowntext);
-
-             if(dropdowntext.equalsIgnoreCase(dataMap.get("Template_Name"))) {
-
-                 System.out.println("Tempalte is alerady present");
-
-                 ExtentUtil.attachScreenshotOfPassedTestsInReport();
-
- 
-
-             }
-
-             else {
-
-            click(ACS_locators.select_project_template_setting, "");
-
-            waitForClickable(ACS_locators.select_project_template_setting);
-
-       
-
-            selectByVisibleText(ACS_locators.select_project_template_setting, dataMap.get("Template_Name"), "selecting project setting template value");
-
-            waitForVisible(ACS_locators.select_project_template_setting);
-
-            Thread.sleep(10000);
-
-            ExtentUtil.attachScreenshotOfPassedTestsInReport();
-
-             }
-
-           
-
- 
-
-    }
+    	       waitForPresent(ACS_locators.select_project_template_setting);
+    	       waitForClickable(ACS_locators.select_project_template_setting);
+    	       Thread.sleep(5000);
+    	       click(ACS_locators.select_project_template_setting,"click on the project setting tempalte dropdown");
+              selectByVisibleText(ACS_locators.select_project_template_setting, dataMap.get("Template_Name"), "selecting project setting template value");
+              waitForVisible(ACS_locators.select_project_template_setting);
+              Thread.sleep(10000);
+              ExtentUtil.attachScreenshotOfPassedTestsInReport();
+}
 
     @Then ("user should be navigate to edit project screen")
     public void verify_edit_project_screen() throws InterruptedException {
