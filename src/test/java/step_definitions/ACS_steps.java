@@ -357,9 +357,9 @@ public class ACS_steps extends KeywordUtil {
         ExtentUtil.takeScreenshotAndAttachInReport();
     	click(ACS_locators.button_by_text(" Yes "),"click on the yes button");
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
-    	Thread.sleep(3000);
-    	Assert.assertTrue(isWebElementVisible(ACS_locators.alert_message, getElementText(ACS_locators.alert_message) + " message  is present"));
+        waitForVisible(ACS_locators.alert_message);
         scrollingToElementofAPage(ACS_locators.alert_message, "move to alert message");
+        Assert.assertTrue(isWebElementVisible(ACS_locators.alert_message, getElementText(ACS_locators.alert_message) + " message  is present"));
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
  }
     
