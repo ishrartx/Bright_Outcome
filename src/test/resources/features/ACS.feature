@@ -319,7 +319,7 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
    And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     
     Examples:
       | TestData  |
@@ -342,7 +342,7 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
      And hover on the admin name
-    And click on the "Sign Out" option
+   Then click on the sign out button
 
     Examples:
       | TestData  |
@@ -457,7 +457,8 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
     And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
+    
     Examples:
       | TestData  |
       | Testdata21 |
@@ -478,7 +479,7 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
     And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     Examples:
       | TestData  |
       | Testdata22 |
@@ -584,7 +585,7 @@ Feature: login into the application
 		And select an existing professional
 		And select existing professional as admin
 		And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     
     Examples:
       | TestData  |
@@ -604,7 +605,8 @@ Feature: login into the application
     And Select the "View professionals" option
 		And select existing professional as admin
     And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
+    
     Examples:
       | TestData  |
       | Testdata28 |
