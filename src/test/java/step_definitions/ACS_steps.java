@@ -24,9 +24,13 @@ import utilities.*;
 import java.awt.Checkbox;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
+
 import org.testng.Assert;
 
 public class ACS_steps extends KeywordUtil {
+	static Random random = new Random(); 
+    static int random_number=random.nextInt(500);
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
 
@@ -88,15 +92,10 @@ public class ACS_steps extends KeywordUtil {
     
     @And("Enter the project Name")
     public void enter_project_name() throws InterruptedException {
-    	Thread.sleep(6000);
-    	inputText(ACS_locators.enter_project_Name, dataMap.get("Project_Name"), "enter the " +dataMap.get("Project_Name") + " in the text box");
-
-    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
-
-    	
-
+        Thread.sleep(6000);
+        inputText(ACS_locators.enter_project_Name, dataMap.get("Project_Name")+random_number, "enter the " +dataMap.get("Project_Name")+random_number + " in the text box");
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
-    
 
     @When("click on the {string} button")
     public void click_Add_tempalte(String buttonname) throws InterruptedException {

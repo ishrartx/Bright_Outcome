@@ -6,7 +6,7 @@ Feature: login into the application
     Given Read the testdata "<TestData>" from excel file
     Then delete the template
       And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
 
     Examples:
       | TestData  |
@@ -134,7 +134,7 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
     And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     Examples:
       | TestData  |
       | Testdata3 |
@@ -155,7 +155,7 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
     And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     Examples:
       | TestData  |
       | Testdata4 |
@@ -176,7 +176,7 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
     And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
     Examples:
       | TestData  |
       | Testdata5 |
@@ -198,7 +198,7 @@ Feature: login into the application
     And select checkboxes in Activity card options
     Then click on "Update Project" button
      And hover on the admin name
-    And click on the "Sign Out" option
+    Then click on the sign out button
 
 
     Examples:
