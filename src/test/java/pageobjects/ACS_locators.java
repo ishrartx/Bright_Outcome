@@ -154,10 +154,10 @@ public class ACS_locators {
 	}
 	
 	public static By selectProfessionalUserAdminCheckbox(String pname) {
-		return By.xpath("//td[text()='"+pname+"']//following-sibling::td[3]");
+		return By.xpath("//td[text()='"+pname+"']//following-sibling::td[2]");
 	}
 	
-	public static By existing_professionals = By.xpath("//div[@class='table-responsive']//td[1]");
+	public static By existing_professionals = By.xpath("//div[@class='table-responsive']//td[2]");
 	
 	public static By status_text(String text) {
 		return By.xpath("//td[text()=' "+text+" ']//following-sibling::td[1]");

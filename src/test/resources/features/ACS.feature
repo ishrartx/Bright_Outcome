@@ -576,7 +576,6 @@ Feature: login into the application
     When user enters the username and password
     When user clicks on the signin button for login
     And hover on the admin name
-    And click on the " Projects " option
     And Search the Project name
     And click on next button
     And Select the "View professionals" option
@@ -586,6 +585,14 @@ Feature: login into the application
 		And select existing professional as admin
 		And hover on the admin name
     Then click on the sign out button
+     When user clicks on the sign up
+     When user enetrs professional username and password
+     When user clicks on the signin button for login
+     Then user is able to see the created project
+     And hover on the admin name
+    Then click on the sign out button
+     
+    
     
     Examples:
       | TestData  |

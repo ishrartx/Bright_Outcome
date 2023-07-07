@@ -92,10 +92,14 @@ public class ACS_steps extends KeywordUtil {
     
     @And("Enter the project Name")
     public void enter_project_name() throws InterruptedException {
-        Thread.sleep(6000);
+    	clearInput(ACS_locators.enter_project_Name);
+        Thread.sleep(6000);                         
         inputText(ACS_locators.enter_project_Name, dataMap.get("Project_Name")+random_number, "enter the " +dataMap.get("Project_Name")+random_number + " in the text box");
+        ExcelDataUtil.putTestData("ACS", dataMap.get("Project_Name")+random_number, "Testdata9", 10);
+        ExcelDataUtil.putTestData("ACS", dataMap.get("Project_Name")+random_number, "Testdata27", 10);
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
+    
 
     @When("click on the {string} button")
     public void click_Add_tempalte(String buttonname) throws InterruptedException {
@@ -103,10 +107,7 @@ public class ACS_steps extends KeywordUtil {
      scrollingToElementofAPage(ACS_locators.button_by_text(buttonname), "move to the " + buttonname);
      click(ACS_locators.button_by_text(buttonname), "click on the " + buttonname + "button"); 
      ExtentUtil.takeScreenshotAndAttachInReport();
-
-
-
-    }
+}
 
     @Then("user is able to see the alert message")
     public void verify_alert_message() throws InterruptedException {
@@ -265,6 +266,7 @@ public class ACS_steps extends KeywordUtil {
     
     @And("Search the Project name")
 	public void search_project() throws InterruptedException {
+    	clearInput(ACS_locators.search_project);
     	inputText(ACS_locators.search_project, dataMap.get("Project_Name"), "search the " +dataMap.get("Project_Name"));
         click(ACS_locators.search_button,"click on the search button");
         if(isWebElementPresent(ACS_locators.no_record_found,"no record found is present")){
@@ -418,18 +420,10 @@ public class ACS_steps extends KeywordUtil {
     
     @And("select existing professional as admin")
     public void select_existing_professional_as_admin() throws InterruptedException {
-    	JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        List<WebElement> seleced_checkboxes=getListElements(ACS_locators.selected_checkboxes,"getting the number of checked checkboxes");
-
-        for(WebElement checkbox:seleced_checkboxes) {
-	         if (checkbox.isSelected()) {
-	         	scrollingToElementofAPage(ACS_locators.selected_checkboxes, "Move to selected user to unselect");
-	             js.executeScript("arguments[0].click();", checkbox);
-	         }
-        }
-        List<WebElement> existing_professionals_list=getListElements(ACS_locators.existing_professionals,"getting the list of existing professionals");
+    	List<WebElement> existing_professionals_list=getListElements(ACS_locators.existing_professionals,"getting the list of existing professionals");
         for(WebElement user_professionals:existing_professionals_list) {
-        	if(user_professionals.getText().equalsIgnoreCase(dataMap.get("Existing_Professional_Name"))) {
+        	System.out.println(user_professionals.getText());
+        	if(user_professionals.getText().equalsIgnoreCase(dataMap.get("professional_username"))) {
                 scrollingToElementofAPage(ACS_locators.selectProfessionalUserAdminCheckbox(user_professionals.getText()), "Move to unselected user to select");
             	click(ACS_locators.selectProfessionalUserAdminCheckbox(user_professionals.getText()), "select "+ user_professionals.getText() +" as project admin");
         	}
@@ -443,6 +437,14 @@ public class ACS_steps extends KeywordUtil {
     	Assert.assertEquals("Professional Admin status is updated successfully.", expected_message);
     	click(ACS_locators.alert_message, "click on alert message");
 
+    }
+    
+    @When("user enetrs professional username and password")
+    public void enter_professional_username_password(){
+    	  inputText(ACS_locators.enter_username, dataMap.get("professional_username"), "enter the username");
+          inputText(ACS_locators.enter_password, dataMap.get("professional_password"), "enter the password");
+          ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    	
     }
 
 
