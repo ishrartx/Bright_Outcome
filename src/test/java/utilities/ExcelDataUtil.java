@@ -1,12 +1,15 @@
 package utilities;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -111,6 +114,50 @@ public class ExcelDataUtil {
 
 		return currentRowData;
 
+	}
+	
+	public static void putTestData(String sheetName, String projname, String testCaseID, int columnNumber) {
+		boolean found = false;
+		boolean isfirstRow = false;
+		Row firstrow = null;
+		
+		init(testDatafilePath, sheetName);
+		Iterator<Row> rowIterator = sheet.iterator();
+		
+		try {
+			
+			while (rowIterator.hasNext()) {
+				Row row = rowIterator.next();
+				if (!isfirstRow) {
+					firstrow = row;
+					isfirstRow = true;
+				}
+				if (row.getCell(columnToLookTestCaseID).getStringCellValue().equalsIgnoreCase(testCaseID)) {
+					found = true;
+					Cell column = row.getCell(columnNumber);
+					String cellValue = column.getStringCellValue();
+					if (cellValue == null) {
+						cellValue = "";
+					}
+					cellValue = getUniqueString(cellValue);
+					System.out.println(cellValue);
+					column.setCellValue(projname);
+			        FileOutputStream out = new FileOutputStream(new File(testDatafilePath));
+			        workbook.write(out)
+;
+			        out.close();
+			        break;
+				}
+
+			}
+
+			fs.close();
+
+		} catch (Exception e) {
+			LogUtil.errorLog(ExcelDataUtil.class, "caught exception", e);
+		}
+		if (!found)
+			LogUtil.infoLog(ExcelDataUtil.class, "No data found with given key-> " + testCaseID);
 	}
 
 	public static String getUniqueString(String string) {
