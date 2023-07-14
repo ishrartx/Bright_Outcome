@@ -33,10 +33,11 @@ public class ACS_steps extends KeywordUtil {
     static int random_number=random.nextInt(500);
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
+    public static String project_name="";
 
-    @Given("Read the testdata {string} from excel file")
-    public void readTheTestdataFromExcelFile(String arg1) {
-        dataMap = ExcelDataUtil.getTestDataWithTestCaseID("ACS", arg1);
+    @Given("Read the testdata {string} and {string} from excel file")
+    public void readTheTestdataFromExcelFile(String arg1, String arg2) {
+        dataMap = ExcelDataUtil.getTestDataWithTestCaseID(arg2, arg1);
     }
 
     @Given("user navigates to the application")
@@ -68,7 +69,8 @@ public class ACS_steps extends KeywordUtil {
 
     @And("hover on the admin name")
     public void hover_admin() throws InterruptedException {
-    	
+    	Thread.sleep(3000);
+    	click_on_empty_space();
        waitForVisible(ACS_locators.admin_name);
        waitForClickable(ACS_locators.admin_name);
         scrollingToElementofAPage(ACS_locators.admin_name, "move to admin name");
@@ -105,8 +107,12 @@ public class ACS_steps extends KeywordUtil {
     public void click_Add_tempalte(String buttonname) throws InterruptedException {
     
      scrollingToElementofAPage(ACS_locators.button_by_text(buttonname), "move to the " + buttonname);
-     click(ACS_locators.button_by_text(buttonname), "click on the " + buttonname + "button"); 
+     waitForVisible(ACS_locators.button_by_text(buttonname));
      ExtentUtil.takeScreenshotAndAttachInReport();
+     click(ACS_locators.button_by_text(buttonname), "click on the " + buttonname + "button");
+     Thread.sleep(6000);
+     click_on_empty_space();
+    
 }
 
     @Then("user is able to see the alert message")
@@ -115,12 +121,10 @@ public class ACS_steps extends KeywordUtil {
     	
     	waitForVisible(ACS_locators.alert_message);
     	scrollingToElementofAPage(ACS_locators.alert_message,"move to alert messsage");
-    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
-
-	String expected_message=getElementText(ACS_locators.alert_message);
-    ExtentUtil.takeScreenshotAndAttachInReport();
-    ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor("Template is added successfully message is not present"));
-    Assert.assertEquals("Tempalte is added successfully", getElementText(ACS_locators.alert_message));
+    	ExtentUtil.takeScreenshotAndAttachInReport();
+        String expected_message=getElementText(ACS_locators.alert_message);
+        ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor("Template is added successfully message is not present"));
+        Assert.assertEquals("Tempalte is added successfully", getElementText(ACS_locators.alert_message));
 
     
     }
@@ -470,6 +474,7 @@ public class ACS_steps extends KeywordUtil {
     	click(ACS_locators.ManageProfessional_dropdown(Professional),"click on the Add new Professional option");
     	
     	ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    	click_on_empty_space();
     	
     }
     @Then("User enter the Firstname and Lastname and Emailaddress")
@@ -521,6 +526,154 @@ public class ACS_steps extends KeywordUtil {
         Assert.assertTrue(isWebElementPresent(ACS_locators.Edit_Project, "user is navigated to the edit project screen and able to see the heading " + getElementText(ACS_locators.Edit_Project)));
         waitForVisible(ACS_locators.Edit_Project);
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @When("user enters the {string} and {string}")
+    public void enter_username_password(String username, String password){
+        inputText(ACS_locators.enter_username, dataMap.get(username), "enter the " +dataMap.get(username));
+        inputText(ACS_locators.enter_password, dataMap.get(password), "enter the " +dataMap.get(password));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+
+    }
+    
+    @And("clicks {string} button")
+    public void deactivate(String button) throws InterruptedException {
+      waitForVisible(ACS_locators.activate_button(dataMap.get("Professional_username"),button));
+      scrollingToElementofAPage(ACS_locators.activate_button(dataMap.get("Professional_username"),button),"Move to the  " +button);
+      ExtentUtil.attachScreenshotOfPassedTestsInReport();
+      click(ACS_locators.activate_button(dataMap.get("Professional_username"),button),"click on the " +button);
+    }
+    
+    @Then("user get teh error message")
+    public void error_message() throws InterruptedException {
+        waitForVisible(ACS_locators.alert_message);
+        scrollingToElementofAPage(ACS_locators.alert_message, "move to alert message");
+        String text=getElementText(ACS_locators.alert_message);
+        System.out.println("the text is : " +text);
+        ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(text +"is present"));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @Then("user is not able to see the error message")
+    public void not_able_tosee_error_message() throws InterruptedException {
+        waitForVisible(ACS_locators.alert_message);
+        scrollingToElementofAPage(ACS_locators.alert_message, "move to alert message");
+        String text=getElementText(ACS_locators.alert_message);
+        System.out.println("the text is : " +text);
+        ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor(text +"is present. Customer Admin account gets deactivated by Project Admin."));
+
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @Then("verify the status of {string} button")
+    public void verify_status(String button) throws InterruptedException{
+    	scrollingToElementofAPage(ACS_locators.activate_button(dataMap.get("Professional_username"),button),"move to the button");
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
+        String text=getElementText(ACS_locators.activate_button(dataMap.get("Professional_username"),button));
+        System.out.println("the status is : " +text);
+        ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor("The status of button is : " +text) );
+        Assert.assertEquals("Edit/Activate",text);
+        click_on_empty_space();
+
+    }
+    
+    @Then("user is able to login successfully")
+    public void login_Successfully(){
+
+        String title=GlobalUtil.getDriver().getTitle();
+        System.out.println("the title is :" +title);
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @Then("user is not able to see the expected message")
+    public void verify_message() throws InterruptedException {
+    	 waitForVisible(ACS_locators.alert_message);
+         scrollingToElementofAPage(ACS_locators.alert_message, "move to alert message");
+         String text=getElementText(ACS_locators.alert_message);
+         System.out.println("the text is : " +text);
+         String Actual_text="Account is inactive.Please contanct to Org admin.";
+       ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor("expected text :" +text +"\nActual text : " +Actual_text));
+         ExtentUtil.attachScreenshotOfPassedTestsInReport();
+        Assert.assertEquals("Account is inactive.Please contanct to Org admin.", text);
+    	
+      }
+    
+    @And("Enter the project Name {string} in {string}")
+    public void enter_project_name(String records, String sheetName) throws InterruptedException {
+    	String[] arr = records.split(":");
+    	int col = Integer.parseInt(arr[0]);
+    	String[] rows = arr[1].split(",");
+    	clearInput(ACS_locators.enter_project_Name);
+        Thread.sleep(6000);                         
+        inputText(ACS_locators.enter_project_Name, dataMap.get("Project_Name")+random_number, "enter the " +dataMap.get("Project_Name")+random_number + " in the text box");
+		for(int i=0; i < rows.length; i++) {
+			ExcelDataUtil.putTestData(sheetName, dataMap.get("Project_Name")+random_number, rows[i], col);
+		}
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @And("check if the user professional exists")
+    public void verify_user_professional_exists() throws InterruptedException {
+    scrollingToElementofAPage(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")), "Move to the existing professional");
+   	Assert.assertFalse(isWebElementVisible(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")), 
+     ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")) + " profesional still  exists!"));
+    }
+
+    @And("check if {string} button exists")
+    public void verify_button_text(String btnText) throws InterruptedException {
+ 	scrollingToElementofAPage(ACS_locators.activate_button(dataMap.get("Professional_username"), btnText), "Move to the Edit/Deactivate button");
+    	Assert.assertTrue(isWebElementVisibleWithoutLog(ACS_locators.activate_button(dataMap.get("Professional_username"), btnText)));
+    }
+    
+    @Then("user sees error message of invalid login")
+    public void verify_invalid_login_message() throws InterruptedException {
+    	scrollingToElementofAPage(ACS_locators.alert_message, "Move to the error message");
+//    	Assert.assertTrue(isWebElementVisibleWithoutLog(null));
+    	Assert.assertFalse(isWebElementVisibleWithoutLog(ACS_locators.admin_name));
+    }
+    
+    @Then("user should see the updated status succesful")
+    public void verify_update_status_success_message() throws InterruptedException {
+//    	waitForVisible(ACS_locators.alert_message);
+    	scrollingToElementofAPage(ACS_locators.alert_message,"move to alert messsage");
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
+		String expected_message=getElementText(ACS_locators.alert_message);
+	    ExtentUtil.takeScreenshotAndAttachInReport();
+	    Assert.assertEquals("Professional status is updated successfully.", getElementText(ACS_locators.alert_message));
+    }
+    
+    @And("search the newly added project")
+    public void search_new_project() throws InterruptedException {
+        System.out.println("the sreching project name is : " +project_name);
+        clearInput(ACS_locators.search_project);
+        inputText(ACS_locators.search_project, project_name, "search the " +project_name);
+        click(ACS_locators.search_button,"click on the search button");
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @And("Select the {string} option of newly added project")
+    public void select_manage_dropdown_new_project(String dropdown) throws InterruptedException {
+        scrollingToElementofAPage(ACS_locators.manage_button(project_name),"move to " +dropdown+ " option ");
+        hoverOnElement(ACS_locators.manage_button(project_name));
+        waitForVisible(ACS_locators.Manage_dropdowns(project_name, dropdown));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+        click(ACS_locators.Manage_dropdowns(project_name,dropdown), "Select the " + dropdown + " option");
+
+    }
+    
+    @And("Enter the  new project Name {string} in {string}")
+    public void enter_new_project(String records, String sheetName) throws InterruptedException{
+        project_name=dataMap.get("Project_Name")+random_number;
+//        System.out.println("the new project is " +project_name);
+    	String[] arr = records.split(":");
+    	int col = Integer.parseInt(arr[0]);
+    	String[] rows = arr[1].split(",");
+    	clearInput(ACS_locators.enter_project_Name);
+        Thread.sleep(6000);
+        inputText(ACS_locators.enter_project_Name, project_name, "enter the " +dataMap.get("Project_Name")+random_number + " in the text box");
+        for(int i=0; i < rows.length; i++) {
+        	ExcelDataUtil.putTestData(sheetName, project_name, rows[i], col);
+        }
     }
  
     
