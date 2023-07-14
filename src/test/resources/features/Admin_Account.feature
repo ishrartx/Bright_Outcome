@@ -3,20 +3,20 @@ Feature: login into the application
 
 @teardown
   Scenario Outline: templateteardown
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Then delete the template
       And hover on the admin name
     Then click on the sign out button
 
     Examples:
-      | TestData  |
-      | Testdata1 |
+      | TestData  |SheetName|
+      | Testdata1 |ACS      |
 
 
 
   @ACS_01 @ACS
   Scenario Outline:: Test to check if user is able to add template.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -30,12 +30,12 @@ Feature: login into the application
     Then click on the sign out button
     
     Examples:
-      | TestData  |
-      | Testdata1 |
+      | TestData  |SheetName|
+      | Testdata1 |ACS|
 
   @ACS_02 @ACS
   Scenario Outline:: Test to check if user is able to view the edit template screen for existing template.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -49,12 +49,12 @@ Feature: login into the application
     And hover on the admin name
    Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata1 |
+      | TestData  |SheetName|
+      | Testdata1 |ACS|
 
   @ACS_03
   Scenario Outline:: Test to check if user is able to make the changes in edit template screen.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -72,12 +72,12 @@ Feature: login into the application
     And hover on the admin name
     Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata1 |
+      | TestData  |SheetName|
+      | Testdata1 |ACS|
 
   @ACS_05
   Scenario Outline:: Test to check if user is able to add a template in a project, without making any change in template. (6 buttons +no check box selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -92,12 +92,12 @@ Feature: login into the application
     And hover on the admin name
     Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata1 |
+      | TestData  |SheetName|
+      | Testdata1 |ACS|
 
   @ACS_06
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting first check box and no change in radio button. (6 buttons + 1st check box selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -114,13 +114,13 @@ Feature: login into the application
     And hover on the admin name
     Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata2 |
+      | TestData  |SheetName|
+      | Testdata2 |ACS|
 
 
   @ACS_07
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only second check box and no change in radio button.  (6 buttons + 2nd check box selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -136,12 +136,12 @@ Feature: login into the application
     And hover on the admin name
     Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata3 |
+      | TestData  |SheetName|
+      | Testdata3 |ACS|
 
   @ACS_08
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only third check box and no change in radio button.  (6 buttons + 3rd check box selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -157,12 +157,12 @@ Feature: login into the application
     And hover on the admin name
     Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata4 |
+      | TestData  |SheetName|
+      | Testdata4 |ACS|
 
   @ACS_09
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only fourth check box and no change in radio button.  (6 buttons + 4th check box selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -178,12 +178,12 @@ Feature: login into the application
     And hover on the admin name
     Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata5 |
+      | TestData  |SheetName|
+      | Testdata5 |ACS|
 
   @ACS_10
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting all check boxes and no change in radio button.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -202,13 +202,13 @@ Feature: login into the application
 
 
     Examples:
-      | TestData  |
-      | Testdata6 |
+      | TestData  |SheetName|
+      | Testdata6 |ACS|
       
       
       @ACS_11
       Scenario Outline: Test to check if user is able to add a template in a project , by selecting and second radio button and no check box. (5 buttons +no check box selected)
-       Given Read the testdata "<TestData>" from excel file
+       Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -227,13 +227,13 @@ Feature: login into the application
     Then click on the sign out button
       
       Examples:
-      | TestData  |
-      | Testdata7 |
+      | TestData  |SheetName|
+      | Testdata7 |ACS|
       
       
       @ACS_12
       Scenario Outline:Test to check if user is able to add a template in a project , by selecting first check box and no change in radio button.  (5 buttons + 1st check box selected)
-      Given Read the testdata "<TestData>" from excel file
+      Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -252,12 +252,12 @@ Feature: login into the application
 
 
  Examples:
-      | TestData  |
-      | Testdata8 |
+      | TestData  |SheetName|
+      | Testdata8 |ACS|
       
       @ACS_13
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting second check box and no change in radio button.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -276,12 +276,12 @@ Feature: login into the application
 
 
     Examples:
-      | TestData  |
-      | Testdata10 |
+      | TestData  |SheetName|
+      | Testdata10 |ACS|
       
        @ACS_14
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting third check box and no change in radio button.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -300,12 +300,12 @@ Feature: login into the application
 
 
     Examples:
-      | TestData  |
-      | Testdata11 |
+      | TestData  |SheetName|
+      | Testdata11 |ACS|
       
       @ACS_15
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only fourth check box and no change in radio button. (5 buttons + 4th check box selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -322,12 +322,12 @@ Feature: login into the application
     Then click on the sign out button
     
     Examples:
-      | TestData  |
-      | Testdata15 |
+      | TestData  |SheetName|
+      | Testdata15 |ACS|
     
   @ACS_16
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting all check boxes and no change in radio button. (5 buttons + allcheck boxes selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -345,12 +345,12 @@ Feature: login into the application
    Then click on the sign out button
 
     Examples:
-      | TestData  |
-      | Testdata16 |
+      | TestData  |SheetName|
+      | Testdata16 |ACS|
       
       @ACS_17
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting and first radio button and no check box.
-  Given Read the testdata "<TestData>" from excel file
+  Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -368,13 +368,13 @@ Feature: login into the application
     Then click on the sign out button
     
       Examples:
-      | TestData  |
-      | Testdata17 |
+      | TestData  |SheetName|
+      | Testdata17 |ACS|
       
       
    @ACS_18
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting first check box and no change in radio button. 
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -391,12 +391,12 @@ Feature: login into the application
      And hover on the admin name
     Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata18 |   
+      | TestData  |SheetName|
+      | Testdata18 |   ACS|
 
 @ACS_19
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only second check box and no change in radio button.  (5 buttons + 2nd check box selected).
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -413,12 +413,12 @@ Feature: login into the application
     Then click on the sign out button
     
     Examples:
-      | TestData  |
-      | Testdata19 |
+      | TestData  |SheetName|
+      | Testdata19 |ACS|
       
    @ACS_20
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only third check box and no change in radio button.  (5 buttons +3rd check box selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -435,14 +435,14 @@ Feature: login into the application
     Then click on the sign out button
     
     Examples:
-      | TestData  |
-      | Testdata20 |    
+      | TestData  |SheetName|
+      | Testdata20 |  ACS|  
       
       
 
       @ACS_21
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only fourth check box and no change in radio button. (5 buttons + 4th check box selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -460,12 +460,12 @@ Feature: login into the application
     Then click on the sign out button
     
     Examples:
-      | TestData  |
-      | Testdata21 |
+      | TestData  |SheetName|
+      | Testdata21 |ACS|
     
   @ACS_22
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting all check boxes and no change in radio button. (5 buttons + allcheck boxes selected)
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -481,12 +481,12 @@ Feature: login into the application
     And hover on the admin name
     Then click on the sign out button
     Examples:
-      | TestData  |
-      | Testdata22 |
+      | TestData  |SheetName|
+      | Testdata22 |ACS|
       
          @ACS_23
       Scenario Outline:Test to check if user is able to add project.
-      Given Read the testdata "<TestData>" from excel file
+      Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -498,13 +498,13 @@ Feature: login into the application
     Then click on the sign out button
       
       Examples:
-      | TestData  |
-      | Testdata9 |
+      | TestData  |SheetName|
+      | Testdata9 |ACS|
       
       
        @ACS_24
       Scenario Outline:Test to check if new project is added and visible in Project list.
-      Given Read the testdata "<TestData>" from excel file
+      Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -514,12 +514,12 @@ Feature: login into the application
     Then click on the sign out button
       
       Examples:
-      | TestData  |
-      | Testdata9 |
+      | TestData  |SheetName|
+      | Testdata9 |ACS|
       
       @ACS_25
   Scenario Outline:: Test to check if user is able to view the Project Details .
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -535,12 +535,12 @@ Feature: login into the application
           
         
      Examples:
-      | TestData  |
-      | Testdata26 |
+      | TestData  |SheetName|
+      | Testdata26 |ACS|
       
   @ACS_26
   Scenario Outline:: Test to check if user is able to add any new professional in the project.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -561,8 +561,8 @@ Feature: login into the application
     
      Examples:
      
-      | TestData  |
-      | Testdata26 |
+      | TestData  |SheetName|
+      | Testdata26 |ACS|
       
       
     
@@ -570,7 +570,7 @@ Feature: login into the application
       
   @ACS_27
   Scenario Outline:: Test to check if user is able to add existing professional in the project.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -595,12 +595,12 @@ Feature: login into the application
     
     
     Examples:
-      | TestData  |
-      | Testdata27 |
+      | TestData  |SheetName|
+      | Testdata27 |ACS|
   
   @ACS_28
   Scenario Outline:: Test to check if user is able to add existing professional in the project.
-    Given Read the testdata "<TestData>" from excel file
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
     When user enters the username and password
@@ -615,10 +615,11 @@ Feature: login into the application
     Then click on the sign out button
     
     Examples:
-      | TestData  |
-      | Testdata28 |
+      | TestData  |SheetName|
+      | Testdata28 |ACS|
 
 
   
 
   
+        

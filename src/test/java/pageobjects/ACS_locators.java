@@ -184,7 +184,11 @@ public class ACS_locators {
 	
 	public static By Edit_Project=By.xpath("//h1[text()='Edit Project']");
 	
-	
+	public static By activate_button(String text,String buttoname) {
+		 return By.xpath("//tr[@class='ng-star-inserted']//td[text()='"+text+"']//following-sibling::td[1]//button[text()='"+buttoname+"']");
+
+		}
+
 	
 		
 	
