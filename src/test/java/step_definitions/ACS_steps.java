@@ -615,8 +615,9 @@ public class ACS_steps extends KeywordUtil {
     @And("check if the user professional exists")
     public void verify_user_professional_exists() throws InterruptedException {
     scrollingToElementofAPage(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")), "Move to the existing professional");
-   	Assert.assertFalse(isWebElementVisible(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")), 
-     ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")) + " profesional still  exists!"));
+    ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor(dataMap.get("Existing_Professional_Name") + " profesional still  exists!"));
+
+   	Assert.assertFalse(isWebElementVisibleWithoutLog(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name"))));
     }
 
     @And("check if {string} button exists")
@@ -634,12 +635,11 @@ public class ACS_steps extends KeywordUtil {
     
     @Then("user should see the updated status succesful")
     public void verify_update_status_success_message() throws InterruptedException {
-//    	waitForVisible(ACS_locators.alert_message);
-    	scrollingToElementofAPage(ACS_locators.alert_message,"move to alert messsage");
-    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
 		String expected_message=getElementText(ACS_locators.alert_message);
+		System.out.println("the expectd message is "+expected_message );
 	    ExtentUtil.takeScreenshotAndAttachInReport();
 	    Assert.assertEquals("Professional status is updated successfully.", getElementText(ACS_locators.alert_message));
+	    click_on_empty_space();
     }
     
     @And("search the newly added project")

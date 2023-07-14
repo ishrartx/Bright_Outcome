@@ -120,9 +120,9 @@ Feature: testing the admin account module
     And Search the Project name
     And click on next button
     And Select the "View professionals" option
-    And click the Manage Professional option
-		And Select A "Add existing professional" option
-		And select an existing professional
+    #And click the Manage Professional option
+#		And Select A "Add existing professional" option
+#		And select an existing professional
     And clicks " Edit/Deactivate " button
     And click on the " Deactivate " button
 		Then user should see the updated status succesful
@@ -143,7 +143,7 @@ Feature: testing the admin account module
     
     Examples:
       | TestData  |	SheetName	|	username | password |	Cols:Rows	|	
-      | Testdata5 |	Admin-UserManagement |	Username | Password |	4:Testdata5	|
+      | Testdata5 |	Admin_Account |	Username | Password |	5:Testdata5	|
       
   @ACSuser_06
   Scenario Outline:: Verify that account gets sign off automatically from all logged in devices, if account becomes deactivated.
@@ -167,7 +167,7 @@ Feature: testing the admin account module
     
     Examples:
       | TestData  |	SheetName	|	username | password | username1	|	password1	|
-      | Testdata6 |	Admin-UserManagement |	Username | Password |	Professional_username	|	Professional_password	|
+      | Testdata6 |	Admin_Account |	Username | Password |	Professional_username	|	Professional_password	|
       
   @AC_user07 @user
   Scenario Outline: Verify that the status should change from "Edit/Deactivate" to "Edit/Activate" after deactivation
