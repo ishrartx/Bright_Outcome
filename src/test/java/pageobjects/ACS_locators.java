@@ -189,8 +189,28 @@ public class ACS_locators {
 
 		}
 
-	
+	   public static By footerLinks(String link){
+	        return  By.xpath("//div[@class='footer-link']//a[contains(text(),'"+link+"')]");
+	    }
+
+	    public static By pageHeading(String link){
+	        return  By.xpath("//h1[contains(text(),'"+link+"')]");
+	    }
+	    
+	    public static By User_Deactivate(String email) {
+
+	        return By.xpath("//td[text()='"+email+"']//following-sibling::td[3]");
+	    }
+	    public static By moveto_cancelbutton=By.xpath("//a[text()='Cancel']");
+	    
+		public static By button_contains_text(String buttonname) {
+			return By.xpath("//button[contains(text(),'"+ buttonname + "')]");
+		}
+}
+
+
+
 		
 	
 
-}
+

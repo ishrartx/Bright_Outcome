@@ -23,7 +23,8 @@ Feature: testing the admin account module
       | Testdata3 | Admin_Account | Username | Password | Project_Admin_username  | Project_Admin_password  |  |
       | Testdata5 |	Admin_Account |	Username | Password |	Project_Admin_username  | Project_Admin_password  | |
       | Testdata7 | Admin_Account | Username | Password | Project_Admin_username | Project_Admin_password |  |
-      | Testdata8 | Admin_Account | Username | Password | Project_Admin_username | Project_Admin_password |  |
+      | Testdata8 | Admin_Account | Username | Password | Project_Admin_username | Project_Admin_password |  |     
+      | Testdata11 | Admin_Account | Username | Password | | | |
       
 
 
@@ -213,3 +214,128 @@ Feature: testing the admin account module
     Examples:
       | TestData  | SheetName     | username | password | username1              | password1              |  |
       | Testdata8 | Admin_Account | Username | Password | Project_Admin_username | Project_Admin_password |  |
+      
+     @Admin_10
+     Scenario Outline: Verify that is active Customer  admin account can be deactivated successfully by another customer admin account through "Users" option.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Users " option      
+    And User click on the editDeactivate button
+    Then User verify "Deactivate" button is not displayed
+    
+    
+    
+    
+    Examples:
+      | TestData  | SheetName            | username | password |
+      | Testdata10 | Admin_Account | Username | Password |
+    
+    
+    @Admin_11
+    Scenario Outline:Verify that an active Project  admin account can be deactivated successfully by Customer admin account through Users option.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the " Users " option
+     Then User click on the editDeactivate button
+    And click on the " Deactivate " button
+    And hover on the admin name
+    Then click on the sign out button
+    
+        
+      Examples:
+      | TestData  | SheetName            | username | password |
+      | Testdata11 | Admin_Account | Username | Password |
+      
+      
+  @Admin_12 
+  Scenario Outline: Verify that About link is working on home screen.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And user clicks on "About" link
+    Then "About" page is displayed
+    And hover on the admin name
+    Then click on the sign out button
+    Examples:
+      | TestData  | SheetName            | username | password |
+      | Testdata12 | Admin_Account | Username | Password |
+      
+  @Admin_13 
+  Scenario Outline: Verify that Contact us  link is working on home screen.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And user clicks on "Contact Us" link
+    Then "Contact Us" page is displayed
+    And hover on the admin name
+    Then click on the sign out button
+    
+     Examples:
+      | TestData  | SheetName            | username | password |
+      | Testdata12 | Admin_Account | Username | Password |
+      
+  @Admin_14
+  Scenario Outline: Verify that FAQ link is working on home screen.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And user clicks on "FAQ" link
+    Then "FAQ" page is displayed
+    And hover on the admin name
+    Then click on the sign out button
+    
+    
+     Examples:
+      | TestData  | SheetName            | username | password |
+      | Testdata12 | Admin_Account | Username | Password |
+      
+ @Admin_15
+ Scenario Outline: Verify that Terms & Conditions link is working on home screen.       
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And user clicks on "Terms & conditions" link
+    Then "Terms & conditions" page is displayed
+    And hover on the admin name
+    Then click on the sign out button
+    
+    
+     Examples:
+      | TestData  | SheetName            | username | password |
+      | Testdata12 | Admin_Account | Username | Password |
+      
+ @Admin_16
+  Scenario Outline: Verify that Privacy policy  link is working on home screen.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And user clicks on "Privacy policy" link
+    Then "Privacy policy" page is displayed
+    And hover on the admin name
+    Then click on the sign out button   
+   
+    
+    
+     Examples:
+      | TestData  | SheetName            | username | password |
+      | Testdata12 | Admin_Account | Username | Password |
+
+      

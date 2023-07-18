@@ -21,6 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.ACS_locators;
 import utilities.*;
 
+import static org.testng.Assert.assertEquals;
+
 import java.awt.Checkbox;
 import java.util.HashMap;
 import java.util.List;
@@ -675,10 +677,36 @@ public class ACS_steps extends KeywordUtil {
         	ExcelDataUtil.putTestData(sheetName, project_name, rows[i], col);
         }
     }
- 
-    
-}
+    @And("user clicks on {string} link")
+    public void userClicksOnLink(String link) throws InterruptedException {
+        scrollingToElementofAPage(ACS_locators.footerLinks(link), "Scrolling to the link: " + link);
+        click(ACS_locators.footerLinks(link), "click on the link: " + link);
+    }
 
+    @Then("{string} page is displayed")
+    public void pageIsDisplayed(String page) {
+        waitForVisible(ACS_locators.pageHeading(page));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+   @Then("User click on the editDeactivate button")
+     public void Userclick_deactivate() throws InterruptedException {
+	   click(ACS_locators.User_Deactivate(dataMap.get("Professional_username")),"click on the edit deactivate button");
+	   scrollingToElementofAPage(ACS_locators.moveto_cancelbutton,"Move to the  message");
+	   ExtentUtil.attachScreenshotOfPassedTestsInReport();
+	 
+	 	 	
+   }
+   
+   
+   @When("User verify {string} button is not displayed")
+   public void verify_deactivate_button(String buttonName) throws InterruptedException {  
+
+  Assert.assertTrue(isWebElementPresent(ACS_locators.button_contains_text(buttonName),"Deactivate button is not present"));
+	 
+
+
+   }
+}
 
 
 
