@@ -1,5 +1,7 @@
 package pageobjects;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +16,7 @@ public class ACS_locators {
 
 	public static By sign_up = By.xpath("//strong[text()='Sign in']");
 
-
+	public static By pending_Acs= By.xpath("//tr[@class='ng-star-inserted']//td[6]");
 	
 
 
@@ -206,6 +208,118 @@ public class ACS_locators {
 		public static By button_contains_text(String buttonname) {
 			return By.xpath("//button[contains(text(),'"+ buttonname + "')]");
 		}
+		
+		public static By verify_project_admin_checkbox_checked(String pname) {
+			return By.xpath("//td[text()='"+pname+"']//following-sibling::td[2]//input[@type='checkbox']");
+		}
+		
+		public static By select_project_participant=By.xpath("//select[@name='projects_id']");
+		
+		public static By click_link(String link){
+			return By.xpath("//a[text()='"+link+"']");
+			}
+		public static By enter_input_details(String field){
+			return By.xpath("//input[@placeholder='"+field+"']");
+	}
+		
+		public static By select_year=By.xpath("//select[@name='participant_dob_year']");
+
+		public static By select_month=By.xpath("//select[@name='participant_dob_month']");
+
+		public static By select_day=By.xpath("//select[@name='participant_dob_date']");
+
+		public static By select_gender=By.xpath("//select[@name='participant_gender']");
+		
+		public static By participant_first_name=By.xpath("//input[@id='participant_first_name']");
+
+		public static By participant_last_name=By.xpath("//input[@id='participant_last_name']");
+
+
+		public static By edit_deactivate_button=By.xpath("//button[@class='btn btn-view pull-right ng-star-inserted']");
+
+		public static By participant_result=By.xpath("//tr[@class='ng-star-inserted']");
+
+		public static By paticipant_id=By.xpath("//tr[@class='ng-star-inserted']//td[5]");
+
+		public static By participant_full_name=By.xpath("//tr[@class='ng-star-inserted']//td[1]");
+		
+		public static By find_Participant_first_Name( ) {
+			return By.xpath("//input[@id='participant_first_name']");
+		}
+		
+		public static By find_Participant_last_name( ) {
+			return By.xpath("//input[@id='participant_last_name']");
+		}
+		public static  By view_button(String name){
+			return By.xpath("//td[contains(text(),'"+name+"')]//following-sibling::td[6]//button[@class='btn btn btn-view dropdown-toggle']");
+		}
+		
+		public static  By Manage_ACS=By.xpath("//button[text()=' Manage ACS ']");
+		
+		public static By click_on_BeginACS=By.xpath("//a[text()='Begin ACS']");
+		
+		public static By ManageACS_dropdown(String acs) {
+			return By.xpath("//div[@class='btn-group']//a[contains(text(),'"+acs+"')]");
+			}
+		
+		public static By participant_search =By.xpath("//button[@type='submit'][1]");
+		
+		public static By view_dropdowns(String name,String dropdownname) {
+			return By.xpath("//td[contains(text(),'"+name+"')]//following-sibling::td[6]//ul[@class='dropdown-menu dropdown-menu-right']//a[text()='"+dropdownname+"']");
+		}
+		
+		public static By global_values=By.xpath("//table[@class='table table-striped result-history-tbl']//tbody//td[2]");
+
+		public static By Instrumenal_values=By.xpath("//table[@class='table table-striped result-history-tbl']//tbody//td[3]");
+
+		public static By Lesiure_values=By.xpath("//table[@class='table table-striped result-history-tbl']//tbody//td[4]");
+
+		public static By Fitness_values=By.xpath("//table[@class='table table-striped result-history-tbl']//tbody//td[5]");
+
+		public static By Social_values=By.xpath("//table[@class='table table-striped result-history-tbl']//tbody//td[6]");
+		
+		public static By participant_view_button(String username){
+			return By.xpath("//td[text()=' "+username+" ']//following-sibling::td[6]");
+		}
+
+		public static By participant_Acs(String participant_name){
+			return By.xpath("//td[text()=' "+participant_name+" ']//following-sibling::td[6]//a[text()='Participant ACS']");
+		}
+		
+		public static By project_status = By.xpath("//table/tbody/tr/td[2]");
+
+		 
+
+		public static By participant_acs_status = By.xpath("//table/tbody/tr/td[6]");
+		
+		public static By enter_emailname=By.xpath("//input[@placeholder='Enter your inbox here']");
+		
+		public static By click_on_complete_assessment_button=By.xpath("//a[normalize-space()='Complete assessment']");
+		
+		public static By click_on_next=By.xpath("//i[@class='material-icons-outlined f36']");
+		public static By Questions_option_selection=By.xpath("//tr[@class='ng-star-inserted']//td[2]//span");
+		public static By click_on_nextbutton=By.xpath("//*[contains(text(),'Next')]");
+		
+		public static By select_questionOption( int i) {
+
+	        Random r = new Random();
+
+	        int low=2;
+
+	        int high = 5;
+
+	        int res = r.nextInt(high-low)+low;
+
+	        return By.xpath("(//tr[@class='ng-star-inserted']//td["+res+"]//span)["+i+"]");
+
+	    }
+		
+		
+
+		public static By click_on_exitbutton=By.xpath("//a[text()='Exit']");
+
+
+
 }
 
 

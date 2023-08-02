@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -164,6 +167,46 @@ public class KeywordUtil extends GlobalUtil {
 		} catch (Exception e) {
 		}
 	}
+	
+	public static void extractZipFile() throws IOException {
+		String downloadPath = System.getProperty("user.dir")+File.separator+"target"+File.separator+"download";;
+		String unzipPath = System.getProperty("user.dir")+File.separator+"target"+File.separator+"unzip";;
+		File dir = new File(unzipPath);
+		if (!dir.exists()) dir.mkdirs();
+		FileUtils.cleanDirectory(new File(unzipPath));
+		FileInputStream FiS;
+		byte[] buffer = new byte[1024];
+		File downloadedFilesDir = new File(downloadPath);
+		String[] files = downloadedFilesDir.list();
+		if(files.length==0) {
+			Assert.fail("Zip file is not downloaded");
+		}
+		try {
+			FiS = new FileInputStream(downloadPath+File.separator+files[0]);
+			ZipInputStream ZiS = new ZipInputStream(FiS);
+			ZipEntry ZE = ZiS.getNextEntry();
+			while (ZE != null) {
+				String fileName = ZE.getName();
+				File newFile = new File(unzipPath + File.separator + fileName);
+				System.out.println(" Unzipping to " + newFile.getAbsolutePath());
+				new File(newFile.getParent()).mkdirs();
+				FileOutputStream FoS = new FileOutputStream(newFile);
+				int len;
+				while ((len = ZiS.read(buffer)) > 0) {
+					FoS.write(buffer, 0, len);
+				}
+				FoS.close();
+				ZiS.closeEntry();
+				ZE = ZiS.getNextEntry();
+			}
+			ZiS.closeEntry();
+			ZiS.close();
+			FiS.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	public static String getCurrentUrl() {
 		String currentURL = getDriver().getCurrentUrl();
@@ -212,6 +255,38 @@ public class KeywordUtil extends GlobalUtil {
 		WebDriverWait wait = new WebDriverWait(getDriver(), waitTime);
 		wait.ignoring(ElementNotVisibleException.class);
 		return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+	}
+	
+	public static boolean switchToDefaultFrame() {
+
+        try {
+
+            getDriver().switchTo().defaultContent();
+
+            return true;
+
+ 
+
+        } catch (Exception e) {
+
+            LogUtil.infoLog(KeywordUtil.class, "switchTo default frame FAILED" + e.getStackTrace());
+
+            return false;
+
+        }
+	}
+	
+	public static void verifyfile(){
+
+		String unzipPath =System.getProperty("user.dir")+File.separator+"target"+File.separator+"unzip";
+		File downloadedFilesDir = new File(unzipPath);
+		String[] files = downloadedFilesDir.list();
+		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor( "the number of files are : " +files.length));
+		ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor( "the names of files are :" +Arrays.toString(files)));
+
+
+
+
 	}
 
 	/**
