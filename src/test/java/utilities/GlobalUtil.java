@@ -235,5 +235,9 @@ public class GlobalUtil {
 		}
 
 	}
+	public static void clickbackbutton() {
+		
+		driver.navigate().back();
+		}
 
 }

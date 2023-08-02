@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.OperatingSystem;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -183,9 +185,17 @@ public class DriverUtil {
 				browser = drivers.get(browserName);
 				if (browserName.equalsIgnoreCase(CHROME)) {
 					if (browser == null) {
+						Map<String, Object> prefs = new HashMap<String, Object>();
+						String downloadPath= System.getProperty("user.dir")
+								+File.separator+"target"+File.separator+"download";
+						File dir = new File(downloadPath);
+						if (!dir.exists()) dir.mkdirs();
+						FileUtils.cleanDirectory(new File(downloadPath));
+						prefs.put("download.default_directory", downloadPath);
 						WebDriverManager.chromedriver().setup();
 						ChromeOptions chromeOptions = new ChromeOptions();
 						chromeOptions.addArguments("--remote-allow-origins=*");
+						chromeOptions.setExperimentalOption("prefs", prefs);
 						browser = new ChromeDriver(chromeOptions);
 						drivers.put("Chrome", browser);
 					}

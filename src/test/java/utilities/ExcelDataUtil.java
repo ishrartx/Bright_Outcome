@@ -3,7 +3,9 @@ package utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +17,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.aventstack.extentreports.Status;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 
 /**
  * ExcelDateUtil class is refer to read and write in excel
@@ -39,6 +45,7 @@ public class ExcelDataUtil {
 	private static String excelextensionxls = ".xls";
 	private static String automationcontrolexcelpath = "AutomationControlExcelPath";
 	private static final String INVALID_SHEET_MESSAGE = "Error! No such sheet available in Excel file";
+	private static CSVReader reader = null;
 
 	/**
 	 * <H1>Excel initialize</H1>
@@ -115,6 +122,34 @@ public class ExcelDataUtil {
 		return currentRowData;
 
 	}
+	public static void read_all_data(String name,String filename,String globalvalues) throws IOException, CsvException {
+
+		String scores_csv_file_path = System.getProperty("user.dir")+"/"+"/target/unzip/"+filename;
+		init(scores_csv_file_path, "");
+		String [] nextRecord;
+		while((nextRecord=reader.readNext())!=null) {
+//			if(nextRecord[0].equalsIgnoreCase("Id")) {
+//				for(String cell:nextRecord){
+//					System.out.print(cell+"\t");
+//				}
+//				System.out.println();
+//			}
+			if(Arrays.stream(nextRecord).anyMatch(name::equals)) {
+				System.out.println(nextRecord);
+				for(String cell:nextRecord){
+					if(cell.equalsIgnoreCase(globalvalues)) {
+						ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor("The "+cell+" when compared to "+globalvalues+" is: "+cell.equalsIgnoreCase(globalvalues)));
+						System.out.println("The "+cell+" when compared to "+globalvalues+" is: "+cell.equalsIgnoreCase(globalvalues));
+						break;
+					}
+				}
+			}
+
+		}
+		reader.close();
+
+	}
+
 	
 	public static void putTestData(String sheetName, String projname, String testCaseID, int columnNumber) {
 		boolean found = false;

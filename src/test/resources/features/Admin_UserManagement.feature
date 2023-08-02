@@ -121,9 +121,9 @@ Feature: testing the admin account module
     And Search the Project name
     And click on next button
     And Select the "View professionals" option
-    #And click the Manage Professional option
-#		And Select A "Add existing professional" option
-#		And select an existing professional
+    And click the Manage Professional option
+		And Select A "Add existing professional" option
+		And select an existing professional
     And clicks " Edit/Deactivate " button
     And click on the " Deactivate " button
 		Then user should see the updated status succesful
@@ -210,7 +210,7 @@ Feature: testing the admin account module
     When user clicks on the sign up
     When user enters the "<username1>" and "<password1>"
     When user clicks on the signin button for login
-    Then user is able to login successfully
+    Then user is able to login successfully and see the user name
     Examples:
       | TestData  | SheetName     | username | password | username1              | password1              |  |
       | Testdata8 | Admin_Account | Username | Password | Project_Admin_username | Project_Admin_password |  |
