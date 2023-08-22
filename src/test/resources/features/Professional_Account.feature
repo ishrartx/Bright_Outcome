@@ -499,6 +499,8 @@ Feature: validate the Professional Account functionality
       | Testdata22 | Professional_Account | Username | Password |
       
       
+      
+      
       @ACSpro_25
     Scenario Outline: Test to check if Ask about activities that they do with others Promis -29 results page is visible when first and fourth check boxes are selected in project.
 	    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
@@ -588,6 +590,41 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata29 | Professional_Account | Username | Password |
       
+    
+    
+     @ACSpro_30
+    Scenario Outline: Test to check if' Display participant list without search and Administer PROMIS-29 is visible, when user select third and fourth check boxes in selected  project.    
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button 
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Initiate Remote ACS" option
+    Given user navigates to the URL
+    And enter the email and submit
+    And User clicks on complete assessment button
+    Then "Remote ACS" page is displayed
+    And select the date_of_Birth
+    And enter the  "Zip Code" in the field
+    And click on the " Submit " button
+    Then "Demographic questions" page is displayed
+    And hover on the admin name
+    Then click on the sign out button
+    
+    
+     Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata30 | Professional_Account | Username | Password |  
+ 
+
+ 
+      
      @ACSpro_31
    Scenario Outline: Test to check if' Display participant list without search and Administer PROMIS-29 is visible, when user select third and fourth check boxes in selected  project.    
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
@@ -640,4 +677,311 @@ Feature: validate the Professional Account functionality
     Examples:
       | TestData  | SheetName     | username | password |
       | Testdata27 | Professional_Account | Username | Password |
+      
+      
+  @ACSpro_34
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase4.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Start ACS" option
+    Then select the options to the questions
+    Then click on ACS "Begin ACS" button
+    And click on the testcase option
+    And Select the testcase "Test Case Four" option
+    And click on the "Test" button
+    And select the tiles
+    And Select the Activities "Activity takes too long" checkbox
+    Then Activities current values match
+      |Global|
+      |Instrumental|
+      |Leisure|
+      |Fitness/Exercise|
+      |Social|
+    And hover on the admin name
+    Then click on the sign out button
+
+    Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata34 | Professional_Account | Username | Password |
+
+  @ACSpro_36
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase2.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Start ACS" option
+    Then select the options to the questions
+    Then click on ACS "Begin ACS" button
+    And click on the testcase option
+    And Select the testcase "Test Case Two" option
+    And click on the "Test" button
+    And select the tiles
+    And Select the Activities "Activity takes too long" checkbox
+    Then Activities current values match
+      |Global|
+      |Instrumental|
+      |Leisure|
+      |Fitness/Exercise|
+      |Social|
+    And hover on the admin name
+    Then click on the sign out button
+
+
+    Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata36 | Professional_Account | Username | Password |
+
+  @ACSpro_37
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase6.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Start ACS" option
+    Then click on ACS "Begin ACS" button
+    And click on the testcase option
+    And Select the testcase "Test Case Six" option
+    And click on the "Test" button
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Initiate Remote ACS" option
+    And click on the " Resume existing session " button
+    Given user navigates to the URL
+    And enter the email and submit
+    And User clicks on complete assessment button
+    And select the date_of_Birth
+    And enter the  "Zip Code" in the field
+    And click on the " Submit " button
+    And select the tiles
+    And Select the Activities "Activity takes too long" checkbox
+    Then click on ACS " back to Participant ACS" button
+    Then Activities current values match
+      |Global|
+      |Instrumental|
+      |Leisure|
+      |Fitness/Exercise|
+      |Social|
+    And hover on the admin name
+    Then click on the sign out button
+
+
+    Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata37 | Professional_Account | Username | Password |
+
+  @ACSpro_38
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase4.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Start ACS" option
+    Then click on ACS "Begin ACS" button
+    And click on the testcase option
+    And Select the testcase "Test Case Five" option
+    And click on the "Test" button
+    And select the tiles
+    And Select the Activities "Activity takes too long" checkbox
+    Then Activities current values match
+      |Global|
+      |Instrumental|
+      |Leisure|
+      |Fitness/Exercise|
+      |Social|
+    And hover on the admin name
+    Then click on the sign out button
+
+
+    Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata38 | Professional_Account | Username | Password |
+
+  @ACSpro_46
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase 6.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Initiate Remote ACS" option
+    Given user navigates to the URL
+    And enter the email and submit
+    And User clicks on complete assessment button
+    And select the date_of_Birth
+    And enter the  "Zip Code" in the field
+    And click on the " Submit " button
+    Then selectweb options to the questions
+    Then click on ACS "Begin ACS" button
+    And Select the testcase "Test Case Six" option
+    And click on the "Test" button
+    And select the tiles
+    And Select the Activities "Activity takes too long" checkbox
+    Then click on ACS " back to Participant ACS" button
+    Then Activities current values match
+      |Global|
+      |Instrumental|
+      |Leisure|
+      |Fitness/Exercise|
+      |Social|
+    And hover on the admin name
+    Then click on the sign out button
+
+
+    Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata46 | Professional_Account | Username | Password |
+
+    @ACSpro_47
+     Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase2.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Initiate Remote ACS" option
+    Given user navigates to the URL
+    And enter the email and submit
+    And User clicks on complete assessment button
+    And select the date_of_Birth
+    And enter the  "Zip Code" in the field
+    And click on the " Submit " button
+    Then click on ACS "Begin ACS" button
+    And Select the testcase "Test Case Two" option
+    And click on the "Test" button
+    And hover on the admin name
+    Then click on the sign out button
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Start ACS" option
+    And click on the " Resume existing session " button
+    And select the tiles
+    And Select the Activities "Activity takes too long" checkbox
+    Then Activities current values match
+      |Global|
+      |Instrumental|
+      |Leisure|
+      |Fitness/Exercise|
+      |Social|
+    And hover on the admin name
+    Then click on the sign out button
+
+
+
+       Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata47 | Professional_Account | Username | Password |
+
+    @ACSpro_48
+     Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase2.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And Search with first name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Initiate Remote ACS" option
+    Given user navigates to the URL        
+    And enter the email and submit
+    And User clicks on complete assessment button
+    And select the date_of_Birth
+    And enter the  "Zip Code" in the field
+    And click on the " Submit " button
+    Then click on ACS "Begin ACS" button
+    And Select the testcase "Test Case Four" option
+    And click on the "Test" button
+    And select the tiles
+    And Select the Activities "Activity takes too long" checkbox
+    Then click on ACS " back to Participant ACS" button
+    Then Activities current values match
+        |Global|
+        |Instrumental|
+        |Leisure|
+        |Fitness/Exercise|
+        |Social|
+    And hover on the admin name
+    Then click on the sign out button
+
+      Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata48 | Professional_Account | Username | Password |
+
+      
       

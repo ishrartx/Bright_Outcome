@@ -288,6 +288,12 @@ public class KeywordUtil extends GlobalUtil {
 
 
 	}
+	
+	public int getRamdomInteger(int low, int high){
+        Random r = new Random();
+        int res = r.nextInt(high - low) + low;
+        return res;
+      }
 
 	/**
 	 * @param locator
