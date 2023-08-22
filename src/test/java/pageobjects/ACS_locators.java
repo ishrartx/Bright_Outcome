@@ -317,6 +317,60 @@ public class ACS_locators {
 		
 
 		public static By click_on_exitbutton=By.xpath("//a[text()='Exit']");
+		
+		public static By click_on_ACSButtons(String acsabtton) {
+            return By.xpath("//a[text()='"+acsabtton+"']");
+		}
+		public static By select_testcase=By.xpath("//select[@title='select case']");
+		
+		public static By selecttestcase_dropdown(String testcase) {
+          return By.xpath("//div[@class='col-xs-12 text-right test-button']//option[contains(text(),'"+testcase+"')]");
+}
+		public static By selectthe_tiles=By.xpath("//div[@class='box']");
+		
+
+		public static By select_ActivitiesOption(String Checkbox) {
+           return By.xpath("//span[contains(text(),'" + Checkbox + "')]");
+            }
+		public static By webquestions_option_selection=By.xpath("//div[@class='table-responsive-md tbl-color']//td[2]//span");
+
+
+		
+
+		public static By selectweb_questionOption( int i) {
+
+		 
+
+		        Random r = new Random();
+
+		 
+
+		        int low=2;
+
+		 
+
+		        int high = 5;
+
+		 
+
+		        int web = r.nextInt(high-low)+low;
+
+		 
+
+		        return By.xpath("(//div[@class='table-responsive-md tbl-color']//td["+web+"]//span)["+i+"]");
+
+		        }
+		
+		public static By activityCurrentValueGlobal(String act) {
+          return By.xpath("(//strong[text()='"+act+"']//following::strong[2])[1]");
+         }
+		
+		public static By activityCurrentValue(String act) {
+          return By.xpath("(//td[text()='"+act+"']//following::td[2])[1]");
+}
+
+
+		 
 
 
 

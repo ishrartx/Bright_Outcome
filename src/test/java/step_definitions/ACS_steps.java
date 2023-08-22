@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.opencsv.exceptions.CsvException;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
@@ -26,6 +27,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.awt.Checkbox;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -1071,11 +1073,190 @@ Assert.assertEquals("Y", getWebElement(ACS_locators.participant_acs_status).getT
         click(ACS_locators.click_on_exitbutton, "click on the exit after click on START ACS");
 
     }
+    
+    @Then("click on ACS {string} button")
+
+    public void click_on_begin_acs_button(String acsabtton) throws InterruptedException {
+
+        Thread.sleep(2000);
+
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+
+        click(ACS_locators.click_on_ACSButtons(acsabtton), "click on the" + acsabtton + "button");
+
+    }
+    @And("click on the testcase option")
+
+    public void Click_on_testcase() throws InterruptedException {
+
+        waitForVisible(ACS_locators.select_testcase);
+
+        click(ACS_locators.select_testcase, "click on testcase dropdwon option");
+
+        Thread.sleep(5000);
+
+    }
+    @And("Select the testcase {string} option")
+
+    public void select_testcase_dropdown(String ACS) throws InterruptedException {
+
+        waitForClickable(ACS_locators.selecttestcase_dropdown(ACS));
+
+        click(ACS_locators.selecttestcase_dropdown(ACS), "Select the testcase option");
+
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+
+ 
+
+    }
+    @Then("select the tiles")
+
+    public void select_the_tiles() {
+
+        for (int i = 0; i < 5; i++) {
+
+            List<WebElement> tiles = getListElements(ACS_locators.selectthe_tiles, "select the any tile");
+
+            for (int j = 0; j < tiles.size(); i++) {
+
+                tiles.get(getRamdomInteger(0, tiles.size())).click();
+
+                click(ACS_locators.click_on_nextbutton,
+
+                        "click on the next button after completed the Qustions. Page: " + i + 1);
+
+                tiles = getListElements(ACS_locators.selectthe_tiles, "select the any tile");
+
+ 
+
+            }
+
+ 
+
+        }
+
+    }
+    
+    @And("Select the Activities {string} checkbox")
+
+    public void select_Activities_checkbox(String checkbox) throws InterruptedException {
+
+        waitForClickable(ACS_locators.select_ActivitiesOption(checkbox));
+
+        click(ACS_locators.select_ActivitiesOption(checkbox), "Select the Activitie check box");
+
+        click(ACS_locators.click_on_nextbutton, "click on the next button after completed the Qustions");
+
+ 
+
+    }
+
+ 
+  @Then("Activities current values match")
+
+    public void activitiesCurrentValuesMatch(DataTable dataTable) {
+
+        ArrayList<String> activities = new ArrayList<>(dataTable.asList());
+
+        String actValue;
+
+        String expValue;
+
+        for (int i = 0; i < activities.size(); i++) {
+
+            String actName = activities.get(i);
+
+            expValue = dataMap.get(actName);
+
+            if (actName.equalsIgnoreCase("Global")) {
+
+                actValue = getElementText(ACS_locators.activityCurrentValueGlobal(activities.get(i)));
+
+            } else {
+
+                actValue = getElementText(ACS_locators.activityCurrentValue(activities.get(i)));
+
+            }
+
+            System.out.println(actName + "_Actual: " + actValue);
+
+            System.out.println(actName + "_Expected: " + expValue);
+
+            if (actValue.equalsIgnoreCase((expValue))) {
+
+                ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(
+
+                        "Activity values match: Expected: " + expValue + " | Actual: " + actValue));
+
+            } else {
+
+                ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor(
+
+                        "Activity values mismatch: Expected: " + expValue + " | Actual: " + actValue));
+
+            }
+
+            ExtentUtil.takeScreenshotAndAttachInReport();
+
+ 
+
+        }
+
+        
+
+    }   
+
+ 
 
 
 
+@Then("selectweb options to the questions")
+
+ 
+
+    public void webselect_the_physical_function() {
+
+ 
+
+        List<WebElement> options = getListElements(ACS_locators.webquestions_option_selection,
+
+ 
+
+                "select the questions");
+
+ 
+
+        for (int i = 1; i <= options.size(); i++) {
+
+ 
+
+            click(ACS_locators.selectweb_questionOption(i), "select the response to questions");
+
+ 
+
+ 
+
+        }
+
+ 
+
+        click(ACS_locators.click_on_nextbutton, "click on the next button after completed Qustions");
+
+ 
+
+ 
+
+    }
 
 }
+
+ 
+
+
+
+
+
+
 
 
 
