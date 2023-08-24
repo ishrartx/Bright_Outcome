@@ -40,14 +40,14 @@ public class CommonSettings {
 	private String bugToolProjectName;
 //	private String restURL;
 //	private String restAccessToken;
-//	private Double androidVersion;
-//	private String androidName;
-//	private String androidID;
-//	private String androidBrowser;
+	private Double androidVersion;
+	private String androidName;
+	private String androidID;
+	private String androidBrowser;
 //	private String androidCloudDeviceID;
 //
 //	@SuppressWarnings("rawtypes")
-//	private static AndroidDriver mdriver;
+	private static AndroidDriver mdriver;
 
 	
 	public CommonSettings(String projectName, String appType, String appEnviornment, String emailOutput, String emailId, String htmlReport, String xlsReport, String testLogs,
@@ -341,37 +341,37 @@ public class CommonSettings {
 //		this.restURL = restURL;
 //	}
 //
-//	public Double getAndroidVersion() {
-//		return androidVersion;
-//	}
-//
-//	public void setAndroidVersion(Double androidVersion) {
-//		this.androidVersion = androidVersion;
-//	}
-//
-//	public String getAndroidName() {
-//		return androidName;
-//	}
-//
-//	public void setAndroidName(String androidName) {
-//		this.androidName = androidName;
-//	}
-//
-//	public String getAndroidID() {
-//		return androidID;
-//	}
-//
-//	public void setAndroidID(String androidID) {
-//		this.androidID = androidID;
-//	}
-//
-//	public String getAndroidBrowser() {
-//		return androidBrowser;
-//	}
-//
-//	public void setAndroidBrowser(String androidBrowser) {
-//		this.androidBrowser = androidBrowser;
-//	}
+	public Double getAndroidVersion() {
+		return androidVersion;
+	}
+
+	public void setAndroidVersion(Double androidVersion) {
+		this.androidVersion = androidVersion;
+	}
+
+	public String getAndroidName() {
+		return androidName;
+	}
+
+	public void setAndroidName(String androidName) {
+		this.androidName = androidName;
+	}
+
+	public String getAndroidID() {
+		return androidID;
+	}
+
+	public void setAndroidID(String androidID) {
+		this.androidID = androidID;
+	}
+
+	public String getAndroidBrowser() {
+		return androidBrowser;
+	}
+
+	public void setAndroidBrowser(String androidBrowser) {
+		this.androidBrowser = androidBrowser;
+	}
 //
 //	public String getRestAccessToken() {
 //		return restAccessToken;

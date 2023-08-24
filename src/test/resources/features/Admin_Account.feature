@@ -491,15 +491,15 @@ Feature: login into the application
     When user clicks on the sign up
     When user enters the username and password
     When user clicks on the signin button for login
-    And Enter the project Name
+    And Enter the project Name "<Columns>" in "<SheetName>"
       When click on the " Add project " button
       Then user is able to see the comfirmation alert message
          And hover on the admin name
     Then click on the sign out button
       
       Examples:
-      | TestData  |SheetName|
-      | Testdata9 |ACS|
+      | TestData  |SheetName|	Columns	|
+      | Testdata9 |ACS|	Testdata9,Testdata27 |
       
       
        @ACS_24

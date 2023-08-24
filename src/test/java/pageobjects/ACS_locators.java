@@ -369,16 +369,40 @@ public class ACS_locators {
           return By.xpath("(//td[text()='"+act+"']//following::td[2])[1]");
 }
 
-
+		public static By autoTestOptions_dropdown = By.xpath("//select[@name='autoTestOptions']");
+		
+		public static By barriersChkOpts(String opt) { return By.xpath("//*[text()='"+opt+"']//preceding-sibling::span"); }
 		 
 
+		//Mobile ACS Locators
+		
+		public static By navbar_btn = By.xpath("//button[@class='navbar-toggle collapsed']");
+		
+		public static By toggle_button=By.xpath("//button[@class='navbar-toggle']");
+		
+		public static By selOpts(String text) {
+			return By.xpath("//div[text()='"+text+" ']");
+		}
+		
+		public static By Sahil_admin=By.xpath("(//a[text()='Sahil Kapoor']) [2]");
+		
+		public static By begin_ACS=By.xpath("//button[text()=' Begin ACS ']");
 
+		public static By Demographic_survey=By.xpath("//h1[text()='Demographic Survey']");
+		
+		public static By enter_city=By.xpath("//input[@placeholder='Enter Your City']");
+
+		public static By Activity_card=By.xpath("//h3[text()='Welcome to ACS3 - Activity Card Sort']");
+
+		@FindBy(xpath = "//button[text()=' Submit ']")
+		public static WebElement submit_btn;
+
+		public static By never_done=By.xpath("//a[text()='Never Done ']");
+		
+		public static By slider(String number){
+			   return By.xpath("//span[@class='ngx-slider-span ngx-slider-tick-legend ng-star-inserted' and text()='"+number+"']");
+			}
+		
+		public static By promis_page=By.xpath("//h4[text()=' Please respond to each question or statement by marking one box per row. ']");
 
 }
-
-
-
-		
-	
-
-

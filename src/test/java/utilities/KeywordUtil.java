@@ -1,14 +1,19 @@
 package utilities;
 
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import javax.imageio.ImageIO;
+
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -19,6 +24,11 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.cucumber.java.Scenario;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.io.FileUtils;
@@ -44,6 +54,12 @@ import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 import com.google.common.base.Function;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
 
 import step_definitions.Hooks;
 
@@ -218,7 +234,7 @@ public class KeywordUtil extends GlobalUtil {
 		WebElement elm = null;
 		try {
 			WebDriverWait wait = new WebDriverWait(getDriver(), DEFAULT_WAIT_SECONDS);
-			wait.ignoring(ElementNotVisibleException.class);
+			wait.ignoring(ElementNotFoundException.class);
 			wait.ignoring(WebDriverException.class);
 
 			if (wait.until(ExpectedConditions.elementToBeClickable(locator)) != null) {
@@ -1135,6 +1151,58 @@ public class KeywordUtil extends GlobalUtil {
 				continue;
 			}
 		}
+	}
+	
+	public static String elementScreenshot(AppiumDriver driver)
+	{
+
+		File screenshotLocation = null;
+		try{
+			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		
+		
+			String path = "screenshots/" + UUID.randomUUID() + "" + ".png";
+		
+			screenshotLocation = new File(System.getProperty("user.dir") + "/" + path);
+			FileUtils.copyFile(scrFile, screenshotLocation);
+		
+			System.out.println(screenshotLocation.toString());
+	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return screenshotLocation.toString();
+
+	}
+	
+	public static void readQRCode() {
+		File qrCodeFile = new File(elementScreenshot(mdriver));
+	//	  System.out.println(qrCodeURL);
+	//	  URL url=new URL(qrCodeURL);
+		  BufferedImage bufferedimage;
+		try {
+			bufferedimage = ImageIO.read(qrCodeFile);
+			  LuminanceSource luminanceSource=new BufferedImageLuminanceSource(bufferedimage);
+			  BinaryBitmap binaryBitmap=new BinaryBitmap(new HybridBinarizer(luminanceSource));
+			  Result result = new MultiFormatReader().decode(binaryBitmap);
+			  System.out.println(result.getText());
+			  mdriver.get(result.getText());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void navigateBack() {
+		mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
+	}
+	
+	//Ishrar's code
+	
+	public static void scrolldown(WebElement Element) {
+	    JavascriptExecutor js = (JavascriptExecutor) GlobalUtil.getDriver();
+	    js.executeScript("window.scrollBy(0,600);", Element);
 	}
 
 }// End class

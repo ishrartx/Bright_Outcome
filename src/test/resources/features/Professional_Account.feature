@@ -498,7 +498,95 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata22 | Professional_Account | Username | Password |
       
+ 	@ACSpro_23 @MobileTest
+  Scenario Outline: Mobile_Test to check if 'Ask about activities that they do with others' / 'demographic questions' page page is visible when first and second check boxes are selected in project.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+  	Given user opens emulator "<DeviceDetails>"
+    Given user navigates to the application
+    When user clicks on navbar button
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    When user clicks on the toggle button
+    And click on the admin name
+    And create the new project
+    When click on the " Add project " button
+    And search the newly added project
+    And Select the "View details" option of newly added project
+    When user clicks on the toggle button
+    And select project template setting
+    And select checkboxes in Activity card options
+    Then click on "Update Project" button of newly added project
+    And search the newly added project
+    And Select the "View professionals" option of newly added project
+    And click the Manage Professional option
+    And Select A "Add existing professional" option
+    And select the professional
+    And select existing professional as admin newly adeed project
+    And click on back button
+    When user clicks on navbar button
+    And click on the admin name
+    And click on the "Participants" option
+    When user clicks on the toggle button
+    And Select the newly project from the dropdown
+    And click on the "Submit" button
+    And click on the "Add participant " link button
+    And enter the  "First name" in the field
+    And enter the  "Last name" in the field
+    And enter the new "Email" in the field
+    And enter the  "Zip Code" in the field
+    And enter the  "Incident" in the field
+    And enter the  "Participant ID" in the field
+    And select the date_of_Birth
+    And select the gender
+    And click on the " Submit " button
+		And click on the Manage ACS option
+    And Select the acs "Initiate Mobile ACS" option
+    And read the QR code
+    And select the date_of_Birth
+    And enter the  "Zip Code" in the field
+    And click on the begin acs option
+    Then user should beable to see the Demographic page
+    Then select the "<options>" radio buttons
+    Then enter the city name
+    And click on the submit button
+    Then user is able to see the activity card
+		And click on the "Begin ACS" link button
+    Then user is able to see the activities card page
+
+    Examples:
+      | TestData   | SheetName | options                                                                                                                       | DeviceDetails	|
+      | Testdata23 | Professional_Account | White:Married:1 :Rent:Less than 20,000:Self-employed:Bachelor’s degree (e.g. BA, BS):Difficulty seeing:No:Stroke |	Pixel 4_11.0	|
       
+   @ACSpro_24 @MobileTest
+   Scenario Outline: mobile_validate the second mobile test case
+  	Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+  	Given user opens emulator "<DeviceDetails>"
+    Given user navigates to the application
+    When user clicks on navbar button
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    When user clicks on the toggle button
+	  And click on the admin name
+	  And click on the "Participants" option
+	  When user clicks on the toggle button
+	  And Select the project from the dropdown
+	  And click on the "Submit" button
+	  Then verify the participant is visible
+		And Select the view "Participant ACS" option
+		And click on the Manage ACS option
+		And Select the acs "Initiate Mobile ACS" option
+		And read the QR code
+		And select the date_of_Birth
+		And enter the  "Zip Code" in the field
+		And click on the begin acs option
+		And click on the "Begin ACS" link button
+		Then user is able to see the activities card page
+
+  Examples:
+    | TestData   | SheetName            | DeviceDetails	|                                                                                                                  
+    | Testdata24 | Professional_Account |	Pixel 4_11.0	|      
       
       
       @ACSpro_25
@@ -982,6 +1070,7 @@ Feature: validate the Professional Account functionality
       Examples:
       | TestData  | SheetName     | username | password |
       | Testdata48 | Professional_Account | Username | Password |
+      
 
       
       
