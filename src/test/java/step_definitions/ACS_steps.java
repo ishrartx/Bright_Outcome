@@ -36,7 +36,8 @@ import org.testng.Assert;
 
 public class ACS_steps extends KeywordUtil {
 	static Random random = new Random(); 
-    static int random_number=random.nextInt(500);
+    static int random_number1=random.nextInt(5000);
+    static int random_number2=random.nextInt(500);
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
     public static String project_name="";
@@ -97,17 +98,7 @@ public class ACS_steps extends KeywordUtil {
         inputText(ACS_locators.enter_tempalte_name, dataMap.get("Template_Name"), "enter the " + dataMap.get("Template_Name") + " in the text box");
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
-    
-    @And("Enter the project Name")
-    public void enter_project_name() throws InterruptedException {
-    	clearInput(ACS_locators.enter_project_Name);
-        Thread.sleep(6000);                         
-        inputText(ACS_locators.enter_project_Name, dataMap.get("Project_Name")+random_number, "enter the " +dataMap.get("Project_Name")+random_number + " in the text box");
-        ExcelDataUtil.putTestData("ACS", dataMap.get("Project_Name")+random_number, "Testdata9", 10);
-        ExcelDataUtil.putTestData("ACS", dataMap.get("Project_Name")+random_number, "Testdata27", 10);
-        ExtentUtil.attachScreenshotOfPassedTestsInReport();
-    }
-    
+  
 
     @When("click on the {string} button")
     public void click_Add_tempalte(String buttonname) throws InterruptedException {
@@ -161,11 +152,11 @@ public class ACS_steps extends KeywordUtil {
     @And("Select the {string} option")
     public void select_manage_dropdown(String dropdown) throws InterruptedException {
     	 
-    	scrollingToElementofAPage(ACS_locators.manage_button(dataMap.get("Project_Name")),"move to " +dropdown+ " option ");
-    	hoverOnElement(ACS_locators.manage_button(dataMap.get("Project_Name")));
-        waitForVisible(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name"), dropdown));
+    	scrollingToElementofAPage(ACS_locators.manage_button(dataMap.get("Project_Name")+random_number1),"move to " +dropdown+ " option ");
+    	hoverOnElement(ACS_locators.manage_button(dataMap.get("Project_Name")+random_number1));
+        waitForVisible(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name")+random_number1, dropdown));
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
-        click(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name"),dropdown), "Select the " + dropdown + " option");
+        click(ACS_locators.Manage_dropdowns(dataMap.get("Project_Name")+random_number1,dropdown), "Select the " + dropdown + " option");
         
     }
 
@@ -277,13 +268,13 @@ public class ACS_steps extends KeywordUtil {
     @And("Search the Project name")
 	public void search_project() throws InterruptedException {
     	clearInput(ACS_locators.search_project);
-    	inputText(ACS_locators.search_project, dataMap.get("Project_Name"), "search the " +dataMap.get("Project_Name"));
+    	inputText(ACS_locators.search_project, dataMap.get("Project_Name")+random_number1, "search the " +dataMap.get("Project_Name")+random_number1);
         click(ACS_locators.search_button,"click on the search button");
         if(isWebElementPresent(ACS_locators.no_record_found,"no record found is present")){
            hoverOnElement(ACS_locators.enter_project_Name);
-           inputText(ACS_locators.enter_project_Name,dataMap.get("Project_Name"),"enter the "+dataMap.get("Project_Name"+"in the search box"));
+           inputText(ACS_locators.enter_project_Name,dataMap.get("Project_Name")+random_number1,"enter the "+dataMap.get("Project_Name")+random_number1+"in the search box");
            click(ACS_locators.Add_project,"click on the add project");
-            inputText(ACS_locators.search_project, dataMap.get("Project_Name"), "search the " +dataMap.get("Project_Name"));
+            inputText(ACS_locators.search_project, dataMap.get("Project_Name")+random_number1, "search the " +dataMap.get("Project_Name")+random_number1);
             click(ACS_locators.search_button,"click on the search button");
         }
         else{
@@ -615,9 +606,9 @@ public class ACS_steps extends KeywordUtil {
     	String[] rows = arr[1].split(",");
     	clearInput(ACS_locators.enter_project_Name);
         Thread.sleep(6000);                         
-        inputText(ACS_locators.enter_project_Name, dataMap.get("Project_Name")+random_number, "enter the " +dataMap.get("Project_Name")+random_number + " in the text box");
+        inputText(ACS_locators.enter_project_Name, dataMap.get("Project_Name")+random_number1, "enter the " +dataMap.get("Project_Name")+random_number1 + " in the text box");
 		for(int i=0; i < rows.length; i++) {
-			ExcelDataUtil.putTestData(sheetName, dataMap.get("Project_Name")+random_number, rows[i], col);
+			ExcelDataUtil.putTestData(sheetName, dataMap.get("Project_Name")+random_number1, rows[i], col);
 		}
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
@@ -626,7 +617,7 @@ public class ACS_steps extends KeywordUtil {
     public void verify_user_professional_exists() throws InterruptedException {
     scrollingToElementofAPage(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name")), "Move to the existing professional");
     ExtentUtil.logger.get().log(Status.FAIL, HTMLReportUtil.failStringRedColor(dataMap.get("Existing_Professional_Name") + " profesional still  exists!"));
-
+    ExcelDataUtil.putTestData("Admin_Account", "new_project", "Testdata5", 5);
    	Assert.assertFalse(isWebElementVisibleWithoutLog(ACS_locators.existing_professional(dataMap.get("Existing_Professional_Name"))));
     }
 
@@ -673,14 +664,14 @@ public class ACS_steps extends KeywordUtil {
     
     @And("Enter the  new project Name {string} in {string}")
     public void enter_new_project(String records, String sheetName) throws InterruptedException{
-        project_name=dataMap.get("Project_Name")+random_number;
+        project_name=dataMap.get("Project_Name")+random_number2;
 //        System.out.println("the new project is " +project_name);
     	String[] arr = records.split(":");
     	int col = Integer.parseInt(arr[0]);
     	String[] rows = arr[1].split(",");
     	clearInput(ACS_locators.enter_project_Name);
         Thread.sleep(6000);
-        inputText(ACS_locators.enter_project_Name, project_name, "enter the " +dataMap.get("Project_Name")+random_number + " in the text box");
+        inputText(ACS_locators.enter_project_Name, project_name, "enter the " + project_name + " in the text box");
         for(int i=0; i < rows.length; i++) {
         	ExcelDataUtil.putTestData(sheetName, project_name, rows[i], col);
         }
@@ -891,24 +882,24 @@ public void select_view_dropdown(String dropdown) throws InterruptedException {
 public void Click_Manage_ACS() throws InterruptedException {
     waitForVisible(ACS_locators.Manage_ACS);
     click(ACS_locators.Manage_ACS, "click on the Manage ACS option");
-    Thread.sleep(5000);
+//    Thread.sleep(5000);
 }
 
 
 @And("Select the acs {string} option")
 public void select_Manage_ACS_dropdown(String ACS ) throws InterruptedException {
     waitForClickable(ACS_locators.ManageACS_dropdown(ACS));
-    click(ACS_locators.ManageACS_dropdown(ACS),"click on the ACS option");
-    waitForVisible(ACS_locators.alert_message);
+    click(ACS_locators.ManageACS_dropdown(ACS),"click on the "+ACS+" option");
     ExtentUtil.attachScreenshotOfPassedTestsInReport();
-    click_on_empty_space();
 
 }
 @Then("click on Begin ACS button")
 public void click_on_begin_acs_button() throws InterruptedException {
-click(ACS_locators.click_on_BeginACS,"click on the Begin acs button");
-Thread.sleep(4000);
-ExtentUtil.attachScreenshotOfPassedTestsInReport();
+	click_on_empty_space();
+	scrollingToElementofAPage(ACS_locators.click_on_BeginACS, "Move to Begin ACS button");
+	click(ACS_locators.click_on_BeginACS,"click on the Begin acs button");
+	Thread.sleep(4000);
+	ExtentUtil.attachScreenshotOfPassedTestsInReport();
 }
 @And("hover on the view button")
 public void click_view() throws InterruptedException {
@@ -1247,16 +1238,245 @@ Assert.assertEquals("Y", getWebElement(ACS_locators.participant_acs_status).getT
  
 
     }
+    
+        
+    @Given("user opens emulator {string}")
+    public void open_emulator_device(String deviceDetails) {
+    	try {
+			KeywordUtil.cucumberTagName = "MobileTest";
+			if (GlobalUtil.getCommonSettings().getExecutionEnv().equalsIgnoreCase("Local"))
+				DriverUtil.invokeLocalMobileBrowser(GlobalUtil.getCommonSettings().getExecutionEnv(), deviceDetails);
+
+		} catch (Exception e) {
+			GlobalUtil.errorMsg = e.getMessage();
+			Assert.fail(e.getMessage());
+		}
+    }
+    
+    @When("user clicks on navbar button")
+    public void click_navbar_btn() {
+    	click(ACS_locators.navbar_btn, "Click on Menu Navbar");
+    }
+    
+    @When("user clicks on the toggle button")
+    public void click_toggle_button() throws InterruptedException {
+        waitForVisible(ACS_locators.toggle_button);
+        Thread.sleep(4000);
+        click(ACS_locators.toggle_button, "click on the togggle button");
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+
+    @And("click on the admin name")
+    public void click_admin_name() {
+        click(ACS_locators.admin_name, "click on the admin name");
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+     
+    @And("read the QR code")
+    public void read_qr_code() throws Exception {
+    	Thread.sleep(5000);
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    	readQRCode();
+    }
+    
+    @And("click on android back button")
+    public void navigate_back() {
+    	navigateBack();
+    }
+    
+    @And("click on button with text {string}")
+    public void click_begin_acs(String btnText) throws Exception {
+    	scrollingToElementofAPage(ACS_locators.button_by_text(btnText), "Move on the "+btnText+" text button");
+    	waitForClickable(ACS_locators.button_by_text(btnText));
+    	click(ACS_locators.button_by_text(btnText), "Click on the "+btnText+" text button");
+    }
+    
+    @And("select the options for {string}")
+    public void select_the_options(String options) throws Exception {
+    	String[] ansOpts = options.split(", ");
+    	for(String opt:ansOpts) {
+        	scrollingToElementofAPage(ACS_locators.selOpts(opt), "Move to the "+opt);
+    		click(ACS_locators.selOpts(opt), "Click on the "+opt);
+    		
+    	}
+    	click(ACS_locators.click_on_nextbutton, "click on the next button after completed Qustions");
+    }
+    
+    @And("select the checkboxes for {string}")
+    public void select_checkboxes(String options) throws Exception {
+    	String[] opts = options.split(", ");
+		for(int i=0; i < opts.length; i++) {
+			Thread.sleep(2000);
+			scrollingToElementofAPage(ACS_locators.barriersChkOpts(opts[i]), "Move to the checkbox "+opts[i]+" option");
+			if(isWebElementVisibleWithoutLog(ACS_locators.barriersChkOpts(opts[i]))) {
+				click(ACS_locators.barriersChkOpts(opts[i]), "select "+ opts[i] +"checkbox");
+			}
+			Thread.sleep(2000);
+		}        
+		ExtentUtil.attachScreenshotOfPassedTestsInReport();
+		click(ACS_locators.click_on_nextbutton, "click on the next button after completed Qustions");
+    }
+    
+    @And("create the new project")
+    public void create_new_project() throws InterruptedException {
+        project_name = dataMap.get("Project_Name") + random_number1;
+        System.out.println("the new project is " + project_name);
+        inputText(ACS_locators.enter_project_Name, project_name, "enter the " + dataMap.get("Project_Name") + random_number1 + " in the text box");
+        ExcelDataUtil.putTestData("professional_account", project_name, "Testdata24", 5);
+    }
+    
+    @Then("click on {string} button of newly added project")
+    public void click_update(String buttonname) throws InterruptedException {
+        scrollingToElementofAPage(ACS_locators.button_by_text(buttonname), "clicking on update button");
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+
+        click(ACS_locators.button_by_text(buttonname), "clicking on update button");
+        waitForVisible(ACS_locators.alert_message);
+
+        scrollingToElementofAPage(ACS_locators.alert_message, "move to alert message");
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+
+        waitForClickable(ACS_locators.Back_button);
+        click(ACS_locators.Back_button, "click on the back butotn");
+
+    }
+    
+    @And("select the professional")
+    public void select_professional() throws InterruptedException {
+        waitForVisible(ACS_locators.Sahil_admin);
+        scrollingToElementofAPage(ACS_locators.Sahil_admin, "Move to the existing professional");
+        click(ACS_locators.Sahil_admin, "Click on the existing professional: " + dataMap.get("Existing_Professional_Name"));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+        waitForClickable(ACS_locators.button_by_text("Submit"));
+        scrollingToElementofAPage(ACS_locators.button_by_text("Submit"), "Move to Submit button");
+        click(ACS_locators.button_by_text("Submit"), "Click on Submit button");
+
+    }
+    
+    @And("select existing professional as admin newly adeed project")
+    public void select_existin_professional() throws InterruptedException {
+        List<WebElement> existing_professionals_list = getListElements(ACS_locators.existing_professionals, "getting the list of existing professionals");
+        for (WebElement user_professionals : existing_professionals_list) {
+            System.out.println(user_professionals.getText());
+            if (user_professionals.getText().equalsIgnoreCase(dataMap.get("professional_username"))) {
+                scrollingToElementofAPage(ACS_locators.selectProfessionalUserAdminCheckbox(user_professionals.getText()), "Move to unselected user to select");
+                click(ACS_locators.selectProfessionalUserAdminCheckbox(user_professionals.getText()), "select " + user_professionals.getText() + " as project admin");
+            }
+        }
+        Thread.sleep(500);
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @And("Select the newly project from the dropdown")
+    public void select_newly_project() throws InterruptedException {
+        project_name = dataMap.get("Project_Name") + random_number1;
+        System.out.println("the new project is " + project_name);
+        hoverOnElement(ACS_locators.select_project_participant);
+        waitForPresent(ACS_locators.select_project_participant);
+        click(ACS_locators.select_project_participant, "select the project from the dropdown");
+        selectByVisibleText(ACS_locators.select_project_participant, project_name, "select the  " + dataMap.get("Project_Name") + " value in the dropdown");
+    }
+    
+    @And("enter the new {string} in the field")
+    public void enternew_details_in_input_fields(String field_name) throws InterruptedException {
+        inputText(ACS_locators.enter_input_details(field_name), random_number1+dataMap.get(field_name), "enter the " + dataMap.get(field_name) + " in the " + field_name);
+    }
+    
+    @And("click on the begin acs option")
+    public void click_cs() throws InterruptedException {
+        scrollingToElementofAPage(ACS_locators.begin_ACS,"move to begin acs option");
+        click(ACS_locators.begin_ACS,"click on the begin ACS");
+        Thread.sleep(5000);
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @Then("user should beable to see the Demographic page")
+    public void validatedemographic(){
+
+        Assert.assertTrue(isWebElementVisible(ACS_locators.Demographic_survey,"demographic survey page is present"));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @Then("select the {string} radio buttons")
+    public void select_radio(String options) throws InterruptedException {
+
+        String[] chkOptions = options.split(":");
+        System.out.println(chkOptions.length);
+        for(int i =0;i<chkOptions.length;i++) {
+
+            WebElement radio_btn =  getDriver().findElement(By.xpath("//span[text()='" + chkOptions[i] + "']//preceding-sibling::span//i"));
+            JavascriptExecutor js = (JavascriptExecutor) getDriver();
+            scrolldown(radio_btn);
+            js.executeScript("arguments[0].click();",radio_btn);
+            ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(radio_btn +"is selected"));
+
+            ExtentUtil.attachScreenshotOfPassedTestsInReport();
+
+        }
+    }
+
+    @Then("enter the city name")
+    public void enter_city() throws InterruptedException {
+     scrollingToElementofAPage(ACS_locators.enter_city,"enter the city name");
+     inputText(ACS_locators.enter_city,"mumbai","enter the baddi in city");
+
+    }
+
+    @Then("user is able to see the activity card")
+    public void see_activity_card(){
+        String expected=getElementText(ACS_locators.Activity_card);
+        Assert.assertEquals("Welcome to ACS3 - Activity Card Sort",expected);
+        ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(expected +"message is visible"));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+    }
+    
+    @Then("user is able to see the activities card page")
+    public void able_to_see(){
+        Assert.assertTrue(isWebElementVisible(ACS_locators.never_done,"Activity card question page is present"));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+  }
+    
+    @And("click on the submit button")
+    public void click_submit() throws InterruptedException {
+    	 WebElement submit_btn=getDriver().findElement(By.xpath("//button[text()=' Submit ']"));
+    	 JavascriptExecutor js = (JavascriptExecutor) getDriver();
+    	 scrolldown(submit_btn);
+    	 js.executeScript("arguments[0].click();",submit_btn);
+    	 Thread.sleep(2000);
+    }
+    
+    @And("click on back button")
+    public void click_back_button() throws InterruptedException {
+        waitForClickable(ACS_locators.Back_button);
+        click(ACS_locators.Back_button, "click on the back butotn");
+    }
+    
+    @Then("user should beable to see the promis page")
+    public void promis_page(){
+      Assert.assertTrue(isWebElementVisible(ACS_locators.promis_page,"user is able to see the promis page"));
+      ExtentUtil.attachScreenshotOfPassedTestsInReport();
+  }
+
+    @Then("select the {string} radio buttons of promis page")
+    public void select_radio_promis(String options) throws InterruptedException {
+
+        String[] chkOptions = options.split(":");
+        System.out.println(chkOptions.length);
+        for(int i =0;i<chkOptions.length;i++) {
+
+            WebElement radio_btn =  getDriver().findElement(By.xpath("//input[@id='"+chkOptions[i]+"']//following-sibling::span//i"));
+            JavascriptExecutor js = (JavascriptExecutor) getDriver();
+            scrolldown(radio_btn);
+            js.executeScript("arguments[0].click();",radio_btn);
+            ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(radio_btn +"is selected"));
+
+            ExtentUtil.attachScreenshotOfPassedTestsInReport();
+        }
+    }
+
+    @Then("click on the {string} number on the slider")
+    public void slider(String number){
+        click(ACS_locators.slider(number),"click on the slider icon");
+    }
 
 }
-
- 
-
-
-
-
-
-
-
-
-

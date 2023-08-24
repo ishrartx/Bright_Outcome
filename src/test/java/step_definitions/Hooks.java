@@ -48,7 +48,25 @@ public class Hooks {
 
 	}
 
+	@Before("@MobileTest")
+	public void beforeMobileMethods(Scenario scenario) throws Exception {
+	   if (scenario.getName().contains("_"))
+	      testCaseDescription = scenario.getName().split("_")[1];
+	   else
+	      testCaseDescription = scenario.getName();
+	   testCaseDescription = scenario.getName().split("_")[1];
+	   executingTagName = scenario.getSourceTagNames().toArray()[0].toString();
+	   ExtentUtil.startTestInit(testCaseDescription);
+	   LogUtil.infoLog(getClass(), "Test Started with tag : " + executingTagName);
 
+	   LogUtil.infoLog(getClass(),
+
+	         "\n+----------------------------------------------------------------------------------------------------------------------------+");
+	   LogUtil.infoLog(getClass(), "Mobile Tests Started: " + scenario.getName());
+
+	   LogUtil.infoLog(Hooks.class,
+	         "Mobile Test is executed in OS: " + GlobalUtil.getCommonSettings().getAndroidName());
+	}
 
 
 	@After("@Web")
@@ -108,5 +126,38 @@ public class Hooks {
 		DriverUtil.closeAllDriver();
 	}
 
+	@After("@MobileTest")
+	   public void afterMobileMethods(Scenario scenario) {
+	      String testName = scenario.getName().split("_")[0].trim();
+	      if (scenario.isFailed()) {
+	         try {
+	            System.out.println("after method");
+	            String scFileName = "ScreenShot_" + System.currentTimeMillis();
+	            String screenshotFilePath = ConfigReader.getValue("screenshotPath") + "\\" + scFileName + ".png";
+	            ExtentUtil.attachScreenshotToReportOnFailure(scenario);
 
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	      } else {
+
+	         LogUtil.infoLog(Hooks.class,
+	               "Test has ended closing Application: " + GlobalUtil.getCommonSettings().getAndroidName());
+	         // updating the results in Testmangement tool
+	         if (GlobalUtil.getCommonSettings().getManageToolName().equalsIgnoreCase("TestLink")) {
+	            GlobalUtil.testlinkapi.updateTestLinkResult(testName, "This test is passed",
+	                  TestLinkAPIResults.TEST_PASSED);
+	         }
+	         if (GlobalUtil.getCommonSettings().getManageToolName().equalsIgnoreCase("Jira")) {
+	            GlobalUtil.jiraapi.updateJiraTestResults(testName, "This test is passed", "Pass");
+	         }
+	      }
+
+	      // close the browsers
+
+	      // We need to write the quit for local mobile device for time being we commented
+	      // for browser stack
+	      GlobalUtil.getMDriver().quit();
+
+	   }
 }

@@ -27,6 +27,7 @@ public class GlobalUtil {
 
 	private static CommonSettings commonSettings = new CommonSettings();
 	private static WebDriver driver = null;
+	public static AndroidDriver<MobileElement> mdriver;
 	private static int totalSuites = 0;
 	private static boolean suitesRunStarted = false;
 	private static int lastRunId = 0;
@@ -188,12 +189,25 @@ public class GlobalUtil {
 	}
 
 	public static WebDriver getDriver() {
-		return driver;
+		if (driver == null) {
+			return mdriver;
+		} else {
+			return driver;
+		}
 	}
 
 		
 	public static void setDriver(WebDriver driver) {
 		GlobalUtil.driver = driver;
+	}
+	
+	public static AndroidDriver<?> getMDriver() {
+		return mdriver;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static void setMDriver(AndroidDriver<?> Mdriver) {
+		GlobalUtil.mdriver = (AndroidDriver<MobileElement>) Mdriver;
 	}
 
 	public static String createZipFile() throws IOException {

@@ -199,6 +199,20 @@
 			<artifactId>junit</artifactId>
 			<version>4.13.2</version>
 		</dependency>
+		
+				
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+			
+		<!-- https://mvnrepository.com/artifact/com.google.zxing/core -->	
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.4.0</version>
+		</dependency>
 
 		<!--Configure below external Jar to Maven repository using ExternalMavenJars.txt 
 			file in lib folder of the project -->

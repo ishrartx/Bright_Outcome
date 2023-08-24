@@ -37,6 +37,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import mobileutilities.MobileKeywordUtil;
 import step_definitions.Hooks;
 
 
@@ -118,7 +119,28 @@ public class DriverUtil {
 	}
 
 
+	public static AndroidDriver<MobileElement> invokeLocalMobileBrowser(String exeEnv, String deviceDetails) {
 
+		String deviceName = deviceDetails.split("_")[0];
+		String osVersion = deviceDetails.split("_")[1];
+
+		System.out.println(deviceName);
+		System.out.println(osVersion);
+		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, osVersion);
+		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobileKeywordUtil.GetValue("platformName"));
+		capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileKeywordUtil.GetValue("defaultBrowser"));
+		try {
+			GlobalUtil.mdriver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+		} catch (MalformedURLException e) {
+			System.err.println("");
+			e.printStackTrace();
+		}
+		GlobalUtil.mdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		ExtentUtil.logger.get().log(Status.INFO, "<font color=blue>Execution Done By The Device:" + deviceDetails + "</font>");
+		return GlobalUtil.mdriver;
+	}
 
 
 	
