@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import io.github.bonigarcia.wdm.OperatingSystem;
+import io.github.bonigarcia.wdm.config.OperatingSystem;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
