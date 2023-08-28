@@ -207,7 +207,7 @@ public class GlobalUtil {
 
 	@SuppressWarnings("unchecked")
 	public static void setMDriver(AndroidDriver<?> Mdriver) {
-		GlobalUtil.mdriver = (AndroidDriver<MobileElement>) Mdriver;
+		GlobalUtil.driver = (AndroidDriver<MobileElement>) Mdriver;
 	}
 
 	public static String createZipFile() throws IOException {
