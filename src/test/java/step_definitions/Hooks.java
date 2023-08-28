@@ -66,6 +66,8 @@ public class Hooks {
 
 	   LogUtil.infoLog(Hooks.class,
 	         "Mobile Test is executed in OS: " + GlobalUtil.getCommonSettings().getAndroidName());
+	   
+	   GlobalUtil.setMDriver(GlobalUtil.mdriver);
 	}
 
 

@@ -1,7 +1,6 @@
-@Web
 Feature: validate the Professional Account functionality
 
-@ACSpro_1
+@ACSpro_1 @Web
   Scenario Outline:: Test to check if project ,added by admin, is visible in Project list.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -31,7 +30,7 @@ Feature: validate the Professional Account functionality
       | TestData  |	SheetName	|	username | password |	username1	|	password1	|
       | Testdata1 |	Professional_Account |	Username | Password |	Project_Admin_username	|	Project_Admin_password	|
       
-  @ACSpro_2
+  @ACSpro_2 @Web
   Scenario Outline:: Test to check if user is able to view the Project Details.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -63,7 +62,7 @@ Feature: validate the Professional Account functionality
       | TestData  |	SheetName	|	username | password |	username1	|	password1	|
       | Testdata2 |	Professional_Account |	Username | Password |	Project_Admin_username	|	Project_Admin_password	|
       
-  @ACSpro_3
+  @ACSpro_3 @Web
   Scenario Outline:: Test to check user is able to view the professional page.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -94,7 +93,7 @@ Feature: validate the Professional Account functionality
       | TestData  |	SheetName	|	username | password |	username1	|	password1	|
       | Testdata1 |	Professional_Account |	Username | Password |	Project_Admin_username	|	Project_Admin_password	|
       
-  @ACSpro_4
+  @ACSpro_4 @Web
   Scenario Outline:: Test to check if user is able to add existing professionals in the project.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -129,7 +128,7 @@ Feature: validate the Professional Account functionality
       | Testdata4 |	Professional_Account |	Username | Password |	Project_Admin_username	|	Project_Admin_password	|
       
       
-      @ACSpro_5
+      @ACSpro_5 @Web
     Scenario Outline: Test to check user is able to add new participant in the project by professional account.
       Given Read the testdata "<TestData>" and "<SheetName>" from excel file
       Given user navigates to the application
@@ -155,7 +154,7 @@ Feature: validate the Professional Account functionality
         | TestData  | SheetName            |
         | Testdata5 | Professional_Account |
 
-    @ACSpro_6
+    @ACSpro_6 @Web
     Scenario Outline: Test to check user is able to find the Participant in the project.
       Given Read the testdata "<TestData>" and "<SheetName>" from excel file
       Given user navigates to the application
@@ -174,7 +173,7 @@ Feature: validate the Professional Account functionality
         | TestData  | SheetName            |
         | Testdata6 | Professional_Account |
 
-    @ACSpro_7
+    @ACSpro_7 @Web
     Scenario Outline: Test to check if "Export Data" option is visible in "Manage" drop down menu.
       Given Read the testdata "<TestData>" and "<SheetName>" from excel file
       Given user navigates to the application
@@ -189,7 +188,7 @@ Feature: validate the Professional Account functionality
         | TestData  | SheetName            |
         | Testdata7 | Professional_Account |
 
-      @ACSpro_8
+      @ACSpro_8 @Web
       Scenario Outline:Test to verify that "Export Data" download a zip file.
         Given Read the testdata "<TestData>" and "<SheetName>" from excel file
         Given user navigates to the application
@@ -205,7 +204,7 @@ Feature: validate the Professional Account functionality
           | TestData  | SheetName            |
           | Testdata7 | Professional_Account |
 
-    @ACSpro_9
+    @ACSpro_9 @Web
     Scenario Outline:Test to check all files(Score,button,Demographic,Promis) are available in zip file.
       Given Read the testdata "<TestData>" and "<SheetName>" from excel file
       Given user navigates to the application
@@ -221,7 +220,7 @@ Feature: validate the Professional Account functionality
         | TestData  | SheetName            |
         | Testdata7 | Professional_Account |
         
-         @ACSpro_10
+         @ACSpro_10 @Web
   Scenario Outline: Test to check user is able to find the Participant in the project.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -245,7 +244,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName            |
       | Testdata10 | professional_account |
         
-   @ACpro_11
+   @ACpro_11 @Web
   Scenario Outline: Test to check if user can add participants by admin account.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -268,7 +267,7 @@ Feature: validate the Professional Account functionality
     And hover on the admin name
     Then click on the sign out button
     
-    @ACpro_12
+    @ACpro_12 @Web
   Scenario Outline: Test to check if user can add participants by admin account.
      Given Read the testdata "<TestData>" and "<SheetName>" from excel file
      Given user navigates to the application
@@ -282,7 +281,7 @@ Feature: validate the Professional Account functionality
       | Testdata12 | Professional_Account | Username | Password |
       
 
-  	@ACpro_13
+  	@ACpro_13 @Web
   Scenario Outline: Test to check if user can add participants by admin account.
    	Given Read the testdata "<TestData>" and "<SheetName>" from excel file
   	Given user navigates to the application
@@ -308,7 +307,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata13 | Professional_Account | Username | Password |
       
-    @ACSpro_14
+    @ACSpro_14 @Web
 	Scenario Outline:: Test to check if project status changed to 'Soft locked' after adding participant to project.
 		Given Read the testdata "<TestData>" and "<SheetName>" from excel file
 		Given user navigates to the application
@@ -344,7 +343,7 @@ Feature: validate the Professional Account functionality
 			| TestData | SheetName | username | password |
 			| Testdata14 | Professional_Account | Username | Password |
  
-		@ACSpro_15
+		@ACSpro_15 @Web
 	Scenario Outline:: Verify the details of participants, who has started ACS but not completed it.
 		Given Read the testdata "<TestData>" and "<SheetName>" from excel file
 		Given user navigates to the application
@@ -365,7 +364,7 @@ Feature: validate the Professional Account functionality
 			| TestData | SheetName | username | password |
 			| Testdata15 | Professional_Account | Username | Password |
 
-    @ACSpro_16
+    @ACSpro_16 @Web
   Scenario Outline:: Verify the participants details, after completing the ACS and generating score.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -383,7 +382,7 @@ Feature: validate the Professional Account functionality
       | TestData   | SheetName            |
       | Testdata16 | professional_account |
 
-  @ACSpro_17
+  @ACSpro_17 @Web
   Scenario Outline:Verify that project status remains 'hard locked' when ACS is pending for any participant.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -397,7 +396,7 @@ Feature: validate the Professional Account functionality
       | TestData   | SheetName            |
       | Testdata17 | professional_account |
 
-      @ACSpro_18
+      @ACSpro_18 @Web
   Scenario Outline: Verify that project status changes to 'soft locked' when ACS is completed for every participant.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -411,7 +410,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata18 | Professional_Account | Username | Password |
     
-     @ACSpro_19
+     @ACSpro_19 @Web
   Scenario Outline: Verify that pop up message appears once , after clicking back button multiple times from browser.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -424,7 +423,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata19 | Professional_Account | Username | Password |
       
-     @ACSpro_20
+     @ACSpro_20 @Web
   Scenario Outline: Test to check if demographic questions page/ participant list is visible when second and third check boxes are selected in project.
 	    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
 	    Given user navigates to the application
@@ -452,7 +451,7 @@ Feature: validate the Professional Account functionality
 	      | TestData  | SheetName     | username | password |
 	      | Testdata20 | Professional_Account | Username | Password |
 
- 			@ACSpro_21 
+ 			@ACSpro_21  @Web
    Scenario Outline: Test to check if Participants list / Promis -29 results page is visible when third and fourth check boxes are selected in project.  
 	    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
 	    Given user navigates to the application
@@ -476,7 +475,7 @@ Feature: validate the Professional Account functionality
 
       
 
-     @ACS_pro22
+     @ACS_pro22 @Web
    Scenario Outline: Test to check if Participants list / Promis -29 results page is visible when third and fourth check boxes are selected in project.  
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -589,7 +588,7 @@ Feature: validate the Professional Account functionality
     | Testdata24 | Professional_Account |	Pixel 4_11.0	|      
       
       
-      @ACSpro_25
+      @ACSpro_25 @Web
     Scenario Outline: Test to check if Ask about activities that they do with others Promis -29 results page is visible when first and fourth check boxes are selected in project.
 	    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
 	    Given user navigates to the application
@@ -613,7 +612,7 @@ Feature: validate the Professional Account functionality
 	      | TestData  | SheetName     | username | password |
 	      | Testdata25 | Professional_Account | Username | Password |
 
-  		@ACSpro_26
+  		@ACSpro_26 @Web
     Scenario Outline: Test to check if Ask about activities that they do with others and Ask demographic questions is visible when user select first and second check boxes  in selected project
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -634,7 +633,7 @@ Feature: validate the Professional Account functionality
       | Testdata26 | Professional_Account | Username | Password | 
       
       
-    @ACSpro_27
+    @ACSpro_27 @Web
    Scenario Outline: Test to check if Ask about activities that they do with others and participant list without search is visible, when user select first and third check boxes  in selected project. 
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -657,7 +656,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata27 | Professional_Account | Username | Password |
   
-		@ACSpro_29
+		@ACSpro_29 @Web
    Scenario Outline: Test to check if Ask demographic questions and Display participant list without searchis visible, when user select second and third check boxes  in selected project.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -680,7 +679,7 @@ Feature: validate the Professional Account functionality
       
     
     
-     @ACSpro_30
+     @ACSpro_30 @Web
     Scenario Outline: Test to check if' Display participant list without search and Administer PROMIS-29 is visible, when user select third and fourth check boxes in selected  project.    
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -713,7 +712,7 @@ Feature: validate the Professional Account functionality
 
  
       
-     @ACSpro_31
+     @ACSpro_31 @Web
    Scenario Outline: Test to check if' Display participant list without search and Administer PROMIS-29 is visible, when user select third and fourth check boxes in selected  project.    
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -743,7 +742,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata31 | Professional_Account | Username | Password |
   
-    @ACSpro_32 
+    @ACSpro_32  @Web
    Scenario Outline: Test to check if Exit button is working on ACS start page..
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -767,7 +766,7 @@ Feature: validate the Professional Account functionality
       | Testdata27 | Professional_Account | Username | Password |
       
       
-  @ACSpro_34
+  @ACSpro_34 @Web
   Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase4.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -803,7 +802,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata34 | Professional_Account | Username | Password |
 
-  @ACSpro_36
+  @ACSpro_36 @Web
   Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase2.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -840,7 +839,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata36 | Professional_Account | Username | Password |
 
-  @ACSpro_37
+  @ACSpro_37 @Web
   Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase6.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -893,7 +892,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata37 | Professional_Account | Username | Password |
 
-  @ACSpro_38
+  @ACSpro_38 @Web
   Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase4.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -929,7 +928,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata38 | Professional_Account | Username | Password |
 
-  @ACSpro_46
+  @ACSpro_46 @Web
   Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase 6.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -972,7 +971,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata46 | Professional_Account | Username | Password |
 
-    @ACSpro_47
+    @ACSpro_47 @Web
      Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase2.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -1030,7 +1029,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata47 | Professional_Account | Username | Password |
 
-    @ACSpro_48
+    @ACSpro_48 @Web
      Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase2.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -1070,7 +1069,3 @@ Feature: validate the Professional Account functionality
       Examples:
       | TestData  | SheetName     | username | password |
       | Testdata48 | Professional_Account | Username | Password |
-      
-
-      
-      
