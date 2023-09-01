@@ -18,13 +18,11 @@ public class ACS_locators {
 
 	public static By pending_Acs= By.xpath("//tr[@class='ng-star-inserted']//td[6]");
 	
-
-
-	
 	public static By admin_name = By.xpath("//span[@class='u-name-full']");
 	
-	public static By right_header = By.xpath("//ul[@class='nav navbar-nav navbar-right header']");
+	public static By username = By.xpath("//*[text()='Username ']");
 	
+	public static By right_header = By.xpath("//ul[@class='nav navbar-nav navbar-right header']");
 
 	public static By templates = By.xpath("//a[text()=' Templates ']");
 
@@ -32,11 +30,7 @@ public class ACS_locators {
 
 	public static By enter_project_Name = By.xpath("//input[@placeholder='Enter project name']");
 
-	
-
 	public static By search_template = By.xpath("//input[@placeholder='Search template']");
-
-	
 
 	public static By search_project = By.xpath("//input[@placeholder='Enter a project name']");
 
@@ -63,8 +57,6 @@ public class ACS_locators {
 	public static By sign_out=By.xpath("//a[text()='Sign Out']");
 	
 	public static By Back_button=By.xpath("//a[@class='back-btn']");
-
-	
 
 	public static By template_manage_button(String template_name){
 		return By.xpath("//td[text()=' "+template_name+" ']//following-sibling::td[1]//button[@class='btn btn btn-view']");
@@ -123,12 +115,11 @@ public class ACS_locators {
 
 	public static By select_template_name(String templatename) {
 		return By.xpath("//select[@id='setting_template_id ']/option[text()=' " + templatename + " ']");
-		
 	}
+	
 	public static By selectCheckbox(String checkboxTxt) {
 		return By.xpath("//label[text()='" +checkboxTxt+"']//ancestor::label//div[@class='check-bottom']");
 	}
-	
 	
 	public static By search_results = By.xpath("//table[@class='table table-striped']//tr//td[@class='semi-bold']");
 	
@@ -139,17 +130,11 @@ public class ACS_locators {
 	@FindBy(css = "input:checked[type='checkbox']")
 	public static WebElement checkbox;
 
-	
-	
-
-
 	public static  By Manage_Professional=By.xpath("//button[text()=' Manage Professional ']");
-
 	
 	public static By ManageProfessional_dropdown(String Professional) {
 		return By.xpath("//div[@class='btn-group dropdown-user']//a[text()='"+ Professional +"']");
 	}
-
 	
 	public static By existing_professional(String pname) { 
 		return By.xpath("//div[@title='list professional']//ul/li/a[text()='"+pname+"']");
@@ -172,8 +157,7 @@ public class ACS_locators {
 	public static By manage_dropdown(String text){
 		return By.xpath("//td[text()=' "+text+" ']//following-sibling::td[3]");
 	}
-
-		
+	
 	public static By First_name=By.xpath("//input[@placeholder='Enter first name']");
 	
 	public static By Last_name=By.xpath("//input[@placeholder='Enter last name']");
@@ -188,7 +172,6 @@ public class ACS_locators {
 	
 	public static By activate_button(String text,String buttoname) {
 		 return By.xpath("//tr[@class='ng-star-inserted']//td[text()='"+text+"']//following-sibling::td[1]//button[text()='"+buttoname+"']");
-
 		}
 
 	   public static By footerLinks(String link){
@@ -200,7 +183,6 @@ public class ACS_locators {
 	    }
 	    
 	    public static By User_Deactivate(String email) {
-
 	        return By.xpath("//td[text()='"+email+"']//following-sibling::td[3]");
 	    }
 	    public static By moveto_cancelbutton=By.xpath("//a[text()='Cancel']");
@@ -217,10 +199,11 @@ public class ACS_locators {
 		
 		public static By click_link(String link){
 			return By.xpath("//a[text()='"+link+"']");
-			}
+		}
+		
 		public static By enter_input_details(String field){
 			return By.xpath("//input[@placeholder='"+field+"']");
-	}
+		}
 		
 		public static By select_year=By.xpath("//select[@name='participant_dob_year']");
 
@@ -260,7 +243,7 @@ public class ACS_locators {
 		
 		public static By ManageACS_dropdown(String acs) {
 			return By.xpath("//div[@class='btn-group']//a[contains(text(),'"+acs+"')]");
-			}
+		}
 		
 		public static By participant_search =By.xpath("//button[@type='submit'][1]");
 		
@@ -288,8 +271,6 @@ public class ACS_locators {
 		
 		public static By project_status = By.xpath("//table/tbody/tr/td[2]");
 
-		 
-
 		public static By participant_acs_status = By.xpath("//table/tbody/tr/td[6]");
 		
 		public static By enter_emailname=By.xpath("//input[@placeholder='Enter your inbox here']");
@@ -301,80 +282,52 @@ public class ACS_locators {
 		public static By click_on_nextbutton=By.xpath("//*[contains(text(),'Next')]");
 		
 		public static By select_questionOption( int i) {
-
 	        Random r = new Random();
-
 	        int low=2;
-
 	        int high = 5;
-
 	        int res = r.nextInt(high-low)+low;
-
 	        return By.xpath("(//tr[@class='ng-star-inserted']//td["+res+"]//span)["+i+"]");
-
 	    }
 		
-		
-
 		public static By click_on_exitbutton=By.xpath("//a[text()='Exit']");
 		
 		public static By click_on_ACSButtons(String acsabtton) {
             return By.xpath("//a[text()='"+acsabtton+"']");
 		}
+		
 		public static By select_testcase=By.xpath("//select[@title='select case']");
 		
 		public static By selecttestcase_dropdown(String testcase) {
           return By.xpath("//div[@class='col-xs-12 text-right test-button']//option[contains(text(),'"+testcase+"')]");
-}
+		}
+		
 		public static By selectthe_tiles=By.xpath("//div[@class='box']");
 		
-
 		public static By select_ActivitiesOption(String Checkbox) {
            return By.xpath("//span[contains(text(),'" + Checkbox + "')]");
-            }
+        }
+		
 		public static By webquestions_option_selection=By.xpath("//div[@class='table-responsive-md tbl-color']//td[2]//span");
 
-
-		
-
 		public static By selectweb_questionOption( int i) {
-
-		 
-
-		        Random r = new Random();
-
-		 
-
-		        int low=2;
-
-		 
-
-		        int high = 5;
-
-		 
-
-		        int web = r.nextInt(high-low)+low;
-
-		 
-
-		        return By.xpath("(//div[@class='table-responsive-md tbl-color']//td["+web+"]//span)["+i+"]");
-
-		        }
+	        Random r = new Random();
+	        int low=2;
+	        int high = 5;
+	        int web = r.nextInt(high-low)+low;
+	        return By.xpath("(//div[@class='table-responsive-md tbl-color']//td["+web+"]//span)["+i+"]");
+		}
 		
 		public static By activityCurrentValueGlobal(String act) {
           return By.xpath("(//strong[text()='"+act+"']//following::strong[2])[1]");
-         }
+        }
 		
 		public static By activityCurrentValue(String act) {
           return By.xpath("(//td[text()='"+act+"']//following::td[2])[1]");
-}
+		}
 
 		public static By autoTestOptions_dropdown = By.xpath("//select[@name='autoTestOptions']");
 		
 		public static By barriersChkOpts(String opt) { return By.xpath("//*[text()='"+opt+"']//preceding-sibling::span"); }
-		 
-
-		//Mobile ACS Locators
 		
 		public static By navbar_btn = By.xpath("//button[@class='navbar-toggle collapsed']");
 		
@@ -399,10 +352,12 @@ public class ACS_locators {
 
 		public static By never_done=By.xpath("//a[text()='Never Done ']");
 		
-		public static By slider(String number){
-			   return By.xpath("//span[@class='ngx-slider-span ngx-slider-tick-legend ng-star-inserted' and text()='"+number+"']");
-			}
+		public static By slider=By.xpath("//span[@class='ngx-slider-span ngx-slider-bar-wrapper ngx-slider-full-bar']//span[@class='ngx-slider-span ngx-slider-bar']");
 		
 		public static By promis_page=By.xpath("//h4[text()=' Please respond to each question or statement by marking one box per row. ']");
+
+        public static By selectthetitleonmobile(String text) {
+            return By.xpath("//div[text()='"+text+"']");
+        }
 
 }
