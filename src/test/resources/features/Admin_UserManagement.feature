@@ -123,7 +123,7 @@ Feature: testing the admin account module
     And Select the "View professionals" option
     And click the Manage Professional option
 		And Select A "Add existing professional" option
-		And select an existing professional
+		And select an existing professional "<existing_professional>"
     And clicks " Edit/Deactivate " button
     And click on the " Deactivate " button
 		Then user should see the updated status succesful
@@ -143,8 +143,8 @@ Feature: testing the admin account module
     Then click on the sign out button
     
     Examples:
-      | TestData  |	SheetName	|	username | password |	Cols:Rows	|	
-      | Testdata5 |	Admin_Account |	Username | Password |	5:Testdata5	|
+      | TestData  |	SheetName	|	username | password |	Cols:Rows	|	existing_professional	|
+      | Testdata5 |	Admin_Account |	Username | Password |	5:Testdata5	|	Existing_Professional_Name	|
       
   @ACSuser_06
   Scenario Outline:: Verify that account gets sign off automatically from all logged in devices, if account becomes deactivated.
