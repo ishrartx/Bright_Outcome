@@ -3,6 +3,7 @@ package utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.aventstack.extentreports.Status;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
 
 /**
@@ -65,6 +67,8 @@ public class ExcelDataUtil {
 			else if (fileExtensionName.equals(excelextensionxls)) {
 				// If it is xls file then create object of XSSFWorkbook class
 				workbook = new HSSFWorkbook(fs);
+			}else if (fileExtensionName.equals(".csv")) {
+				   reader = new CSVReaderBuilder(new FileReader(filePath)).build();
 			}
 			sheet = workbook.getSheet(sheetName);
 		} catch (Exception e) {

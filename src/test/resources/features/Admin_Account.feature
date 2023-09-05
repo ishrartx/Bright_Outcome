@@ -581,7 +581,7 @@ Feature: login into the application
     And Select the "View professionals" option
 		And click the Manage Professional option
 		And Select A "Add existing professional" option
-		And select an existing professional
+		And select an existing professional "<existing_professional>"
 		And select existing professional as admin
 		And hover on the admin name
     Then click on the sign out button
@@ -595,8 +595,8 @@ Feature: login into the application
     
     
     Examples:
-      | TestData  |SheetName|
-      | Testdata27 |ACS|
+      | TestData  |SheetName|	existing_professional	|
+      | Testdata27 |ACS|	Existing_Professional_Name	|	
   
   @ACS_28
   Scenario Outline:: Test to check if user is able to add existing professional in the project.
