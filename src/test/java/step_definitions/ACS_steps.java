@@ -413,12 +413,12 @@ public class ACS_steps extends KeywordUtil {
         }
         Thread.sleep(500);
         ExtentUtil.attachScreenshotOfPassedTestsInReport();
-//        waitForVisible(ACS_locators.alert_message);
-//    	scrollingToElementofAPage(ACS_locators.alert_message, "move to alert messsage");
+        waitForVisible(ACS_locators.alert_message);
+    	scrollingToElementofAPage(ACS_locators.alert_message, "move to alert messsage");
     	ExtentUtil.attachScreenshotOfPassedTestsInReport();
-//    	String expected_message=getElementText(ACS_locators.alert_message);
-//    	Assert.assertEquals("Professional Admin status is updated successfully.", expected_message);
-//    	click(ACS_locators.alert_message, "click on alert message");
+    	String expected_message=getElementText(ACS_locators.alert_message);
+    	Assert.assertEquals("Professional Admin status is updated successfully.", expected_message);
+    	click(ACS_locators.alert_message, "click on alert message");
     }
     
     @When("user enetrs professional username and password")
@@ -620,6 +620,7 @@ public class ACS_steps extends KeywordUtil {
     @And("search the newly added project")
     public void search_new_project() throws InterruptedException {
         System.out.println("the sreching project name is : " +project_name);
+        waitForVisible(ACS_locators.search_project);
         clearInput(ACS_locators.search_project);
         inputText(ACS_locators.search_project, project_name, "search the " +project_name);
         click(ACS_locators.search_button,"click on the search button");
@@ -1122,12 +1123,12 @@ public class ACS_steps extends KeywordUtil {
 		click(ACS_locators.click_on_nextbutton, "click on the next button after completed Qustions");
     }
     
-    @And("create the new project in {string} and {string}")
-    public void create_new_project(String testdata, String col) throws InterruptedException {
+    @And("create the new project and add it in {string} of {string} under {string}")
+    public void create_new_project(String col, String testdata, String sheetname) throws InterruptedException {
         project_name = dataMap.get("Project_Name") + random_number1;
         System.out.println("the new project is " + project_name);
         inputText(ACS_locators.enter_project_Name, project_name, "enter the " + dataMap.get("Project_Name") + random_number1 + " in the text box");
-        ExcelDataUtil.putTestData("professional_account", project_name, testdata, Integer.parseInt(col));
+        ExcelDataUtil.putTestData(sheetname, project_name, testdata, Integer.parseInt(col));
     }
     
     @Then("click on {string} button of newly added project")
@@ -1174,6 +1175,7 @@ public class ACS_steps extends KeywordUtil {
     public void select_newly_project() throws InterruptedException {
         project_name = dataMap.get("Project_Name") + random_number1;
         System.out.println("the new project is " + project_name);
+        waitForVisible(ACS_locators.select_project_participant);
         hoverOnElement(ACS_locators.select_project_participant);
         waitForPresent(ACS_locators.select_project_participant);
         click(ACS_locators.select_project_participant, "select the project from the dropdown");

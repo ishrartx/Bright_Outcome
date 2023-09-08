@@ -102,7 +102,7 @@ Feature: validate the Professional Account functionality
     When user clicks on the signin button for login
     And hover on the admin name
     And click on the " Projects " option
-    And create the new project in "<Testdata>" and "<Column>"
+    And create the new project and add it in "<Column>" of "<Testdata>" under "<SheetName>"
     When click on the " Add project " button
     And search the newly added project
     And Select the "View professionals" option of newly added project
@@ -315,7 +315,7 @@ Feature: validate the Professional Account functionality
 		When user clicks on the signin button for login
 		And hover on the admin name
 		And click on the " Projects " option
-		And create the new project in "<Testdata>" and "<Column>"
+		And create the new project and add it in "<Column>" of "<TestData>" under "<SheetName>" 
     When click on the " Add project " button
     And search the newly added project
     And Select the "View professionals" option of newly added project
@@ -339,7 +339,7 @@ Feature: validate the Professional Account functionality
 		And click on the "Add participant " link button
 		And enter the  "First name" in the field
 		And enter the  "Last name" in the field
-		And enter the  "Email" in the field
+		And enter the new "Email" in the field
 		And enter the  "Zip Code" in the field
 		And enter the  "Incident" in the field
 		And enter the  "Participant ID" in the field
@@ -348,11 +348,10 @@ Feature: validate the Professional Account functionality
 		And click on the " Submit " button
 		And hover on the admin name
 		And click on the " Projects " option
-		And Search the Project name
+		And search the newly added project
 		And verify the project status "Soft-locked"
 		And hover on the admin name
 		Then click on the sign out button
-		When user clicks on the sign up
 		
 		Examples:
 			| TestData | SheetName | username | password |	username1	|	password1	|	project_admin	| Column	|
@@ -374,7 +373,6 @@ Feature: validate the Professional Account functionality
 		Then check the participant acs status
 		And hover on the admin name
 		Then click on the sign out button
-		When user clicks on the sign up
 		
 		Examples:
 			| TestData | SheetName | username | password |
@@ -533,7 +531,7 @@ Feature: validate the Professional Account functionality
     When user clicks on the signin button for login
     When user clicks on the toggle button
     And click on the admin name
-    And create the new project in "<Testdata>" and "<Column>"
+    And create the new project and add it in "<Column>" of "<TestData>" under "<SheetName>"
     When click on the " Add project " button
     And search the newly added project
     And Select the "View details" option of newly added project
@@ -577,10 +575,13 @@ Feature: validate the Professional Account functionality
     Then user is able to see the activity card
 		And click on the "Begin ACS" link button
     Then user is able to see the activities card page
+    When user clicks on navbar button
+    And hover on the admin name
+	  Then click on the sign out button
 
     Examples:
-      | TestData   | SheetName | options                                                                                                                       | DeviceDetails	|
-      | Testdata23 | Professional_Account | White:Married:1 :Rent:Less than 20,000:Self-employed:Bachelor’s degree (e.g. BA, BS):Difficulty seeing:No:Stroke |	Pixel 4_11.0	|
+      | TestData   | SheetName | options                                                                                                                       | DeviceDetails	|	Column	|
+      | Testdata23 | Professional_Account | White:Married:1 :Rent:Less than 20,000:Self-employed:Bachelor’s degree (e.g. BA, BS):Difficulty seeing:No:Stroke |	Pixel 4_11.0	|	4	|
       
    @ACSpro_24 @MobileTest
    Scenario Outline: mobile_validate the second mobile test case
@@ -607,6 +608,9 @@ Feature: validate the Professional Account functionality
 		And click on the begin acs option
 		And click on the "Begin ACS" link button
 		Then user is able to see the activities card page
+		When user clicks on navbar button
+		And hover on the admin name
+	  Then click on the sign out button
 
   Examples:
     | TestData   | SheetName            | DeviceDetails	|                                                                                                                  
@@ -694,7 +698,7 @@ Feature: validate the Professional Account functionality
 	    When user enters the username and password
 	    When user clicks on the signin button for login
 	    When user clicks on the toggle button
-      And create the new project in "<Testdata>" and "<Column>"
+      And create the new project and add it in "<Column>" of "<Testdata>" under "<SheetName>"
       When click on the " Add project " button
       And search the newly added project
       And Select the "View details" option of newly added project
@@ -738,6 +742,9 @@ Feature: validate the Professional Account functionality
       Then user is able to see the activity card
       And click on the "Begin ACS" link button
       Then user is able to see the activities card page
+      When user clicks on navbar button
+			And hover on the admin name
+	  	Then click on the sign out button
 
       Examples:
         | TestData   | SheetName            | options                                                                                     | DeviceDetails	|	Column	|
@@ -986,7 +993,7 @@ Feature: validate the Professional Account functionality
     	|	TestData	|	SheetName	| username	|	password	| Will continue to do	| May do less	|
     	| Testdata35	|	Professional_Account	|	Username	|	Password	| Shopping for groceries, Driving, Handcrafts	|	Ironing, Pet care, Exercise	|
     	
-  @ACSpro_35 @MobileTest 
+  @ACSpro_35 @MobileTest
   Scenario Outline: Mobile_Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase1.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
   	Given user opens emulator "<DeviceDetails>"
@@ -1011,9 +1018,9 @@ Feature: validate the Professional Account functionality
 		And enter the  "Zip Code" in the field
 		And click on android back button
 		And click on button with text " Begin ACS "
-		Then click on Begin ACS button
-		And Select the testcase "Test Case One" option
-		And click on button with text "Test"
+#		Then click on Begin ACS button
+#		And Select the testcase "Test Case One" option
+#		And click on button with text "Test"
 		And select the options for "<May give up>"
 		And select the options for "<Would like to start>"
 		When user clicks on navbar button
@@ -1024,7 +1031,7 @@ Feature: validate the Professional Account functionality
     	|	TestData	|	SheetName	| DeviceDetails	|	May give up	|	Would like to start	|
     	| Testdata35	|	Professional_Account	| Pixel 4_11.0 |	Light cleaning, Creative writing, Photography |	Heavy cleaning, Cooking, Puzzles	|
     	
-  @ACSpro_35 @Web 
+  @ACSpro_35 @Web
   Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase1.
   	Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -1186,7 +1193,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName     | username | password |
       | Testdata38 | Professional_Account | Username | Password |
       
-   @ACSpro_39 @MobileTest  
+   @ACSpro_39 @MobileTest
   Scenario Outline: Mobile_Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase1.
   	Given Read the testdata "<TestData>" and "<SheetName>" from excel file
   	Given user opens emulator "<DeviceDetails>"
@@ -1225,7 +1232,7 @@ Feature: validate the Professional Account functionality
     	|	TestData	|	SheetName	| DeviceDetails	|	Continue since Stroke	| Started after Stroke	|	Doing less	|
     	| Testdata39	|	Professional_Account	| Pixel 4_11.0 |	Shopping for groceries, Ironing, Birdwatching	|	Light cleaning, Sewing projects, Camping	|	Heavy cleaning, Work, Walking |
     	
-  @ACSpro_39 @Web  
+  @ACSpro_39 @Web
   Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase1.
   	Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -1258,7 +1265,7 @@ Feature: validate the Professional Account functionality
     	|	TestData	|	SheetName	|	Have given up	| Would like to start	|	Barriers	|
     	| Testdata39	|	Professional_Account	|	Photography, Running, Skiing/skating	|	Driving, Pet care, Swimming	|	I feel tired, I feel anxious, I get frustrated |
  
-   @ACSpro_40 @MobileTest  
+   @ACSpro_40 @MobileTest
   Scenario Outline: Mobile_Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase2.	
   	Given Read the testdata "<TestData>" and "<SheetName>" from excel file
   	Given user opens emulator "<DeviceDetails>"
@@ -1418,9 +1425,9 @@ Feature: validate the Professional Account functionality
       And click on the "Test" button
       And select the options for "<Will continue to do>"
       And select the options for "<May do less>"
-      When user clicks on the toggle button
-      And click on the admin name
-      Then click on the sign out button
+			When user clicks on navbar button
+			And hover on the admin name
+		  Then click on the sign out button
 
       Examples:
         | TestData  | SheetName            |	DeviceDetails	| Will continue to do                | May do less                 | Doing with others                  | options                                                                                     |
@@ -1588,8 +1595,8 @@ Feature: validate the Professional Account functionality
 	    | Leisure          |
 	    | Fitness/Exercise |
 	    | Social           |
-	  When user clicks on the toggle button
-	  And click on the admin name
+		When user clicks on navbar button
+		And hover on the admin name
 	  Then click on the sign out button
 	
 	  Examples:
@@ -1885,9 +1892,9 @@ Feature: validate the Professional Account functionality
       |Leisure|
       |Fitness/Exercise|
       |Social|
-    When user clicks on the toggle button
-    And click on the admin name
-    Then click on the sign out button
+		When user clicks on navbar button
+		And hover on the admin name
+	  Then click on the sign out button
 
     Examples:
       | TestData   | SheetName            | DeviceDetails	| Have given up                      | Would like to start       | Doing with others           | options                                                                                     |
@@ -1966,9 +1973,9 @@ Feature: validate the Professional Account functionality
       |Leisure|
       |Fitness/Exercise|
       |Social|
-    When user clicks on the toggle button
-    And click on the admin name
-    Then click on the sign out button
+		When user clicks on navbar button
+		And hover on the admin name
+	  Then click on the sign out button
 
     Examples:
       | TestData   | SheetName            | DeviceDetails	| Have given up                      | Would like to start       | options                                                                                     |
