@@ -156,10 +156,10 @@ public class Hooks {
 	      }
 
 	      // close the browsers
-
+	      DriverUtil.closeAllDriver();
 	      // We need to write the quit for local mobile device for time being we commented
 	      // for browser stack
-	      GlobalUtil.getMDriver().quit();
+//	      GlobalUtil.getMDriver().quit();
 
 	   }
 }
