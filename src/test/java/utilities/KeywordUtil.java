@@ -1198,11 +1198,9 @@ public class KeywordUtil extends GlobalUtil {
 		mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 	
-	//Ishrar's code
-	
 	public static void scrolldown(WebElement Element) {
 	    JavascriptExecutor js = (JavascriptExecutor) GlobalUtil.getDriver();
-	    js.executeScript("window.scrollBy(0,600);", Element);
+	    js.executeScript("arguments[0].scrollIntoView(true);", Element);
 	}
 
 }// End class
