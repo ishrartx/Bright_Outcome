@@ -583,7 +583,7 @@ Feature: validate the Professional Account functionality
       | Testdata23 | Professional_Account | White:Married:1 :Rent:Less than 20,000:Self-employed:Bachelor’s degree (e.g. BA, BS):Difficulty seeing:No:Stroke |	Pixel 4_11.0	|	4	|
       
    @ACSpro_24 @MobileTest
-   Scenario Outline: mobile_validate the second mobile test case
+   Scenario Outline: Test to check if 'Ask about activities that they do with others'/ 'Participants list' page is visible when first and third check boxes are selected in project
   	Given Read the testdata "<TestData>" and "<SheetName>" from excel file
   	Given user opens emulator "<DeviceDetails>"
     Given user navigates to the application
@@ -856,7 +856,7 @@ Feature: validate the Professional Account functionality
       | Testdata27 | Professional_Account | Username | Password |
       
    	@ACSpro_33  @Web
-    Scenario Outline: validating the another test case
+    Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase3.
       Given Read the testdata "<TestData>" and "<SheetName>" from excel file
       Given user navigates to the application
       When user clicks on the sign up
@@ -885,7 +885,7 @@ Feature: validate the Professional Account functionality
         | Testdata33 | Professional_Account | Light cleaning, Sewing projects, Heavy cleaning | Ironing, Paying bills, Go to movies | Pet care, Text messaging, Hunting |
         
 		@ACSpro_33 @MobileTest
-    Scenario Outline: Mobile_validating the mobile test case functionlity
+    Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase3.
       Given Read the testdata "<TestData>" and "<SheetName>" from excel file
 			Given user opens emulator "<DeviceDetails>"
 		  Given user navigates to the application
@@ -1386,7 +1386,7 @@ Feature: validate the Professional Account functionality
     | Testdata41 | Professional_Account |
     
 	@ACSpro_42 @MobileTest
-  Scenario Outline: Mobile_validating the mobile test case functionlity
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase4.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
   	Given user opens emulator "<DeviceDetails>"
     Given user navigates to the application
@@ -1427,7 +1427,7 @@ Feature: validate the Professional Account functionality
       | Testdata42 | Professional_Account	| Pixel 4_11.0 | Doing laundry, Fishing, Eating out | Ironing, Exercise, Intimacy | Light cleaning, Puzzles, Bicycling | 1:10:15:18:24:29:33:39:45:47:54:58:62:68:71:78:82:88:94:100:103:108:115:117:122:128:133:137 |
 
   @ACSpro_42 @Web
-  Scenario Outline: Validating the mobile test case functionlity
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase4.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
@@ -1459,7 +1459,7 @@ Feature: validate the Professional Account functionality
       | Testdata42 | Professional_Account | Driving, Hiking, Group games | Work, Swimming, Boating | Light cleaning, Puzzles, Bicycling | 1:10:15:18:24:29:33:39:45:47:54:58:62:68:71:78:82:88:94:100:103:108:115:117:122:128:133:137 |
 
   @ACSpro_42 @Web
-  Scenario Outline: Validating the mobile test case functionlity
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase4.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
@@ -1806,7 +1806,7 @@ Feature: validate the Professional Account functionality
       | Testdata48 | Professional_Account | Username | Password |
       
   @ACSpro_49 @Web
-  Scenario Outline: Mobile_validating the mobile test case functionlity
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase1.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
@@ -1841,7 +1841,7 @@ Feature: validate the Professional Account functionality
 
 
   @ACSpro_49 @MobileTest
-  Scenario Outline: Mobile_validating the mobile test case functionlity
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with web, selecting TestCase1.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
   	Given user opens emulator "<DeviceDetails>"
     Given user navigates to the application
