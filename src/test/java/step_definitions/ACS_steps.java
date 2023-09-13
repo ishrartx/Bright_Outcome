@@ -79,7 +79,7 @@ public class ACS_steps extends KeywordUtil {
     	Thread.sleep(3000);
     	click_on_empty_space();
         waitForVisible(ACS_locators.admin_name);
-        waitForClickable(ACS_locators.admin_name);
+//        waitForClickable(ACS_locators.admin_name);
         scrollingToElementofAPage(ACS_locators.admin_name, "move to admin name");
         click(ACS_locators.admin_name, "click on the admin name");
     }
@@ -839,7 +839,7 @@ public class ACS_steps extends KeywordUtil {
 	}
 	
 	@And("click on the Manage ACS option")
-	public void Click_Manage_ACS() throws InterruptedException {
+	public void Click_Manage_ACS() throws Exception {
 	    waitForVisible(ACS_locators.Manage_ACS);
 	    click(ACS_locators.Manage_ACS, "click on the Manage ACS option");
 	//    Thread.sleep(5000);
@@ -1105,6 +1105,7 @@ public class ACS_steps extends KeywordUtil {
     		click(ACS_locators.selOpts(opt), "Click on the "+opt);
     		
     	}
+    	ExtentUtil.attachScreenshotOfPassedTestsInReport();
     	click(ACS_locators.click_on_nextbutton, "click on the next button after completed Qustions");
     }
     
@@ -1190,9 +1191,9 @@ public class ACS_steps extends KeywordUtil {
     @And("click on the begin acs option")
     public void click_cs() throws InterruptedException {
         scrollingToElementofAPage(ACS_locators.begin_ACS,"move to begin acs option");
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
         click(ACS_locators.begin_ACS,"click on the begin ACS");
         Thread.sleep(5000);
-        ExtentUtil.attachScreenshotOfPassedTestsInReport();
     }
     
     @Then("user should beable to see the Demographic page")
@@ -1210,7 +1211,8 @@ public class ACS_steps extends KeywordUtil {
             JavascriptExecutor js = (JavascriptExecutor) getDriver();
             scrolldown(radio_btn);
             js.executeScript("arguments[0].click();",radio_btn);
-            ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(radio_btn +"is selected"));
+            ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(chkOptions[i] +"is selected"));
+            Thread.sleep(2000);
             ExtentUtil.attachScreenshotOfPassedTestsInReport();
         }
     }
@@ -1266,6 +1268,7 @@ public class ACS_steps extends KeywordUtil {
             scrolldown(radio_btn);
             js.executeScript("arguments[0].click();",radio_btn);
             ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor(chkOptions[i] +" radio button is selected"));
+            Thread.sleep(2000);
             ExtentUtil.attachScreenshotOfPassedTestsInReport();
         }
     }
@@ -1295,6 +1298,33 @@ public class ACS_steps extends KeywordUtil {
                 tiles = getListElements(ACS_locators.selectthe_tiles, "select the any tile");
             }
         }
+    }
+    
+    @And("hover on the admin name in remote")
+    public void hover_admin_remote() throws InterruptedException {
+        Thread.sleep(3000);
+        click_on_empty_space();
+        waitForVisible(ACS_locators.admin_name_remote);
+        waitForClickable(ACS_locators.admin_name_remote);
+        scrollingToElementofAPage(ACS_locators.admin_name_remote, "move to admin name");
+        click(ACS_locators.admin_name_remote, "click on the admin name");
+    }
+    
+    @Then("participant option is not visible")
+    public void participantOptionIsNotVisible() throws InterruptedException {                
+        Assert.assertTrue(!isWebElementVisible(ACS_locators.participant_Option, "Participant option is not present"));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+        ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor("Participant option is not present"));
+    }
+    
+    @Then("user is able to add the participant {string}")
+    public void userIsAbleToSeeThe(String firstName) {
+        waitForVisible(ACS_locators.username_heading);
+        String expected_message=getElementText(ACS_locators.username_heading);
+        String actual_message=dataMap.get(firstName);
+        ExtentUtil.logger.get().log(Status.PASS, HTMLReportUtil.passStringGreenColor("User is added successfully"));
+        ExtentUtil.attachScreenshotOfPassedTestsInReport();
+        Assert.assertTrue(expected_message.toLowerCase().contains(actual_message.toLowerCase()), "");
     }
 
 }

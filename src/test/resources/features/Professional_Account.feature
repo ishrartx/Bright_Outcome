@@ -1,6 +1,6 @@
 Feature: validate the Professional Account functionality
 
-@ACSpro_1 @Web
+	@ACSpro_1 @Web
   Scenario Outline:: Test to check if project ,added by admin, is visible in Project list.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -130,59 +130,77 @@ Feature: validate the Professional Account functionality
       | TestData  |	SheetName	           |	username | password |	username1	              |	   password1           	|	existing_professional 	    | project_admin				|	Column	|
       | Testdata4 |	Professional_Account |	Username | Password |	Project_Admin_username	|	Project_Admin_password	| Existing_Professional_Name	|	Project_Admin_Name	|	4	|
       
-    @ACSpro_5 @Web
-    Scenario Outline: Test to check user is able to add new participant in the project by professional account.
-      Given Read the testdata "<TestData>" and "<SheetName>" from excel file
-      Given user navigates to the application
-      When user clicks on the sign up
-      When user enters the username and password
-      When user clicks on the signin button for login
-      And hover on the admin name
-      And click on the "Participants" option
-      And Select the project from the dropdown
-      And click on the "Submit" button
-      And click on the "Add participant " link button
-      And enter the  "First name" in the field
-      And enter the  "Last name" in the field
-      And enter the new "Email" in the field
-      And enter the  "Zip Code" in the field
-      And enter the  "Incident" in the field
-      And enter the  "Participant ID" in the field
-      And select the date_of_Birth
-      And select the gender
-      And click on the " Submit " button
-      Then verify that " Manage ACS " button is present
-     	And hover on the admin name
-    	Then click on the sign out button
-      
-      Examples:
-        | TestData  | SheetName            |
-        | Testdata5 | Professional_Account |
+  @ACSpro_5 @Web
+  Scenario Outline: Test to check user is able to add new participant in the project by professional account.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And click on the "Add participant " link button
+    And enter the  "First name" in the field
+    And enter the  "Last name" in the field
+    And enter the new "Email" in the field
+    And enter the  "Zip Code" in the field
+    And enter the  "Incident" in the field
+    And enter the  "Participant ID" in the field
+    And select the date_of_Birth
+    And select the gender
+    And click on the " Submit " button
+    Then verify that " Manage ACS " button is present
+   	And hover on the admin name
+  	Then click on the sign out button
+    
+    Examples:
+      | TestData  | SheetName            |
+      | Testdata5 | Professional_Account |
 
-    @ACSpro_6 @Web
-    Scenario Outline: Test to check user is able to find the Participant in the project.
-      Given Read the testdata "<TestData>" and "<SheetName>" from excel file
-      Given user navigates to the application
-      When user clicks on the sign up
-      When user enters the username and password
-      When user clicks on the signin button for login
-      And hover on the admin name
-      And click on the "Participants" option
-      And Select the project from the dropdown
-      And click on the "Submit" button
-      And enter the first and last name
-      And enter the  "Participant ID" in the field
-      And click on the " Search " button
-      Then verify the participant is visible
-      And hover on the admin name
-    	Then click on the sign out button
-      
-      Examples:
-        | TestData  | SheetName            |
-        | Testdata6 | Professional_Account |
+  @ACSpro_6 @Web
+  Scenario Outline: Test to check user is able to find the Participant in the project.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And click on the "Participants" option
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And enter the first and last name
+    And enter the  "Participant ID" in the field
+    And click on the " Search " button
+    Then verify the participant is visible
+    And hover on the admin name
+  	Then click on the sign out button
+    
+    Examples:
+      | TestData  | SheetName            |
+      | Testdata6 | Professional_Account |
 
-    @ACSpro_7 @Web
-    Scenario Outline: Test to check if "Export Data" option is visible in "Manage" drop down menu.
+  @ACSpro_7 @Web
+  Scenario Outline: Test to check if "Export Data" option is visible in "Manage" drop down menu.
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+    And hover on the admin name
+    And Search the Project name
+    And click on next button
+    Then verify that "Export data" is present
+    And hover on the admin name
+  	Then click on the sign out button
+    
+    Examples:
+      | TestData  | SheetName            |
+      | Testdata7 | Professional_Account |
+
+    @ACSpro_8 @Web
+    Scenario Outline:Test to verify that "Export Data" download a zip file.
       Given Read the testdata "<TestData>" and "<SheetName>" from excel file
       Given user navigates to the application
       When user clicks on the sign up
@@ -191,32 +209,14 @@ Feature: validate the Professional Account functionality
       And hover on the admin name
       And Search the Project name
       And click on next button
-      Then verify that "Export data" is present
+      And Select the "Export data" option
+      Then verify the zip file
       And hover on the admin name
-    	Then click on the sign out button
+  		Then click on the sign out button
       
       Examples:
         | TestData  | SheetName            |
         | Testdata7 | Professional_Account |
-
-      @ACSpro_8 @Web
-      Scenario Outline:Test to verify that "Export Data" download a zip file.
-        Given Read the testdata "<TestData>" and "<SheetName>" from excel file
-        Given user navigates to the application
-        When user clicks on the sign up
-        When user enters the username and password
-        When user clicks on the signin button for login
-        And hover on the admin name
-        And Search the Project name
-        And click on next button
-        And Select the "Export data" option
-        Then verify the zip file
-        And hover on the admin name
-    		Then click on the sign out button
-        
-        Examples:
-          | TestData  | SheetName            |
-          | Testdata7 | Professional_Account |
 
     @ACSpro_9 @Web
     Scenario Outline:Test to check all files(Score,button,Demographic,Promis) are available in zip file.
@@ -264,44 +264,44 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName            |
       | Testdata10 | professional_account |
     
-  @ACpro_12 @Web
+	@ACSpro_12 @Web
   Scenario Outline: Test to check if user can add participants by admin account.
-     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
-     Given user navigates to the application
-     When user clicks on the sign up
-     When user enters the "<username>" and "<password>"
-     When user clicks on the signin button for login
-     And hover on the admin name
-     Then click on the sign out button
-    
-		Examples:
-      | TestData  | SheetName     | username | password |
-      | Testdata12 | Professional_Account | Username | Password |
-      
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And hover on the admin name
+    Then participant option is not visible
+    And click on the sign out button
 
-  @ACpro_13 @Web
+    Examples:
+      | TestData  | SheetName     | username | password |
+      | Testdata12 | Professional_Account | Username | Password |      
+
+  @ACSpro_13 @Web
   Scenario Outline: Test to check if user can add participants by admin account.
-   	Given Read the testdata "<TestData>" and "<SheetName>" from excel file
-  	Given user navigates to the application
-  	When user clicks on the sign up
-  	When user enters the "<username>" and "<password>"
-  	When user clicks on the signin button for login
-   	And Select the project from the dropdown
-  	And click on the "Submit" button
-   	And click on the "Add participant " link button 
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+    Given user navigates to the application
+    When user clicks on the sign up
+    When user enters the "<username>" and "<password>"
+    When user clicks on the signin button for login
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And click on the "Add participant " link button
     And enter the  "First name" in the field
-   	And enter the  "Last name" in the field
- 		And enter the  "Email" in the field
+    And enter the  "Last name" in the field
+    And enter the new "Email" in the field
     And enter the  "Zip Code" in the field
     And enter the  "Incident" in the field
     And enter the  "Participant ID" in the field
     And select the date_of_Birth
     And select the gender
     And click on the " Submit " button
-    Then user is able to see the alert message
+    Then user is able to add the participant "First name"
     And hover on the admin name
     Then click on the sign out button
-    
+
     Examples:
       | TestData  | SheetName     | username | password |
       | Testdata13 | Professional_Account | Username | Password |
@@ -562,7 +562,6 @@ Feature: validate the Professional Account functionality
     And select the date_of_Birth
     And select the gender
     And click on the " Submit " button
-		And click on the Manage ACS option
     And Select the acs "Initiate Mobile ACS" option
     And read the QR code
     And select the date_of_Birth
@@ -729,7 +728,6 @@ Feature: validate the Professional Account functionality
       And select the date_of_Birth
       And select the gender
       And click on the " Submit " button
-      And click on the Manage ACS option
       And Select the acs "Initiate Mobile ACS" option
       And read the QR code
       And select the date_of_Birth
@@ -1018,9 +1016,6 @@ Feature: validate the Professional Account functionality
 		And enter the  "Zip Code" in the field
 		And click on android back button
 		And click on button with text " Begin ACS "
-#		Then click on Begin ACS button
-#		And Select the testcase "Test Case One" option
-#		And click on button with text "Test"
 		And select the options for "<May give up>"
 		And select the options for "<Would like to start>"
 		When user clicks on navbar button
@@ -1314,7 +1309,7 @@ Feature: validate the Professional Account functionality
     	|	TestData	|	SheetName	| DeviceDetails	|	Continue since Stroke	| Started after Stroke	|	Doing less	|	Have given up	|	Would like to start	|	Barriers	|
     	| Testdata40	|	Professional_Account	| Pixel 4_11.0 |	Work, Puzzles, Walking	|	Volunteering, Pet care, Running	|	Ironing, Window shopping, Go to movies |	Playing cards, Listen to music, Fitness classes	|	Photography, Hiking, Dancing	|	I feel tired, I feel anxious, I get frustrated |
       
-  @ACSpro_41 @MobileTest 
+	@ACSpro_41 @MobileTest
   Scenario Outline: Mobile_Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase3.
    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
    Given user opens emulator "<DeviceDetails>"
@@ -1342,24 +1337,21 @@ Feature: validate the Professional Account functionality
    And Select the testcase "Test Case Three" option
    And click on the "Test" button
    Then click on the "Mending/repairing clothes " tiles
-   Then click on the "Ironing " tiles
-   Then click on the "Pet care " tiles
    And click on the "Next" option
    When user clicks on navbar button   
    And click on the admin name
    Then click on the sign out button
 
-    Examples:
-
+   Examples:
     | TestData   | SheetName            | DeviceDetails |                                                                                                                  
     | Testdata41 | Professional_Account | Pixel 4_11.0 |
     
-   @ACSpro_41 @Web   
-   Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase3.
+	@ACSpro_41 @Web
+  Scenario Outline: Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase3.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
     When user clicks on the sign up
-    When user enters the "<username>" and "<password>"
+    When user enters the username and password   
     When user clicks on the signin button for login
     And hover on the admin name
     And click on the "Participants" option
@@ -1379,6 +1371,7 @@ Feature: validate the Professional Account functionality
     And click on the " Submit " button
     And select few random tiles
     And Select the Activities "Activity takes too long" checkbox
+    Then click on ACS " back to Participant ACS" button    
     Then Activities current values match
       |Global|
       |Instrumental|
@@ -1393,45 +1386,45 @@ Feature: validate the Professional Account functionality
     | Testdata41 | Professional_Account |
     
 	@ACSpro_42 @MobileTest
-    Scenario Outline: Mobile_validating the mobile test case functionlity
-      Given Read the testdata "<TestData>" and "<SheetName>" from excel file
-	  	Given user opens emulator "<DeviceDetails>"
-	    Given user navigates to the application
-	    When user clicks on navbar button
-	    When user clicks on the sign up
-	    When user enters the username and password
-	    When user clicks on the signin button for login
-			When user clicks on the toggle button
-      And click on the admin name
-      And click on the "Participants" option
-      When user clicks on the toggle button
-      And Select the project from the dropdown
-      And click on the "Submit" button
-      And enter the first and last name
-      Then click on participant search button
-      And Select the view "Participant ACS" option
-      And click on the Manage ACS option
-      And Select the acs "Initiate Mobile ACS" option
-      And read the QR code
-      And select the date_of_Birth
-      And enter the  "Zip Code" in the field
-      And click on the begin acs option
-      Then user should beable to see the promis page
-      Then select the "<options>" radio buttons of promis page
-      Then click on the slider
-      And click on the " Next " button
-      And click on the "Begin ACS" link button
-      And Select the testcase "Test Case Four" option
-      And click on the "Test" button
-      And select the options for "<Will continue to do>"
-      And select the options for "<May do less>"
-			When user clicks on navbar button
-			And hover on the admin name
-		  Then click on the sign out button
+  Scenario Outline: Mobile_validating the mobile test case functionlity
+    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
+  	Given user opens emulator "<DeviceDetails>"
+    Given user navigates to the application
+    When user clicks on navbar button
+    When user clicks on the sign up
+    When user enters the username and password
+    When user clicks on the signin button for login
+		When user clicks on the toggle button
+    And click on the admin name
+    And click on the "Participants" option
+    When user clicks on the toggle button
+    And Select the project from the dropdown
+    And click on the "Submit" button
+    And enter the first and last name
+    Then click on participant search button
+    And Select the view "Participant ACS" option
+    And click on the Manage ACS option
+    And Select the acs "Initiate Mobile ACS" option
+    And read the QR code
+    And select the date_of_Birth
+    And enter the  "Zip Code" in the field
+    And click on the begin acs option
+    Then user should beable to see the promis page
+    Then select the "<options>" radio buttons of promis page
+    Then click on the slider
+    And click on the " Next " button
+    And click on the "Begin ACS" link button
+    And Select the testcase "Test Case Four" option
+    And click on the "Test" button
+    And select the options for "<Will continue to do>"
+    And select the options for "<May do less>"
+		When user clicks on navbar button
+		And hover on the admin name
+	  Then click on the sign out button
 
-      Examples:
-        | TestData  | SheetName            |	DeviceDetails	| Will continue to do                | May do less                 | Doing with others                  | options                                                                                     |
-        | Testdata42 | Professional_Account	| Pixel 4_11.0 | Doing laundry, Fishing, Eating out | Ironing, Exercise, Intimacy | Light cleaning, Puzzles, Bicycling | 1:10:15:18:24:29:33:39:45:47:54:58:62:68:71:78:82:88:94:100:103:108:115:117:122:128:133:137 |
+    Examples:
+      | TestData  | SheetName            |	DeviceDetails	| Will continue to do                | May do less                 | Doing with others                  | options                                                                                     |
+      | Testdata42 | Professional_Account	| Pixel 4_11.0 | Doing laundry, Fishing, Eating out | Ironing, Exercise, Intimacy | Light cleaning, Puzzles, Bicycling | 1:10:15:18:24:29:33:39:45:47:54:58:62:68:71:78:82:88:94:100:103:108:115:117:122:128:133:137 |
 
   @ACSpro_42 @Web
   Scenario Outline: Validating the mobile test case functionlity
@@ -1458,7 +1451,7 @@ Feature: validate the Professional Account functionality
     And click on the " Submit " button
     And select the options for "<May give up>"
     And select the options for "<Would like to start>"
-    And hover on the admin name
+    And hover on the admin name in remote
     Then click on the sign out button
 
     Examples:
@@ -1482,14 +1475,6 @@ Feature: validate the Professional Account functionality
     And click on the Manage ACS option
   	And Select the acs "Start ACS" option
     And click on the " Resume existing session " button
-    And Select the acs "Initiate Remote ACS" option
-    And click on the " Resume existing session " button
-    Given user navigates to the URL
-    And enter the email and submit
-    And User clicks on complete assessment button
-    And select the date_of_Birth
-    And enter the  "Zip Code" in the field
-    And click on the " Submit " button
     And Select the Activities "Activity takes too long" checkbox
     And click on the "Next" link button
     And click on the " back to Participant ACS" link button
@@ -1775,7 +1760,7 @@ Feature: validate the Professional Account functionality
     And hover on the admin name
     Then click on the sign out button
 
-       Examples:
+    Examples:
       | TestData  | SheetName     | username | password |
       | Testdata47 | Professional_Account | Username | Password |
 
@@ -1875,7 +1860,6 @@ Feature: validate the Professional Account functionality
     And Select the view "Participant ACS" option
     And click on the Manage ACS option
     And Select the acs "Initiate Mobile ACS" option
-#   And click on the " Resume existing session " button
     And read the QR code
     And select the date_of_Birth
     And enter the  "Zip Code" in the field

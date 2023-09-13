@@ -359,5 +359,11 @@ public class ACS_locators {
         public static By selectthetitleonmobile(String text) {
             return By.xpath("//div[text()='"+text+"']");
         }
+        
+        public static By admin_name_remote= By.xpath("//span[@class='f-letter']");
+        
+        public static By participant_Option = By.xpath("//a[text()='Participants']");
+        
+        public static By username_heading = By.xpath("//div[contains(@class,'row user-name-heading')]//h3");
 
 }
