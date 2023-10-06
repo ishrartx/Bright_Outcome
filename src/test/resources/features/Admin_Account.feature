@@ -1,7 +1,7 @@
 @Web
 Feature: login into the application
 
-@teardown
+@teardown @WebDemo
   Scenario Outline: templateteardown
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Then delete the template
@@ -14,7 +14,7 @@ Feature: login into the application
 
 
 
-  @ACS_01 @ACS
+  @ACS_01 @ACS @WebDemo
   Scenario Outline:: Test to check if user is able to add template.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -33,7 +33,7 @@ Feature: login into the application
       | TestData  |SheetName|
       | Testdata1 |ACS|
 
-  @ACS_02 @ACS
+  @ACS_02 @ACS @WebDemo
   Scenario Outline:: Test to check if user is able to view the edit template screen for existing template.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -52,7 +52,7 @@ Feature: login into the application
       | TestData  |SheetName|
       | Testdata1 |ACS|
 
-  @ACS_03
+  @ACS_03 @WebDemo
   Scenario Outline:: Test to check if user is able to make the changes in edit template screen.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -75,7 +75,7 @@ Feature: login into the application
       | TestData  |SheetName|
       | Testdata1 |ACS|
 
-  @ACS_05
+  @ACS_05 @WebDemo
   Scenario Outline:: Test to check if user is able to add a template in a project, without making any change in template. (6 buttons +no check box selected)
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
