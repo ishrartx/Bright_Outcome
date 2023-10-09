@@ -118,7 +118,7 @@ Feature: login into the application
       | Testdata2 |ACS|
 
 
-  @ACS_07 @WebDemo
+  @ACS_07 
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting only second check box and no change in radio button.  (6 buttons + 2nd check box selected)
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
@@ -279,7 +279,7 @@ Feature: login into the application
       | TestData  |SheetName|
       | Testdata10 |ACS|
       
-       @ACS_14
+       @ACS_14 @WebDemo
   Scenario Outline:: Test to check if user is able to add a template in a project , by selecting third check box and no change in radio button.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application
