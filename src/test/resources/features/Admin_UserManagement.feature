@@ -286,7 +286,7 @@ Feature: testing the admin account module
       | TestData  | SheetName            | username | password |
       | Testdata12 | Admin_Account | Username | Password |
       
-  @Admin_14
+  @Admin_14 
   Scenario Outline: Verify that FAQ link is working on home screen.
     Given Read the testdata "<TestData>" and "<SheetName>" from excel file
     Given user navigates to the application

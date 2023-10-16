@@ -21,7 +21,7 @@ import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 @CucumberOptions(features = "classpath:features", plugin = { "pretty", "html:target/cucumber-html-report.html", "json:target/cucumber.json" },
-		tags = "@ACS_28", monochrome = true
+		tags = "@ACSpro_43", monochrome = true
 
 )
 public class RunCukesTest extends AbstractTestNGCucumberTests {
