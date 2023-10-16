@@ -1491,7 +1491,7 @@ Feature: validate the Professional Account functionality
       | TestData  | SheetName            | May give up                  | Would like to start     | Doing with others                  | options                                                                                     |
       | Testdata42 | Professional_Account | Driving, Hiking, Group games | Work, Swimming, Boating | Light cleaning, Puzzles, Bicycling | 1:10:15:18:24:29:33:39:45:47:54:58:62:68:71:78:82:88:94:100:103:108:115:117:122:128:133:137 |
     
-  @ACSpro_43 @MobileTest
+  @ACSpro_43 @MobileTest @WebDemo
   Scenario Outline: Mobile_Test to check if ACS Scores match, when user complete the ACS with mobile, selecting TestCase5..
    Given Read the testdata "<TestData>" and "<SheetName>" from excel file
    Given user opens emulator "<DeviceDetails>"
